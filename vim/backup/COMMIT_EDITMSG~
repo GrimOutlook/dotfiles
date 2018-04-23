@@ -1,0 +1,78 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   bash_aliases
+#	new file:   bash_aliases~
+#	new file:   bash_profile
+#	modified:   bashrc
+#	new file:   bashrc~
+#	new file:   profile
+#	modified:   tmux.conf
+#	new file:   tmux.conf~
+#	new file:   vim/.netrwhist
+#	new file:   vim/.vim/swap/a.swp
+#	new file:   vim/.vim/swap/vimrc.swp
+#	new file:   vim/autoload/onedark.vim
+#	new file:   vim/autoload/plug.vim
+#	new file:   vim/backup/graph.cpp~
+#	new file:   vim/backup/vimrc~
+#	new file:   vim/colors/onedark.vim
+#	new file:   vim/defaults/YouCompleteMe
+#	new file:   vim/defaults/gruvbox
+#	new file:   vim/defaults/lightline.vim
+#	new file:   vim/defaults/onedark.vim
+#	new file:   vim/defaults/python-mode
+#	new file:   vim/defaults/python-syntax
+#	new file:   vim/defaults/syntastic
+#	new file:   vim/defaults/tagbar
+#	new file:   vim/defaults/vim-cpp-enhanced-highlight
+#	new file:   vim/defaults/vim-easytags
+#	new file:   vim/defaults/vim-misc
+#	new file:   vim/defaults/vim-one
+#	new file:   vim/defaults/vim-polyglot
+#	new file:   vim/pack/default/opt/onedark.vim/.github/ISSUE_TEMPLATE.md
+#	new file:   vim/pack/default/opt/onedark.vim/.gitignore
+#	new file:   vim/pack/default/opt/onedark.vim/CONTRIBUTING.md
+#	new file:   vim/pack/default/opt/onedark.vim/LICENSE
+#	new file:   vim/pack/default/opt/onedark.vim/README.md
+#	new file:   vim/pack/default/opt/onedark.vim/autoload/airline/themes/onedark.vim
+#	new file:   vim/pack/default/opt/onedark.vim/autoload/lightline/colorscheme/onedark.vim
+#	new file:   vim/pack/default/opt/onedark.vim/autoload/onedark.vim
+#	new file:   vim/pack/default/opt/onedark.vim/build/.eslintrc.json
+#	new file:   vim/pack/default/opt/onedark.vim/build/build.js
+#	new file:   vim/pack/default/opt/onedark.vim/build/doT.min.js
+#	new file:   vim/pack/default/opt/onedark.vim/build/package-lock.json
+#	new file:   vim/pack/default/opt/onedark.vim/build/package.json
+#	new file:   vim/pack/default/opt/onedark.vim/build/templates/One Dark.Xresources
+#	new file:   vim/pack/default/opt/onedark.vim/build/templates/One Dark.itermcolors
+#	new file:   vim/pack/default/opt/onedark.vim/build/templates/One Dark.terminal
+#	new file:   vim/pack/default/opt/onedark.vim/build/templates/autoload.template.vim
+#	new file:   vim/pack/default/opt/onedark.vim/colors/onedark.vim
+#	new file:   vim/pack/default/opt/onedark.vim/img/broken_colors.png
+#	new file:   vim/pack/default/opt/onedark.vim/img/broken_italics.png
+#	new file:   vim/pack/default/opt/onedark.vim/img/preview.png
+#	new file:   vim/pack/default/opt/onedark.vim/img/preview_airline.png
+#	new file:   vim/pack/default/opt/onedark.vim/img/preview_lightline.png
+#	new file:   vim/pack/default/opt/onedark.vim/term/One Dark.Xresources
+#	new file:   vim/pack/default/opt/onedark.vim/term/One Dark.itermcolors
+#	new file:   vim/pack/default/opt/onedark.vim/term/One Dark.terminal
+#	new file:   vim/pack/default/start/onedark.vim
+#	new file:   vim/pack/default/start/vim-one
+#	new file:   vim/pack/default/start/vim-polyglot
+#	new file:   vim/swap/a.swp
+#	new file:   vim/swap/graph.cpp.swp
+#	new file:   vim/swap/vimrc.swp
+#	new file:   vimrc
+#	new file:   vimrc~
+#
+# Untracked files:
+#	.bash_aliases.un~
+#	.bashrc.un~
+#	.tmux.conf.un~
+#	.vimrc.un~
+#
