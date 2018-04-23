@@ -1,0 +1,300 @@
+#include "graph.h"
+#include <stack>
+#include <queue>
+using namespace std;
+Graph::Graph()
+{
+    // Graph()
+    // Constructor initializes vertices linked list to empty
+    vertices = NULL;
+}
+Graph::~Graph()
+{
+    // ~Graph()
+    // For each VertexNode in the vertices list, Destructor deallocates all EdgeNodes before
+    // deallocating the VertexNode itself
+    VertexNode* vtemp;
+    VertexNode* nextvtemp;
+    EdgeNode* etemp;
+    EdgeNode* nextetemp;
+    vtemp = vertices;
+    while( vtemp != NULL )
+    {
+        etemp = vtemp->edgePtr;
+        while( etemp != NULL )
+        {
+            nextetemp = etemp->nextEdge;
+            delete etemp;
+            etemp = nextetemp;
+        }
+        nextvtemp = vtemp->nextVertex;
+        delete vtemp;
+        vtemp = nextvtemp;
+    }
+    vertices = NULL;
+}
+void Graph::AddVertex(string v)
+{
+    // AddVertex()
+    // Adds vertex to graph assuming vertex not already present
+
+    VertexNode* temp = new VertexNode;
+    temp->nextVertex = vertices;
+    vertices = temp;
+    vertices->vname = v;
+}
+void Graph::AddEdge(string s, string d, int w)
+{
+    // AddEdge()
+    // Adds edge from source S  to destination D with specified weight W.
+    // If there is not enough memory to add the edge, throw the GraphFull exception
+    VertexNode* vtemp = vertices; // Vertex Temp
+    while( vtemp->vname != s )
+    {
+        vtemp = vtemp->nextVertex;
+    }
+    VertexNode* dvtemp = vertices;  // Destination Vertex Temp
+    while( dvtemp->vname != d )
+    {
+        dvtemp = dvtemp->nextVertex;
+    }
+    try
+    {
+        EdgeNode* temp = new EdgeNode;
+        cout << temp << endl;
+        temp->destination = dvtemp;
+        temp->weight = w;
+        temp->nextEdge = vtemp->edgePtr;
+        vtemp->edgePtr = temp;
+    }
+    catch(bad_alloc)
+    {
+        throw GraphFull();
+    }
+}
+VertexNode* Graph::VertexExists(string v) const
+{
+    // VertexExists()
+    // Returns pointer to corresponding VertexNode if vertex V in graph
+    // Returns NULL otherwise
+    VertexNode* temp = vertices;
+    while( temp != NULL && temp->vname != v )
+    {
+        temp = temp->nextVertex;
+    }
+    if( temp == NULL )
+        return(NULL);
+    else
+        return(temp);
+}
+EdgeNode* Graph::EdgeExists(string s, string d) const
+{
+    // EdgeExists()
+    // Returns pointer to edge node if edge from vertex s to vertex d exists in graph
+    // Returns NULL otherwise
+    VertexNode* vtemp = vertices;
+    while( vtemp != NULL && vtemp->vname != s )
+    {
+        vtemp = vtemp->nextVertex;
+    }
+    if( vtemp == NULL )
+        return( NULL );
+    else
+    {
+        EdgeNode* etemp = vtemp->edgePtr;
+        while( etemp != NULL && etemp->destination->vname != d )
+            etemp = etemp->nextEdge;
+
+        if( etemp == NULL )
+            return( NULL );
+        else
+            return( etemp );
+    }
+}
+int  Graph::WeightIs(string s, string d)
+{
+    // WeightIs()
+    // Returns weight of edge (s,d).  Throws GraphEdgeNotFound if edge not present.
+    VertexNode* vtemp = vertices;
+    while( vtemp != NULL && vtemp->vname != s )
+    {
+        vtemp = vtemp->nextVertex;
+    }
+    if( vtemp == NULL )
+        throw GraphEdgeNotFound();
+    else
+    {
+        EdgeNode* etemp = vtemp->edgePtr;
+        while( etemp != NULL && etemp->destination->vname != d )
+            etemp = etemp->nextEdge;
+
+        if( etemp == NULL )
+            throw GraphEdgeNotFound();
+        else
+            return( etemp->weight );
+    }
+}
+void Graph::ClearMarks()
+{
+    // ClearMarks()
+    // Clears all vertex marks
+    VertexNode* temp = vertices;
+    while( temp != NULL )
+    {
+        temp->mark = 0;
+        temp = temp->nextVertex;
+    }
+}
+void Graph::MarkVertex(string v)
+{
+    // MarkVertex()
+    // Marks vertex V as visited
+    // Throws GraphVertexNotFound if not present
+    VertexNode* temp = vertices;
+    while( temp != NULL && temp->vname != v )
+    {
+        temp = temp->nextVertex;
+    }
+    if( temp == NULL )
+        throw GraphVertexNotFound();
+    else
+        temp->mark = 1;
+}
+bool Graph::IsMarked(string v)
+{
+    // IsMarked()
+    // Returns true if vertex V is marked, false if not marked
+    // Throws GraphVertexNotFound if not present
+    VertexNode* temp = vertices;
+    while( temp != NULL && temp->vname != v )
+    {
+        temp = temp->nextVertex;
+    }
+    if( temp == NULL )
+        throw GraphVertexNotFound();
+    else
+        return( temp->mark == 1);
+}
+void Graph::GetToVertices(string V, queue<string>& q)
+{
+    // GetToVertices()
+    // Returns queue Q of vertex names of those vertices adjacent to vertex V
+    // The queue here is from the Standard Template Library
+    // Throws GraphVertexNotFound if not present
+    VertexNode* vtemp = vertices; // Vertex Temp
+    while( vtemp->vname != V )
+    {
+        vtemp = vtemp->nextVertex;
+        if( vtemp == NULL )
+            throw GraphVertexNotFound();
+    }
+
+    EdgeNode* etemp = vtemp->edgePtr;
+    while( etemp != NULL )
+    {
+        q.push( etemp->destination->vname );
+        etemp = etemp->nextEdge;
+    }
+
+}
+void Graph::DepthFirstSearch(string startVertex, string endVertex, queue<string>& path)
+{
+    // DepthFirstSearch()
+    // Uses the DFS algorithm from the CPE 212 textbook to determine a path from the
+    // startVertex to the endVertex.  If a path is found, the path vertices should
+    // be in the path queue.  If no path is found, the path queue should be emptied
+    // as a signal to the client code that no path exists between the start and
+    // end vertices.
+    //
+    // Notes:
+    // (1) This algorithm is flawed in that as it searches for a path, it may
+    // output some additional vertices that it visited but were not part
+    // of the actual path.  Implement the algorithm just as it appears in the textbook.
+    //
+    // (2) This algorithm requires use of the stack and queue containers from the
+    // Standard Template Library.  The STL stack and queue interfaces may require
+    // minor modifications to the DFS code from the textbook.
+    stack<string> stack;
+    queue<string> vertexQ;
+    bool found = false;
+    string vertex;
+    string item;
+    MarkVertex(endVertex);
+    ClearMarks();
+    stack.push(startVertex);
+    do
+    {
+        vertex = stack.top();
+        stack.pop();
+        if (vertex == endVertex)
+        {
+            path.push(vertex);
+            found = true;
+        }
+        else
+        {
+            if (!IsMarked(vertex))
+            {
+                MarkVertex(vertex);
+                path.push(vertex);
+                GetToVertices(vertex, vertexQ);
+                while (!vertexQ.empty())
+                {
+                    item = vertexQ.front();
+                    vertexQ.pop();
+                    if (!IsMarked(item))
+                        stack.push(item);
+                }
+            }
+        }
+    } while (!stack.empty() && !found);
+    if (!found)
+        while(!path.empty())
+            path.pop();
+}
+void Graph::BreadthFirstSearch(string startVertex, string endVertex, queue<string>& path)
+{
+    // BreadthFirstSearch()
+    // Uses the BFS algorithm from the CPE 212 textbook to determine a path from the
+    // startVertex to the endVertex.  If a path is found, the path vertices should
+    // be in the visited queue.  If no path is found, the visited queue should be emptied
+    // as a signal to the client code that no path exists between the start and
+    // end vertices.
+    queue<string> q;
+    queue<string> vertexQ;
+    bool found = false;
+    string vertex;
+    string item;
+    MarkVertex(endVertex);
+    ClearMarks();
+    q.push(startVertex);
+    do
+    {
+        vertex = q.front();
+        q.pop();
+        if (vertex == endVertex)
+        {
+            path.push(vertex);
+            found = true;
+        }
+        else
+        {
+            if (!IsMarked(vertex))
+            {
+                MarkVertex(vertex);
+                path.push(vertex);
+                GetToVertices(vertex, vertexQ);
+                while (!vertexQ.empty())
+                {
+                    item = vertexQ.front();
+                    vertexQ.pop();
+                    if (!IsMarked(item))
+                    q.push(item);
+                }
+            }
+        }
+    } while (!q.empty() && !found);
+        if (!found)
+            while(!path.empty())
+                path.pop();
+}
