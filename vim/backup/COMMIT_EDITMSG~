@@ -3,10 +3,40 @@
 # with '#' will be ignored, and an empty message aborts the commit.
 #
 # On branch master
-# Your branch is ahead of 'origin/master' by 2 commits.
-#   (use "git push" to publish your local commits)
+# Your branch is up to date with 'origin/master'.
 #
 # Changes to be committed:
-#	modified:   .gitignore
-#	modified:   vim/backup/COMMIT_EDITMSG~
+#	modified:   ../.gitignore
+#	modified:   backup/COMMIT_EDITMSG~
+#
+# Changes not staged for commit:
+#	deleted:    pack/default/opt/onedark.vim/.github/ISSUE_TEMPLATE.md
+#	deleted:    pack/default/opt/onedark.vim/.gitignore
+#	deleted:    pack/default/opt/onedark.vim/CONTRIBUTING.md
+#	deleted:    pack/default/opt/onedark.vim/LICENSE
+#	deleted:    pack/default/opt/onedark.vim/README.md
+#	deleted:    pack/default/opt/onedark.vim/autoload/airline/themes/onedark.vim
+#	deleted:    pack/default/opt/onedark.vim/autoload/lightline/colorscheme/onedark.vim
+#	deleted:    pack/default/opt/onedark.vim/autoload/onedark.vim
+#	deleted:    pack/default/opt/onedark.vim/build/.eslintrc.json
+#	deleted:    pack/default/opt/onedark.vim/build/build.js
+#	deleted:    pack/default/opt/onedark.vim/build/doT.min.js
+#	deleted:    pack/default/opt/onedark.vim/build/package-lock.json
+#	deleted:    pack/default/opt/onedark.vim/build/package.json
+#	deleted:    pack/default/opt/onedark.vim/build/templates/One Dark.Xresources
+#	deleted:    pack/default/opt/onedark.vim/build/templates/One Dark.itermcolors
+#	deleted:    pack/default/opt/onedark.vim/build/templates/One Dark.terminal
+#	deleted:    pack/default/opt/onedark.vim/build/templates/autoload.template.vim
+#	deleted:    pack/default/opt/onedark.vim/colors/onedark.vim
+#	deleted:    pack/default/opt/onedark.vim/img/broken_colors.png
+#	deleted:    pack/default/opt/onedark.vim/img/broken_italics.png
+#	deleted:    pack/default/opt/onedark.vim/img/preview.png
+#	deleted:    pack/default/opt/onedark.vim/img/preview_airline.png
+#	deleted:    pack/default/opt/onedark.vim/img/preview_lightline.png
+#	deleted:    pack/default/opt/onedark.vim/term/One Dark.Xresources
+#	deleted:    pack/default/opt/onedark.vim/term/One Dark.itermcolors
+#	deleted:    pack/default/opt/onedark.vim/term/One Dark.terminal
+#	deleted:    pack/default/start/onedark.vim
+#	deleted:    pack/default/start/vim-one
+#	deleted:    pack/default/start/vim-polyglot
 #
