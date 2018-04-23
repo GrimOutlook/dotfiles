@@ -108,6 +108,7 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 syntax on
