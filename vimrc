@@ -18,6 +18,13 @@ endif
 set backupdir=~/.vim/backup
 set number
 
+" This makes vim watch for vimrc changes and reloads vim accordingly on the
+" fly
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
 
@@ -76,6 +83,11 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" ***** Folding *****"
+set foldmethod=indent
+set foldlevel=1
+"set foldclose=all
+
 " ***** Natural Splitting ***** "
 set splitbelow
 set splitright
@@ -93,6 +105,9 @@ let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
 
+" ***** Fixing Tabs ***** "
+set tabstop=4 shiftwidth=4 expandtab
+set softtabstop=4
 
 call plug#begin('~/.vim/defaults')
 Plug 'itchyny/lightline.vim'
@@ -100,14 +115,19 @@ Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'joshdick/onedark.vim'
-Plug 'hdima/python-syntax'
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+"Plug 'hdima/python-syntax'
+"Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'Yggdroot/indentLine'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-syntastic/syntastic'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/nerdcommenter' " \c<space> to toggle comment
+Plug 'jiangmiao/auto-pairs'
+Plug 'severin-lemaignan/vim-minimap' " \gt - toggle minimap
+Plug 'jiangmiao/auto-pairs'
 Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
@@ -128,17 +148,25 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_debug = 1
+let g:syntastic_python_checkers=['python', 'flake8'] " Pep8 and pyflakes removed
+let g:syntastic_python_flake8_post_args = '--ignore=E126,E201,E202,E401,E501,W504'
+
 "" *****Vim CPP Enhanced Highlight***** "
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_simple_template_highlight = 1
 
 "" *****Python Syntax***** "
-let python_highlight_all = 1
+"let python_highlight_all = 1
 
 "" *****Python-Mode***** "
-let g:pymode_python = 'python3' " Pythonmode for python3 rather than python2
+"let g:pymode_python = 'python3' " Pythonmode for python3 rather than python2
 
+" ***** IndentLine  ***** "
+"let g:indentLine_setColors = 0
+let g:indentLine_color_term = 0
+let g:indentLine_color_gui = '#404040'
 
 " ********************* THEMES *************************** "
 
