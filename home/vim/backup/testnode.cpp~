@@ -1,0 +1,10 @@
+#include <iostream>
+#include <new>
+using namespace std;
+int main(void)
+{
+    //int* myarray = new int;
+    int* myarray[10];
+    //myarray = new [10] int;
+    //int* myarray = new int[10];
+}

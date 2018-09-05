@@ -1,0 +1,122 @@
+import os, requests, time
+from lxml import html, etree
+
+download_location = "/home/dom/Code/NHD/download_test/"
+
+# Download
+comic = Webpage("https://nhentai.net/g/229267/")
+total_num_pages = int( comic.tree('//div[@id="info"]/div')[0].text_content().split(" ")[0] )
+comic_page = Webpage("https://nhentai.net" + comic.tree.xpath('//a[@class="gallerythumb"]/@href')[0])
+img_link = comic_page.tree.xpath('//section[@id="image-container"]/a/img')[0].attrib["src"]
+img_link_components = comic_img.split("/")
+img_link_components_ext = img_link_components[-1].split(".")[-1]
+img_link_components_page_num = img_link_components[-1].split(".")[0]
+for i in range(total_num_pages):
+
+    img_bytes = Webpage(img_link).page.content
+    with open (download_location + img_link_components_page_num + img_link_components_ext, "wb+") as f:
+        f.write(img_bytes)
+
+    img_link_components[-1] = str( int(img_link_components_page_num) + 1 ) + img_link_components_ext
+    img_link = "/".join( img_link_components )
+
+class Comic:
+    def __init__(self, url):
+        self.comic = Webpage( url )
+
+    def dirSetup(self):
+        title = self.comic.tree.xpath('//div[@id="info"]/h1').text_content()
+        self.comic_download_dir = download_location + title
+
+        if( not os.path.isdir(comic_download_dir) ):
+            os.makedirs(comic_download_dir)
+
+    def infoFile(self):
+        f = open(comic_download_dir + "/info.nfo", "w+" )
+
+        title = self.comic.tree.xpath('//div[@id="info"]/h1/text()')[0]
+        secondary_title = self.comic.tree.xpath('//div[@id="info"]/h2/text()')[0]
+        artist = []
+        group = []
+        parody = []
+        language = []
+        tags = []
+        f.write( title + "\n" + secondary_title + "\n")
+
+class Search:
+    def __init__(self, url=None):
+        self.searchpage = Webpage(url) if url != None else Webpage("https://nh.net")
+
+class Url:
+    def __init__(self):
+        self.url = "https://nh.net/search/?q="
+
+    def resetUrl(self):
+        self.url = "https://nh.net/search/?q="
+
+    def addArtist(self, line):
+        self.url += 'artist:"' + line + '"+'
+
+    def addGroup(self, line):
+        self.url += 'group:"' + line + '"+'
+
+    def addLanguage(self, line):
+        self.url += 'language:"' + line + '"+'
+
+    def addParody(self, line):
+        self.url += 'parody:"' + line + '"+'
+
+    def addTag(self, line):
+        self.url += 'tag:"' + line + '"+'
+
+class Webpage:
+    # Private Functions
+    def __init__( self, url=None ):
+        if( url == None ):
+            self.tree = None
+            self.page = None
+        else:
+            self._loadWebpage(url)
+
+    def _loadWebpage(self, url):
+        headers = {
+            'User-Agent': 'My User Agent 1.0',
+            'From': 'youremail@domain.com'  # This is another valid field
+        }
+        cookie = dict(over18="1")
+        print("Getting webpage: " + url)
+        timedelay = .2
+        while( True ):
+            try:
+                try:
+                    prevpage = self.page
+                except:
+                    pass
+                time.sleep( timedelay )
+                try:
+                    self.page = requests.get( url, headers=headers, cookies=cookie )
+                except:
+                    time.sleep( 10 )
+                    self.page = requests.get( url, headers=headers, cookies=cookie )
+                    if(self.page == prevpage):
+                        print('Page failed to load. URL: ' + url)
+                        self.page = None
+                        self.tree = None
+                        return 0
+                self.tree = html.fromstring( self.page.content )
+                if( self.page.status_code != 429 and self.page.status_code != 404 and self.page.status_code != 503):
+                    prevpage = self.page
+                    return 1
+                elif( self.page.status_code == 404 ):
+                    print('Page gives error 404. URL: ' + url)
+                    return 0
+                elif( self.page.status_code == 503):
+                    print("Website Returned Error 503: Waiting 30 seconds.")
+                    timedelay *= 20
+                else:
+                    timedelay *= 20
+                    print("Website Returned Error " + str(self.page.status_code) + ": Waiting " + str(timedelay) + " seconds.")
+
+            except ( TimeoutError, UnboundLocalError, gaierror, ConnectionAbortedError):
+                print("Oops. Somthing is wrong with the internet. Waiting 30 Second...")
+                time.sleep(30)

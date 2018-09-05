@@ -124,11 +124,15 @@ Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
+<<<<<<< HEAD
 Plug 'scrooloose/nerdcommenter' " \c<space> to toggle comment
 Plug 'jiangmiao/auto-pairs'
 Plug 'severin-lemaignan/vim-minimap' " \gt - toggle minimap
 Plug 'jiangmiao/auto-pairs'
+||||||| merged common ancestors
+=======
 Plug 'jiangmiao/auto-pairs'
+>>>>>>> cba7086aeb783df5b6a5446e7e9cec4699473e27
 call plug#end()
 
 syntax on

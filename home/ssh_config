@@ -1,0 +1,12 @@
+Host ArchServer
+    HostName bfs.moe
+    Port 220
+    User dom
+Host Seed
+    Hostname bfs.moe
+    Port 2200
+    User dom
+Host PC
+    Hostname bfs.moe
+    Port 2202
+    User dom
