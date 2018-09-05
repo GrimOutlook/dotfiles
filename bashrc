@@ -5,10 +5,37 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
+# Color option for ls depending on if you are using linux or OSX
+ls --color=al > /dev/null 2>&1 && alias ls='ls -F --color=al' || alias ls='ls -G'
+
+#Set up my history file to ignore duplicates and be much larger than the default
+HISTCONTROL=ignoreboth:erasedups HISTSIZE=100000 HISTFILESIZE=200000
+
+#Function "md" to make and cd into a directory with one command
+md () { [ $# = 1 ] && mkdir -p "$@" && cd "$@" || echo "Error - no directory passed!"; }
+
+# Improve PS1 Prompt
+HOST='\033[02;36m\]\h'; HOST=' '$HOST
+TIME='\033[01;31m\]\t \033[01;32m\]'
+LOCATION=' \033[01;34m\]`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g" `\n\$ '
+PS1=$TIME$USER$HOST$LOCATION
+#PS1='[\u@\h \W]\$ '
+
+# Improved PS2 Prompt
+PS2='\[\033[01;36m\]>'
 
 # Set default editor to vim
 export EDITOR=vim
+
+set -o vi # vi at command line
+
+test -s ~/.autojump/etc/profile.d/autojump && . $_ # Execute autojump if it exists
+
+[ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s autocd # Allow cd'ing without typing the cd part if the bash version >= 4
+
+[ -f /etc/bash_completion  ] && ! shopt -oq posix && . /etc/bash_completion # Execute a bash completion script if it exists
+
+[ -z $TMUX ] && export TERM=xterm-256color && exec tmux # Use TMUX if it is present
 
 # Avoid succesive duplicates in the bash command history.
 export HISTCONTROL=ignoredups
@@ -25,3 +52,9 @@ PROMPT_COMMAND='history -a'
 if [ -f ~/Documents/config/bash_aliases ]; then
     source ~/Documents/config/bash_aliases
 fi
+
+function secure_chromium {
+    port=8080
+    chromium --proxy-server="socks://localhost:$port" &
+    exit
+}
