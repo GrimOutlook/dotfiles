@@ -6,62 +6,61 @@
 # Your branch is up to date with 'origin/master'.
 #
 # Changes to be committed:
-#	new file:   etc/tmux.conf
-#	new file:   home/.bash_profile.un~
-#	new file:   home/.bashrc.un~
-#	new file:   home/.ssh_config.un~
-#	new file:   home/bash_aliases
-#	new file:   home/bash_profile
-#	new file:   home/bashrc
-#	new file:   home/profile
-#	new file:   home/ssh_config
-#	new file:   home/vim/.netrwhist
-#	new file:   home/vim/autoload/onedark.vim
-#	new file:   home/vim/autoload/plug.vim
-#	new file:   home/vim/backup/.gitignore~
-#	new file:   home/vim/backup/.netrwhist~
-#	new file:   home/vim/backup/Andromeda~
-#	new file:   home/vim/backup/COMMIT_EDITMSG~
-#	new file:   home/vim/backup/Constellations~
-#	new file:   home/vim/backup/__init__.py~
-#	new file:   home/vim/backup/bash_profile~
-#	new file:   home/vim/backup/bashrc~
-#	new file:   home/vim/backup/bruteforce.py~
-#	new file:   home/vim/backup/config~
-#	new file:   home/vim/backup/downtest.py~
-#	new file:   home/vim/backup/getdoujin.sh~
-#	new file:   home/vim/backup/getinfo.py~
-#	new file:   home/vim/backup/getnum.py~
-#	new file:   home/vim/backup/ssh_config~
-#	new file:   home/vim/backup/test.py~
-#	new file:   home/vim/backup/testnode.cpp~
-#	new file:   home/vim/backup/tmux.conf~
-#	new file:   home/vim/backup/vimrc~
-#	new file:   home/vim/colors/onedark.vim
-#	new file:   home/vim/defaults/YouCompleteMe
-#	new file:   home/vim/defaults/auto-pairs
-#	new file:   home/vim/defaults/gruvbox
-#	new file:   home/vim/defaults/indentLine
-#	new file:   home/vim/defaults/lightline.vim
-#	new file:   home/vim/defaults/nerdcommenter
-#	new file:   home/vim/defaults/onedark.vim
-#	new file:   home/vim/defaults/python-mode
-#	new file:   home/vim/defaults/python-syntax
-#	new file:   home/vim/defaults/syntastic
-#	new file:   home/vim/defaults/tagbar
-#	new file:   home/vim/defaults/vim-cpp-enhanced-highlight
-#	new file:   home/vim/defaults/vim-easytags
-#	new file:   home/vim/defaults/vim-minimap
-#	new file:   home/vim/defaults/vim-misc
-#	new file:   home/vim/defaults/vim-one
-#	new file:   home/vim/defaults/vim-polyglot
-#	new file:   home/vim/swap/vimrc.swo
-#	new file:   home/vimrc
+#	modified:   etc/tmux.conf
+#	modified:   home/.bash_profile.un~
+#	modified:   home/.bashrc.un~
+#	new file:   home/.profile.un~
+#	modified:   home/.ssh_config.un~
+#	modified:   home/bash_aliases
+#	modified:   home/bash_profile
+#	modified:   home/bashrc
+#	modified:   home/profile
+#	modified:   home/ssh_config
+#	modified:   home/vim/.netrwhist
+#	modified:   home/vim/autoload/onedark.vim
+#	modified:   home/vim/autoload/plug.vim
+#	new file:   home/vim/backup/.bash_profile~
+#	new file:   home/vim/backup/.bashrc~
+#	modified:   home/vim/backup/.gitignore~
+#	modified:   home/vim/backup/.netrwhist~
+#	new file:   home/vim/backup/.profile~
+#	modified:   home/vim/backup/COMMIT_EDITMSG~
+#	modified:   home/vim/backup/bash_profile~
+#	modified:   home/vim/backup/bashrc~
+#	modified:   home/vim/backup/config~
+#	new file:   home/vim/backup/known_hosts~
+#	new file:   home/vim/backup/lab1.c~
+#	new file:   home/vim/backup/lab1pt1.c~
+#	new file:   home/vim/backup/profile~
+#	modified:   home/vim/backup/ssh_config~
+#	modified:   home/vim/backup/tmux.conf~
+#	modified:   home/vim/backup/vimrc~
+#	modified:   home/vim/colors/onedark.vim
+#	modified:   home/vim/swap/vimrc.swo
+#	modified:   home/vimrc
 #
 # Changes not staged for commit:
+#	modified:   .gitignore
 #	deleted:    bash_aliases
 #	deleted:    bash_profile
 #	deleted:    bashrc
+#	modified:   home/vim/defaults/YouCompleteMe (modified content)
+#	modified:   home/vim/defaults/auto-pairs (modified content)
+#	modified:   home/vim/defaults/gruvbox (modified content)
+#	modified:   home/vim/defaults/indentLine (modified content)
+#	modified:   home/vim/defaults/lightline.vim (modified content)
+#	modified:   home/vim/defaults/nerdcommenter (modified content)
+#	modified:   home/vim/defaults/onedark.vim (modified content)
+#	modified:   home/vim/defaults/python-mode (modified content)
+#	modified:   home/vim/defaults/python-syntax (modified content)
+#	modified:   home/vim/defaults/syntastic (modified content)
+#	modified:   home/vim/defaults/tagbar (modified content)
+#	modified:   home/vim/defaults/vim-cpp-enhanced-highlight (modified content)
+#	modified:   home/vim/defaults/vim-easytags (modified content)
+#	modified:   home/vim/defaults/vim-minimap (modified content)
+#	modified:   home/vim/defaults/vim-misc (modified content)
+#	modified:   home/vim/defaults/vim-one (modified content)
+#	modified:   home/vim/defaults/vim-polyglot (modified content)
 #	deleted:    profile
 #	deleted:    tmux.conf
 #	deleted:    vim/.netrwhist

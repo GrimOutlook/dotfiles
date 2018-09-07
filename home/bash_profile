@@ -3,7 +3,7 @@
 #
 
 # Load .profile, containing login, non-bash related initializations.
-source ~/Documents/config/home/profile
+source /etc/config/home/profile
 
 # Load .bashrc, containing non-login related bash initializations.
-source ~/Documents/config/home/bashrc
+source /etc/config/home/bashrc
