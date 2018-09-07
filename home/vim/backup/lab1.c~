@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int countChars( char* str ) {
+    int count = 0;
+    int current_char_code= (int) str[0];
+    while( current_char_code != 0 )
+    {
+        current_char_code = (int) str[count];
+        count++;
+    }
+    return count;
+}
+int main( void ) {
+    printf("count\n"); 
+    int current_char_code;
+    int num_special_chars = 0;
+    int num_digits = 0;
+    int num_capital_letters = 0;
+    int num_lower_case_letters = 0;
+    char msg[] = "Welcome to CPE 325 in Fall 2018!";
+    for( int i=0; i < countChars(msg); i++ ) {
+        current_char_code = (int) msg[i];
+        //32-47 and 58-64 and 91-96 and 123-126 are special characters
+        //48-57 Digits
+        //65-90 Capital letters
+        //97-122 Lowercase letters
+        if( ( current_char_code >= 32 && current_char_code <= 47 ) || ( current_char_code >= 58 && current_char_code <= 64 ) || ( current_char_code >= 91 && current_char_code <= 96 ) || ( current_char_code >= 123 && current_char_code <= 126 )  )
+            num_special_chars++;
+        else if( current_char_code >= 48 && current_char_code <= 64 )
+            num_digits++;
+        else if( current_char_code >= 65 && current_char_code <= 90 )
+            num_capital_letters++;
+        else if( current_char_code >= 97 && current_char_code <= 122 )
+            num_lower_case_letters++;
+        else
+            continue;
+    }
+    printf("String: %s\n", msg);
+    printf("Contains: %d digits, %d special characters, %d upper case letters and %d lower case letters\n", num_digits, num_special_chars, num_capital_letters, num_lower_case_letters);
+}
