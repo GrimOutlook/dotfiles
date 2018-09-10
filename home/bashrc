@@ -49,8 +49,8 @@ shopt -s histappend
 PROMPT_COMMAND='history -a'
 
 # Add bash aliases.
-if [ -f ~/Documents/config/bash_aliases ]; then
-    source ~/Documents/config/bash_aliases
+if [ -f /etc/config/home/bash_aliases ]; then
+    source /etc/config/home/bash_aliases
 fi
 
 function secure_chromium {

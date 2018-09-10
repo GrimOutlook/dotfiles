@@ -1,2 +1,11 @@
-alias ls='ls --color'
 alias v='vim'
+
+alias ll='ls -lhA'
+alias sl='ls'
+alias l='ls -CF'
+alias la='ls -A'
+
+alias mkdir='mkdir -p'
+alias top='htop'
+alias grep='grep --color=auto'
+
