@@ -3,41 +3,11 @@
 # with '#' will be ignored, and an empty message aborts the commit.
 #
 # On branch master
-# Your branch is ahead of 'origin/master' by 2 commits.
-#   (use "git push" to publish your local commits)
+# Your branch is up to date with 'origin/master'.
 #
 # Changes to be committed:
 #	modified:   home/bashrc
 #	modified:   home/vim/backup/.bashrc~
 #	modified:   home/vim/backup/COMMIT_EDITMSG~
 #	new file:   home/vim/backup/MERGE_MSG~
-#
-# Changes not staged for commit:
-#	deleted:    bash_aliases
-#	deleted:    bash_profile
-#	deleted:    bashrc
-#	deleted:    profile
-#	deleted:    tmux.conf
-#	deleted:    vim/.netrwhist
-#	deleted:    vim/autoload/onedark.vim
-#	deleted:    vim/autoload/plug.vim
-#	deleted:    vim/colors/onedark.vim
-#	deleted:    vim/defaults/YouCompleteMe
-#	deleted:    vim/defaults/auto-pairs
-#	deleted:    vim/defaults/gruvbox
-#	deleted:    vim/defaults/indentLine
-#	deleted:    vim/defaults/lightline.vim
-#	deleted:    vim/defaults/nerdcommenter
-#	deleted:    vim/defaults/onedark.vim
-#	deleted:    vim/defaults/python-mode
-#	deleted:    vim/defaults/python-syntax
-#	deleted:    vim/defaults/syntastic
-#	deleted:    vim/defaults/tagbar
-#	deleted:    vim/defaults/vim-cpp-enhanced-highlight
-#	deleted:    vim/defaults/vim-easytags
-#	deleted:    vim/defaults/vim-minimap
-#	deleted:    vim/defaults/vim-misc
-#	deleted:    vim/defaults/vim-one
-#	deleted:    vim/defaults/vim-polyglot
-#	deleted:    vimrc
 #
