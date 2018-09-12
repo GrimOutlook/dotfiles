@@ -9,5 +9,3 @@ alias mkdir='mkdir -p'
 alias top='htop'
 alias grep='grep --color=auto'
 
-alias caf='ls -Uba1 | wc -l'
-alias cf='ls -Ub1 | wc -l'
