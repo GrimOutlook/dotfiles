@@ -3,64 +3,19 @@
 # with '#' will be ignored, and an empty message aborts the commit.
 #
 # On branch master
-# Your branch is up to date with 'origin/master'.
+# Your branch is ahead of 'origin/master' by 2 commits.
+#   (use "git push" to publish your local commits)
 #
 # Changes to be committed:
-#	modified:   etc/tmux.conf
-#	modified:   home/.bash_profile.un~
-#	modified:   home/.bashrc.un~
-#	new file:   home/.profile.un~
-#	modified:   home/.ssh_config.un~
-#	modified:   home/bash_aliases
-#	modified:   home/bash_profile
 #	modified:   home/bashrc
-#	modified:   home/profile
-#	modified:   home/ssh_config
-#	modified:   home/vim/.netrwhist
-#	modified:   home/vim/autoload/onedark.vim
-#	modified:   home/vim/autoload/plug.vim
-#	new file:   home/vim/backup/.bash_profile~
-#	new file:   home/vim/backup/.bashrc~
-#	modified:   home/vim/backup/.gitignore~
-#	modified:   home/vim/backup/.netrwhist~
-#	new file:   home/vim/backup/.profile~
+#	modified:   home/vim/backup/.bashrc~
 #	modified:   home/vim/backup/COMMIT_EDITMSG~
-#	modified:   home/vim/backup/bash_profile~
-#	modified:   home/vim/backup/bashrc~
-#	modified:   home/vim/backup/config~
-#	new file:   home/vim/backup/known_hosts~
-#	new file:   home/vim/backup/lab1.c~
-#	new file:   home/vim/backup/lab1pt1.c~
-#	new file:   home/vim/backup/profile~
-#	modified:   home/vim/backup/ssh_config~
-#	modified:   home/vim/backup/tmux.conf~
-#	modified:   home/vim/backup/vimrc~
-#	modified:   home/vim/colors/onedark.vim
-#	modified:   home/vim/swap/vimrc.swo
-#	modified:   home/vimrc
+#	new file:   home/vim/backup/MERGE_MSG~
 #
 # Changes not staged for commit:
-#	modified:   .gitignore
 #	deleted:    bash_aliases
 #	deleted:    bash_profile
 #	deleted:    bashrc
-#	modified:   home/vim/defaults/YouCompleteMe (modified content)
-#	modified:   home/vim/defaults/auto-pairs (modified content)
-#	modified:   home/vim/defaults/gruvbox (modified content)
-#	modified:   home/vim/defaults/indentLine (modified content)
-#	modified:   home/vim/defaults/lightline.vim (modified content)
-#	modified:   home/vim/defaults/nerdcommenter (modified content)
-#	modified:   home/vim/defaults/onedark.vim (modified content)
-#	modified:   home/vim/defaults/python-mode (modified content)
-#	modified:   home/vim/defaults/python-syntax (modified content)
-#	modified:   home/vim/defaults/syntastic (modified content)
-#	modified:   home/vim/defaults/tagbar (modified content)
-#	modified:   home/vim/defaults/vim-cpp-enhanced-highlight (modified content)
-#	modified:   home/vim/defaults/vim-easytags (modified content)
-#	modified:   home/vim/defaults/vim-minimap (modified content)
-#	modified:   home/vim/defaults/vim-misc (modified content)
-#	modified:   home/vim/defaults/vim-one (modified content)
-#	modified:   home/vim/defaults/vim-polyglot (modified content)
 #	deleted:    profile
 #	deleted:    tmux.conf
 #	deleted:    vim/.netrwhist
@@ -85,8 +40,4 @@
 #	deleted:    vim/defaults/vim-one
 #	deleted:    vim/defaults/vim-polyglot
 #	deleted:    vimrc
-#
-# Untracked files:
-#	.ssh_config.un~
-#	.vimrc.un~
 #
