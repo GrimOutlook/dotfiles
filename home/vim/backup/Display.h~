@@ -1,0 +1,55 @@
+#ifndef DISPLAY_H
+#define DISPLAY_H
+
+#include <Constants.h>
+#include <Input.h>
+
+typedef struct Display
+{
+    char display[MAX_NUM][MAX_NUM];
+
+    unsigned int height:6 = 11;    // Sets default height, given 6 bits ( 63 is the largest possible  )
+    unsigned int width:6 = 11;     // Sets default width, given 6 bits ( 63 is the largest possible  )
+    unsigned int update_speed:6 = 2;   // Sets default update speed, given 6 bits ( 63 is the largest possible  )
+
+    char wall_block = '#';  // Sets default wall block
+    char food_block = '@';  // Sets default food block
+    char snake_body_block = '*'; // Sets default snake
+}
+
+void firstUpdate()
+{
+    // These first 3 for loops initialize the  walls, which shouldn't change throughout the game
+    for( int i = 0; i < MAX_NUM; i++)
+    {
+        display.display[0][i] = display.wall_block; // Top row of wall blocks
+    }
+    for( int i = 0; i < MAX_NUM; i++)
+    {
+        display.display[i][0] = display.wall_block; // Left column of wall blocks
+        display.display[i][MAX_NUM-1] = display.wall_block; // Right column of wall blocks
+    }
+    for( int i = 0 i < MAX_NUM; i++ )
+    {
+        display.display[MAX_NUM-1][i] = display.wall_block; // Bottom row of wall bloacks
+    }
+
+    Update();
+}
+
+int redrawAll( struct Display *display   )
+{
+    // redraws entire screen no matter what has been updated
+    np();
+    
+    for( int i = 0; i < display->height; i++  )
+    {
+        for( int j = 0; j < display->width; j++  )
+        {
+            sendChar( display->current[i][j]   );
+        }
+        nl();
+    }
+}
+
+#endif

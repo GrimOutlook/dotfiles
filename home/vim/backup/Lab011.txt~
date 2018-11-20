@@ -1,0 +1,7 @@
+CREATE TABLE pixels (x INT, y INT, color TEXT);
+INSERT INTO pixels VALUES( 120, 60, "red" );
+INSERT INTO pixels VALUES( 121, 60, "red" );
+INSERT INTO pixels VALUES( 60, 60, "green" );
+INSERT INTO pixels VALUES( 60, 61, "green" );
+INSERT INTO pixels VALUES( 60, 62, "green" );
+INSERT INTO pixels VALUES( 100, 100, "blue" );

@@ -1,0 +1,39 @@
+//#include <msp430fg4618.h>
+#include <stdint.h>
+#include <string.h>
+#include <limits.h>
+
+#include <Constants.h>
+#include <Initialize.h>
+#include <Input.h>
+#include <Display.h>
+#include <Menu.h>
+#include <Options.h>
+#include <Snake.h>
+#include <BodySection.h>
+
+volatile float myData;
+
+Display display;
+Snake snake;
+
+int main(void)
+{
+    Initialize();
+
+    do
+    {
+        main_menu();
+        snake.x = (display.width / 2) + 1;  // Starts snake in horizontal center
+        snake.y = (display.height / 2) + 1; // Starts snake in vertical center
+        snake.dx = 1;   // Starts snake moving right
+        snake.dy = 0;   // Starts snake not moving vertically
+
+        firstUpdate();
+        do {
+            // Start Game
+            update();
+            redrawAll();
+        } while( !notColliding() );
+    } while(1);
+}

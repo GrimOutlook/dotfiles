@@ -1,0 +1,46 @@
+#ifndef SNAKE_H
+#define SNAKE_H
+
+#include <Constants.h>
+#include <BodySection.h>
+
+struct Snake
+{
+
+    int x:6 = 6; // Head x position, 6 bits ( max value of 63 )
+    int y:6 = 6; // Head y position, 6 bits ( max value of 63 )
+
+    int dx:2 = POSITIVE; // Head direction of x
+    int dy:2 = ZERO; // Head direction of y
+
+    int n_body_sections = 1; // Number of body sections
+    BodySection* body_section_ll;
+};
+
+void moveSnake()
+{
+    
+}
+
+int notColliding( )
+{
+    // This checks for collisions against your own body
+    BodySection body_section_ptr* = snake.body_section_ll;
+    while( body_section_ptr != NULL )
+    {
+
+        if( snake->x + snake->dx - 1 == body_section_ptr->x && snake->y + snake->dy - 1 == body_section_ptr->y  )
+        body_section_ptr = body_section_ptr->next_body_section;
+    }
+
+    // This checks for wall collision
+    if( snake->x + snake->dx - 1 == 0 ||  snake->x + snake->dx - 1 == MAX_SIZE ||
+        snake->y + snake->dy - 1 == 0 ||  snake->y + snake->dy - 1 == MAX_SIZE )
+    {
+        return 1;
+    }
+        
+    return 0
+}
+
+#endif

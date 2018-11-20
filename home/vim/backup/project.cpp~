@@ -1,0 +1,266 @@
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+using namespace std;
+
+const int MAX_ROWS = 500;   // These MAX parameters are used because
+const int MAX_COLS = 500;   // passing 2D matrixes are a pain.
+                            // This could be foregone by using a class
+                            // and making a paramaterized constructor
+                            // but i figured this would suffice.
+class Matrix
+{
+    public:
+        int cols;
+        int rows;
+        double matrix[MAX_ROWS][MAX_COLS];
+        /*
+        // Functions
+        Matrix()
+        {
+            rows = MAX_ROWS;
+            cols = MAX_COLS;
+            matrix[rows][cols];
+        }
+        Matrix( int rowsi, int colsj )
+        {
+            rows = rowsi;
+            cols = colsj;
+            matrix[rows][cols];
+        }
+        */
+};
+
+void ASSIGN( double*, double* );
+bool EQ( int, int );
+bool GT( int, int );
+bool LT( int, int );
+void method1( Matrix* );
+void method2( Matrix* );
+double partition( double*, int, int );
+void print_matrix( Matrix* );
+void quickSort( double*, int, int );
+
+static int assignment_count = 0;
+static int comparison_count = 0;
+
+int main(void)
+{
+    ifstream iFile("input4.txt");
+    ofstream oFile1("djg0020_1.txt");
+
+    Matrix m;
+
+    iFile >> m.rows;
+    iFile >> m.cols;
+    for( int i = 0; i < m.rows; i++  )
+    {
+        for( int j = 0; j  < m.cols; j++ )
+        {
+            iFile >> m.matrix[i][j];
+        }
+    }
+    
+    iFile.close();
+
+    Matrix method1_m = m;       // Copy matrix to prevent killing the original order
+    method1( &method1_m  );
+    for( int i = 0; i < method1_m.rows; i++ )
+    {
+        for( int j = 0; j < method1_m.cols; j++ )
+        {
+            oFile1 << left << setw(6) << method1_m.matrix[i][j] << " ";
+        }
+        oFile1 << endl;
+    }
+    oFile1 << "Assignments: " << assignment_count << endl;
+    oFile1 << "Comparisons: " << comparison_count << endl;
+
+    oFile1.close();
+
+
+    ofstream oFile2("djg0020_2.txt");
+
+    assignment_count = 0;
+    comparison_count = 0;
+    Matrix method2_m = m;       // Copy matrix to prevent killing the original order
+    method2( &method2_m  );
+    for( int i = 0; i < method2_m.rows; i++ )
+    {
+        for( int j = 0; j < method2_m.cols; j++ )
+        {
+            oFile2 << left << setw(6) << method2_m.matrix[i][j] << " ";
+        }
+        oFile2 << endl;
+    }
+    oFile2 << "Assignments: " << assignment_count << endl;
+    oFile2 << "Comparisons: " << comparison_count << endl;
+    
+    oFile2.close();
+}
+
+void ASSIGN( double* a, double* b )
+{
+    assignment_count++;
+    *a = *b;
+    return;
+}
+bool EQ( int a, int b )
+{
+    comparison_count++;
+    return a == b;
+}
+bool GT( int a, int b )
+{
+    comparison_count++;
+    return a > b;
+}
+bool LT( int a, int b )
+{
+    comparison_count++;
+    return a < b;
+}
+void method1( Matrix* m )
+{
+    // Take all the 'r*c' elements in an array, sort it,
+    // then output row-wise (column-wise will also work!) 
+    // as a 'r*c' matrix.
+    
+    int left = 0;
+    int right = (m->rows * m->cols);
+    double a[ right ];
+    int a_count = 0;
+
+    for( int i = 0; i < m->rows; i++ )
+    {
+        for( int j = 0; j < m->cols; j++  )
+        {
+            ASSIGN( &( a[a_count] ), &( m->matrix[i][j] ) );
+            a_count++;
+        }
+    }
+
+    quickSort( a, left, right-1 );
+
+    a_count = 0;
+    for( int i = 0; i < m->rows; i++ )
+    {
+        for( int j = 0; j < m->cols; j++  )
+        {
+            ASSIGN( &( m->matrix[i][j] ), &( a[a_count] ) );
+            a_count++;
+        }
+    }
+
+    return;
+}
+void method2( Matrix* m )
+{
+    // Sort each row separately one-by-one.
+    // Then, sort each column separately one-by-one.
+    // Output this matrix.
+
+    int left = 0;
+    int right = m->cols;
+
+    double a[right];
+    for( int i = 0; i < m->rows; i++ )  // For every row in the matrix
+    {
+        for( int j = 0; j < right; j++ )
+        {
+            ASSIGN( &( a[j] ), &( m->matrix[i][j] ) );
+        }
+        quickSort( a, left, right-1 );
+        for( int j = 0; j < right; j++ )
+        {
+            ASSIGN( &( m->matrix[i][j] ), &( a[j] ) );
+        }
+    }
+
+    right = m->rows;
+    double b[right];
+    for( int i = 0; i < m->cols; i++ )  // For every row in the matrix
+    {
+        for( int j = 0; j < right; j++ )
+        {
+            ASSIGN( &( a[j] ), &( m->matrix[j][i] ) );
+        }
+        quickSort( a, left, right-1 );
+        for( int j = 0; j < right; j++ )
+        {
+            ASSIGN( &( m->matrix[j][i] ), &( a[j] ) );
+        }
+    }
+
+    return;
+}
+double partition( double *a, int left, int right )
+{
+    /*
+    int i = left;
+    int j = left;
+
+    double temp = 0.0;
+    for( i ; i < right; i++ )
+    {
+        if( LT( a[i], a[right] ) )
+        {
+            ASSIGN( &temp, &a[j] );
+            ASSIGN( &a[j], &a[i] );
+            ASSIGN( &a[i], &temp );
+            j++;
+        }
+
+    }
+    */
+    
+    int i = left + 1;
+    int j = right;
+
+    double temp = 0;
+    
+    while( !GT( i, j ) )
+    {
+        if( !LT( a[j], a[left] ) ) j--;
+        else if( !GT( a[i], a[left] ) ) i++;
+        else
+        {
+            ASSIGN( &temp, &a[j] );
+            ASSIGN( &a[j], &a[i] );
+            ASSIGN( &a[i], &temp );
+            i++;
+            j--;
+        }
+    }
+    
+    ASSIGN( &temp, &a[j] );
+    ASSIGN( &a[j], &a[left] );
+    ASSIGN( &a[left], &temp );
+    
+
+    return j;
+}
+void print_matrix( Matrix* m )
+{
+    for( int i = 0; i < m->rows; i++ )
+    {
+        for( int j = 0; j < m->cols; j++  )
+        {
+            cout << m->matrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+void quickSort( double* a, int left, int right )
+{
+
+    if( LT(left, right) )
+    {
+        double pivot, temp;                 // Im doing this so i can count the number of
+        temp = partition(a, left, right);   // assignements correctly since my function takes
+        ASSIGN( &pivot, &temp );            // pointers and a the returning function wont give
+                                            // a pointer to the returned value on my system
+        quickSort( a, left, pivot - 1 );
+        quickSort( a, pivot + 1, right );
+    }
+}

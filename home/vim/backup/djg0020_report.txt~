@@ -1,0 +1,8 @@
+1) Method 1 yields a greater number of comparisons. The first method is order
+of n and the second method is order of n.
+2) Method 2 will always yield a correct answer since the goal is to get each
+row into increasing order and each column into increasing order. Since we sort
+each row first each the end of each row contains the greatest value in the row
+and the first value contains the least value in the row. So if we sort the
+greates values of each row (the last column) we get the greatest greatest value
+in the bottom right and the least greatest value in the upper right.

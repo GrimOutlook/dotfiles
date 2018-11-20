@@ -85,7 +85,6 @@ endif
 
 " ***** Folding *****"
 set foldmethod=indent
-set foldlevel=1
 "set foldclose=all
 
 " ***** Natural Splitting ***** "
@@ -104,6 +103,10 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
+" ***** Remaps semi-colon to colon since semi-colon is useless *****"
+" nnoremap ; :
+" nnoremap : ;
 
 " ***** Fixing Tabs ***** "
 set tabstop=4 shiftwidth=4 expandtab
@@ -144,7 +147,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
 let g:syntastic_debug = 1
 let g:syntastic_python_checkers=['python', 'flake8'] " Pep8 and pyflakes removed

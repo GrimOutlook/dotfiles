@@ -1,0 +1,26 @@
+#ifndef BODYSECTION_H
+#define BODYSECTION_H
+
+typedef struct BodySection
+{
+    int x, y; // Position of body section
+    BodySection* next_body_section = NULL;
+};
+
+void newBodySection( int x, int y )
+{
+    BodySection body_section_ptr* = snake.body_section_ll;
+    while( body_section_ptr != NULL )
+    {
+        body_section_ptr = body_section_ptr->next_body_section;
+    }
+    
+    BodySection* new_body_section = new BodySection;
+    new_body_section->x = x;
+    new_body_section->y = y;
+    new_body_section->next_body_section = NULL;
+
+    body_section_ptr->next_body_section = new_body_section;
+}
+
+#endif
