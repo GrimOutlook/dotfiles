@@ -7,6 +7,41 @@
 
 void changeDimensions()
 {
+    char preset_change_height_prompt[] = "1.) 5\r\n2.) 10\r\n3.) 15\r\n4.) 20\r\n5.) 25\r\n6.) 30\r\n7.) 40\r\n8.) 50 - MAX\r\n0.) Back\r\nChoice: \0";
+    do
+    {
+        np();
+        outputPrompt( preset_change_height_prompt );
+
+        char chosen_option;
+        recieveChar( &chosen_option );
+    }
+    while( chosen_option < '0' && chosen_option > '9' );
+
+    if( chose_option => '0' && chosen_option < '9')
+    {
+        switch( chosen_option )
+        {
+            case '1': display->height = 5;
+                      break;
+            case '2': display->height = 10;
+                      break;
+            case '3': display->height = 15;
+                      break;
+            case '4': display->height = 20;
+                      break;
+            case '5': display->height = 25;
+                      break;
+            case '6': display->height = 30;
+                      break;
+            case '7': display->height = 40;
+                      break;
+            case '8': display->height = 50;
+        }
+        return;
+    }
+    
+    // Custom Number
     int char_limit = 2; // Number of chars allowed for imput to height and width, 
                         // since 50 is the highest number allowed 2 is all we need
     char change_height_prompt[] = "New height (Current is __, Max Size is __): \0"; // 23-24, 39-40 to replace
@@ -47,6 +82,42 @@ void changeDimensions()
     }while( new_height_int <= MAX_SIZE );
 
     display.height = new_height_int;
+
+    char preset_change_width_prompt[] = "1.) 5\r\n2.) 10\r\n3.) 15\r\n4.) 20\r\n5.) 25\r\n6.) 30\r\n7.) 40\r\n8.) 50 - MAX\r\n0.) Back\r\nChoice: \0";
+    do
+    {
+        np();
+        outputPrompt( preset_change_width_prompt );
+
+        char chosen_option;
+        recieveChar( &chosen_option );
+    }
+    while( chosen_option < '0' && chosen_option > '9' );
+
+    if( chose_option => '0' && chosen_option < '9')
+    {
+        switch( chosen_option )
+        {
+            case '1': display->width = 5;
+                      break;
+            case '2': display->width = 10;
+                      break;
+            case '3': display->width = 15;
+                      break;
+            case '4': display->width = 20;
+                      break;
+            case '5': display->width = 25;
+                      break;
+            case '6': display->width = 30;
+                      break;
+            case '7': display->width = 40;
+                      break;
+            case '8': display->width = 50;
+        }
+        return;
+    }
+    
+    // Custom Number
 
     char change_width_prompt[] = "New width (Current is __, Max Size is __): \0"; // 22-23, 38-39 to replace
     
@@ -136,7 +207,26 @@ void changeModeOfControl()
 
 void changeChars()
 {
-    // Change snake body block, wall block, food block, bad block
+    char mu = 230;
+    char pi = 227;
+    char tau = 231;
+    char phi = 232;
+    char theta = 233;
+    char omega = 234;
+    char degree_symbol= 248;
+    char infinity_symbol = 236;
+    char loose_square = 176;
+    char mild_square = 177;
+    char dense_square = 178;
+    char solid_square = 254;
+    char solid_vertical_rectangle = 219;
+    // Pick which block to change
+    
+    
+
+    // Choose from presets or choose custom
+    
+    // Char code or key press?
     return;
 }
 

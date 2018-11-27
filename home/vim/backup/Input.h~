@@ -2,6 +2,7 @@
 #define INPUT_H
 
 #include <math.h>
+#include <Display.h>
 
 void sendChar(char myChar) {
     while(!(IFG2 & UCA0TXIFG));
@@ -64,6 +65,18 @@ void outputPrompt( *prompt )
 {
     // Outputs prompts such as main menu and options
     sendCharArray( prompt );
+}
+
+void changeDirectionKeyboard( char ch )
+{
+    // Call this with timer interrupt after getting char with recieve char
+    switch(ch)
+    {
+        case display->keycode_upkey:
+        case display->keycode_downkey:
+        case display->keycode_leftkey:
+        case display->keycode_rightkey:
+    }
 }
 
 #endif

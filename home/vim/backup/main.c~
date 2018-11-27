@@ -11,11 +11,12 @@
 #include <Options.h>
 #include <Snake.h>
 #include <BodySection.h>
+#include <Food.h>
 
 volatile float myData;
 
-Display display;
-Snake snake;
+Display* display = new Display;
+Snake* snake = new Snake;
 
 int main(void)
 {
@@ -24,16 +25,16 @@ int main(void)
     do
     {
         main_menu();
-        snake.x = (display.width / 2) + 1;  // Starts snake in horizontal center
-        snake.y = (display.height / 2) + 1; // Starts snake in vertical center
-        snake.dx = 1;   // Starts snake moving right
-        snake.dy = 0;   // Starts snake not moving vertically
+        snake->x = (display->width / 2) + 1;  // Starts snake in horizontal center
+        snake->y = (display->height / 2) + 1; // Starts snake in vertical center
+        snake->dx = 1;   // Starts snake moving right
+        snake->dy = 0;   // Starts snake not moving vertically
 
         firstUpdate();
-        do {
+        do
+        {
             // Start Game
-            update();
             redrawAll();
-        } while( !notColliding() );
+        } while( update() );
     } while(1);
 }

@@ -1,0 +1,82 @@
+#ifndef FOOD_H
+#define FOOD_H
+
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+
+#include <Constants.h>
+
+typedef struct Food
+{
+    int x:6, y:6;
+    Food* next_food = NULL;
+    Food* prev_food = NULL;
+}
+
+void spawnFood()
+{
+    // Seeding random number generator
+    srand(time(NULL));
+
+    Food* new_food;
+    if(display->last_food == NULL)
+    {
+        display->last_food = new Food;
+        display->first_food = display->last_food;
+        display->last_food->prev_food = NULL;
+    }
+    else
+    {
+        display->last_food->next_food = new Food;
+        display->last_food->next_food->prev_food = last_food;
+        display->last_food = display->last_food->next_food;
+    }
+    display->last_food->next_food = NULL;
+
+    // TODO: Check if food spawns in body
+    do
+    {
+        new_x = ( rand()%(display->width - 2) ) + 1; // These qualifiers are here so food doesnt spawn in walls
+        new_y = ( rand()%(display->height - 2) ) + 1;
+    
+    }while( !collidingWithBody() )
+
+    display->last_food->x = new_x;
+    display->last_food->y = new_y;
+
+    display->current_food++;
+}
+
+void removeFood( int x, int y )
+{
+    Food* eaten_food = display->first_food;
+    while( eaten_food != NULL )
+    {
+        if( eaten_food->x == x && eaten_food->y == y )
+        {
+            if( eaten_food->next_food != NULL ) // If its not the last food
+            {
+                eaten_food->next_food->prev_food = eaten_food->prev_food;
+            }
+            else // If it is the last food
+            {
+                display->last_food = eaten_food->prev_food;
+            }
+            
+            if( eaten_food->prev_food != NULL ) // If its the first food
+            {
+                eaten_food->prev_food->next_food = eaten_food->next_food;
+            }
+            else // If its not the first food
+            {
+                display->first_food = eaten_food->next_food;
+            }
+            free( eaten_food );
+            display->current_food--;
+            return;
+        }
+        eaten_food = eaten_food->next_food;
+    }
+}
+#endif

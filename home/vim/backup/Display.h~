@@ -2,7 +2,9 @@
 #define DISPLAY_H
 
 #include <Constants.h>
+#include <Food.h>
 #include <Input.h>
+#include <Snake.h>
 
 typedef struct Display
 {
@@ -15,29 +17,93 @@ typedef struct Display
     char wall_block = '#';  // Sets default wall block
     char food_block = '@';  // Sets default food block
     char snake_body_block = '*'; // Sets default snake
+    char empty_space_block = ' '; // Sets default empty space block
+
+    int max_food = 1;   // Sets default max number of food blocks
+    int current_food = 0; // Current number of food spawned
+
+    Food* first_food = NULL;
+    Food* last_food = NULL;
+
+    char keycode_upkey = 'w';
+    char keycode_downkey = 's';
+    char keycode_leftkey = 'a';
+    char keycode_rightkey = 'd';
 }
 
 void firstUpdate()
 {
     // These first 3 for loops initialize the  walls, which shouldn't change throughout the game
-    for( int i = 0; i < MAX_NUM; i++)
+    for( int i = 0; i < display->width; i++)
     {
-        display.display[0][i] = display.wall_block; // Top row of wall blocks
+        display->display[0][i] = display->wall_block; // Top row of wall blocks
     }
-    for( int i = 0; i < MAX_NUM; i++)
+    for( int i = 0; i < display->height; i++)
     {
-        display.display[i][0] = display.wall_block; // Left column of wall blocks
-        display.display[i][MAX_NUM-1] = display.wall_block; // Right column of wall blocks
+        display->display[i][0] = display->wall_block; // Left column of wall blocks
+        display->display[i][display->width-1] = display->wall_block; // Right column of wall blocks
     }
-    for( int i = 0 i < MAX_NUM; i++ )
+    for( int i = 0; i < display->width; i++ )
     {
-        display.display[MAX_NUM-1][i] = display.wall_block; // Bottom row of wall bloacks
+        display->display[display->height-1][i] = display->wall_block; // Bottom row of wall bloacks
     }
 
-    Update();
+    for( int i = 1; i < display->height - 1; i++ )
+    {
+        for( int j = 1; j < display->width - 1; j++ )
+        {
+            display->display[i][j] = display->empty_space_block; // Initializes all blocks in the bounds of the walls to space characters
+        }
+    }
+
+    newBodySection( snake->x, snake->y );
+
+    update();
 }
 
-int redrawAll( struct Display *display   )
+int update()
+{
+    // Check if next frame food is eaten if so add bodysection
+    if( isEatingFood() )
+    {
+        newBodySection( last_body_section->x + last_body_section->dx - 1, 
+                        last_body_section->y + last_body_section->dy - 1, 
+                        last_body_section->dx, last_body_section->dy );
+        removeFood( snake->x + snake->dx - 1, snake->y + snake->dy - 1 );
+    }
+    else
+    {
+        // This is implemented to remove trailing tail characters that would remain if this wasn't here
+        display->display[last_body_section->x][last_body_section->y] = ' '
+    }
+    if( !snakeIsColliding() )
+    {
+        // Move snake
+        moveSnake();
+
+        // Put snake body on display
+        BodySection* body = first_body_section;
+        while( body != NULL )
+        {
+            display->display[body->x][body->y];
+            body = body->next_body_section;
+        }
+
+        // Check if food is already spawned, if not draw it on display
+        for( int i = display->max_food - display->current_food; i > 0; i-- )
+        {
+            spawnFood();
+        }
+    
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int redrawAll( Display *display   )
 {
     // redraws entire screen no matter what has been updated
     np();

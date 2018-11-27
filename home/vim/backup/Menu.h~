@@ -34,6 +34,7 @@ void options_menu()
 
     do
     {
+        outputPrompt( options_menu_prompt );
         recieveChar(*chosen_option);
         switch( chose_option )
         {
@@ -45,6 +46,7 @@ void options_menu()
                         break;
             case '4':   changeModeOfControl();
                         break;
+            default:    np();
         }
     } while( chosen_option != '8' ); // While not quit option
 }

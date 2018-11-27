@@ -3,24 +3,29 @@
 
 typedef struct BodySection
 {
-    int x, y; // Position of body section
-    BodySection* next_body_section = NULL;
+    int x:6, y:6; // Position of body section
+    int dx:2, dy:2; // dx and dy of when the piece was last moved/spawned; this is for making tail spawing easy
+    BodySection* prev_body_section = NULL; // Goes to head of snake
+    BodySection* next_body_section = NULL;  // Goes to tail of snake
 };
 
-void newBodySection( int x, int y )
+void newBodySection( int x, int y, int dx, int dy )
 {
-    BodySection body_section_ptr* = snake.body_section_ll;
-    while( body_section_ptr != NULL )
+    BodySection last_body_section* = snake.body_section_ll;
+    while( last_body_section != NULL )
     {
-        body_section_ptr = body_section_ptr->next_body_section;
+        last_body_section = last_body_section->next_body_section;
     }
     
     BodySection* new_body_section = new BodySection;
     new_body_section->x = x;
     new_body_section->y = y;
+    new_body_section->dx = dx;
+    new_body_section->dy = dy;
     new_body_section->next_body_section = NULL;
+    new_body_section->prev_body_section = last_body_section;
 
-    body_section_ptr->next_body_section = new_body_section;
+    last_body_section->next_body_section = new_body_section;
 }
 
 #endif
