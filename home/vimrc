@@ -128,7 +128,7 @@ Plug 'Yggdroot/indentLine'
 "Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'vim-syntastic/syntastic'
 Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
+"Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
 "Plug 'scrooloose/nerdcommenter' " \c<space> to toggle comment

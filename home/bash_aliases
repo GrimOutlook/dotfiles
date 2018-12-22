@@ -11,3 +11,6 @@ alias grep='grep --ignore-case --color=auto'
 
 alias caf='ls -Uba1 | wc -l'
 alias cf='ls -Ub1 | wc -l'
+
+alias SeedBox='ssh -D 8080 -o LogLevel=ERROR SeedBox'
+alias ArchServer='ssh ArchServer'
