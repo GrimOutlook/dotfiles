@@ -1,1 +1,0 @@
-sudo sshfs -o idmap=user,allow_other dom@bfs.moe:/home/dom/Andromeda/ /home/dom/Andromeda/

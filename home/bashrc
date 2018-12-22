@@ -18,6 +18,7 @@ md () { [ $# = 1 ] && mkdir -p "$@" && cd "$@" || echo "Error - no directory pas
 HOST='\033[02;36m\]\h'; HOST=' '$HOST
 TIME='\033[01;31m\]\t \033[01;32m\]'
 LOCATION=' \033[01;34m\]`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g" `\033[0m\]\n\$ '
+USER="dom"
 PS1=$TIME$USER$HOST$LOCATION
 #PS1='[\u@\h \W]\$ '
 
@@ -58,5 +59,9 @@ fi
 function secure_chromium {
     port=8080
     chromium --proxy-server="socks://localhost:$port" &
-    exit
+}
+
+function BOTW
+{
+    WINEDEBUG=fps wine "/home/dom/Games/The Legend of Zelda - Breath of the Wild (PC)/cemu_1.11.3/Cemu.exe" 2>&1 | tee /dev/stderr | sed -u -n -e '/trace/ s/.*approx //p' | osd_cat --lines=1 --font="lucidasanstypewriter-bold-18" --color=yellow -o 2175
 }

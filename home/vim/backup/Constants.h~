@@ -1,9 +1,0 @@
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
-
-#define MAX_NUM 50
-#define MAX_SPEED 63
-
-enum Direction{ NEGATIVE, ZERO, POSITIVE };
-
-#endif
