@@ -32,6 +32,8 @@ export EDITOR=vim
 
 #export TERM=xterm-256color
 
+bind 'set mark-symlinked-directories on' # Makes symlinked directories autocomplete as directories
+
 test -s ~/.autojump/etc/profile.d/autojump && . $_ # Execute autojump if it exists
 
 [ ${BASH_VERSINFO[0]} -ge 4 ] && shopt -s autocd # Allow cd'ing without typing the cd part if the bash version >= 4
