@@ -12,5 +12,31 @@ alias grep='grep --ignore-case --color=auto'
 alias caf='ls -Uba1 | wc -l'
 alias cf='ls -Ub1 | wc -l'
 
+# ssh stuff
 alias SeedBox='ssh -D 8080 -o LogLevel=ERROR SeedBox'
 alias ArchServer='ssh ArchServer'
+
+# systemctl stuff
+alias system="sudo systemctl"
+alias start="system start"
+alias stop="system stop"
+alias status="system status"
+alias restart="system restart"
+alias daemon-reload="system daemon-reload"
+
+# youtube-dl stuff
+alias youtube-dl-playlist="youtube-dl --yes-playlist -f mp4"
+alias youtube-dl-playlist-ordered="youtube-dl --yes-playlist -f mp4 -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias youtube-dl-song="youtube-dl -x --audio-format mp3"
+alias youtube-dl-song-playlist="youtube-dl --yes-playlist -x --audio-format mp3 -o '%(playlist_uploader)s - %(playlist_title)s/%(title)s.%(ext)s'"
+
+# openvpn stuff
+alias ipv6-stop="sudo sysctl -p" # Has to have the correct settings in /etc/sysctl.conf
+alias japan="openvpn-client@Japan"
+alias florida="openvpn-client@US_Florida"
+alias texas="openvpn-client@US_Texas"
+alias chicago="openvpn-client@US_Chicago"
+alias all-vpn="openvpn-client@*"
+
+# Pulseaudio stuff
+alias pulseaudio-restart="pulseaudio -k; pulseaudio --start"
