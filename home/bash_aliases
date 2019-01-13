@@ -18,6 +18,10 @@ alias ArchServer='ssh ArchServer'
 
 # systemctl stuff
 alias system="sudo systemctl"
+alias enable="system enable"
+alias disable="system disable"
+alias enable-now="system enable --now"
+alias disable-now="system disable --now"
 alias start="system start"
 alias stop="system stop"
 alias status="system status"
@@ -32,11 +36,6 @@ alias youtube-dl-song-playlist="youtube-dl --yes-playlist -x --audio-format mp3 
 
 # openvpn stuff
 alias ipv6-stop="sudo sysctl -p" # Has to have the correct settings in /etc/sysctl.conf
-alias japan="openvpn-client@Japan"
-alias florida="openvpn-client@US_Florida"
-alias texas="openvpn-client@US_Texas"
-alias chicago="openvpn-client@US_Chicago"
-alias all-vpn="openvpn-client@*"
 
 # Pulseaudio stuff
 alias pulseaudio-restart="pulseaudio -k; pulseaudio --start"

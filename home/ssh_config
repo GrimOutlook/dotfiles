@@ -7,7 +7,13 @@ Host SeedBox
     Hostname 192.168.1.4
     Port 222
     User tor
+    IdentityFile=~/.ssh/id_rsa.pub
 Host PC
     Hostname bfs.moe
     Port 2202
     User dom
+Host Proxmox
+    Hostname 192.168.1.140
+    port 22
+    User root
+    IdentityFile=~/.ssh/id_rsa_proxmox.pub
