@@ -39,3 +39,6 @@ alias ipv6-stop="sudo sysctl -p" # Has to have the correct settings in /etc/sysc
 
 # Pulseaudio stuff
 alias pulseaudio-restart="pulseaudio -k; pulseaudio --start"
+
+# Constellations
+alias Constellations-Laptop="sshfs -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3,idmap=user,allow_other,IdentityFile=/home/dom/.ssh/nas_id_rsa,reconnect ArchServer:/home/dom/ /home/dom/Server"

@@ -7,3 +7,8 @@ source /etc/config/home/profile
 
 # Load .bashrc, containing non-login related bash initializations.
 source /etc/config/home/bashrc
+
+# if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#   exec startx
+# fi
+

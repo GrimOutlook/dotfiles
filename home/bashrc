@@ -42,7 +42,7 @@ test -s ~/.autojump/etc/profile.d/autojump && . $_ # Execute autojump if it exis
 
 [ -f /etc/bash_completion  ] && ! shopt -oq posix && . /etc/bash_completion # Execute a bash completion script if it exists
 
-[ $HOSTNAME == "ArchDesktop" -o $HOSTNAME == "Host" ] && [ -z $TMUX ] && export TERM=xterm-256color && exec tmux # Use TMUX if it is present
+[ $HOSTNAME == "ArchDesktop" -o $HOSTNAME == "LubuntuLaptop" ] && [ -z $TMUX ] && export TERM=xterm-256color && exec tmux # Use TMUX if it is present
 
 # Avoid succesive duplicates in the bash command history.
 export HISTCONTROL=ignoredups
@@ -56,9 +56,7 @@ shopt -s histappend
 PROMPT_COMMAND='history -a'
 
 # Add bash aliases.
-if [ -f /etc/config/home/bash_aliases ]; then
-    source /etc/config/home/bash_aliases
-fi
+[ -f /etc/config/home/bash_aliases ] && source /etc/config/home/bash_aliases
 
 function cs () {
     cd "$@" && ls
