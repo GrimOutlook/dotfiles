@@ -2,5 +2,4 @@
 *.swp
 vim/swap
 vim/backup
-vim/
 *.un~
