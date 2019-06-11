@@ -36,6 +36,7 @@ PS2='\[\033[01;36m\]>'
 
 # Set default editor to vim
 export EDITOR=vim
+export MYVIMRC="~/.vimrc"
 
 #set -o vi # vi at command line
 
@@ -63,7 +64,7 @@ shopt -s histappend
 PROMPT_COMMAND='history -a'
 
 # Add bash aliases.
-[ -f /etc/config/home/bash_aliases ] && source /etc/config/home/bash_aliases
+[ -f ~/.bash_aliases ] && source ~/.bash_aliases
 
 function cs () {
     cd "$@" && ls

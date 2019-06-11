@@ -3,10 +3,10 @@
 #
 
 # Load .profile, containing login, non-bash related initializations.
-source /etc/config/home/profile
+source ~/.profile
 
 # Load .bashrc, containing non-login related bash initializations.
-source /etc/config/home/bashrc
+source ~/.bashrc
 
 # if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 #   exec startx
