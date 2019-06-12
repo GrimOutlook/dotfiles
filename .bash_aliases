@@ -30,8 +30,8 @@ alias restart="system restart"
 alias daemon-reload="system daemon-reload"
 
 # youtube-dl stuff
-alias youtube-dl-playlist="youtube-dl --yes-playlist -f mp4"
-alias youtube-dl-playlist-ordered="youtube-dl --yes-playlist -f mp4 -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias youtube-dl-playlist="youtube-dl --yes-playlist -f best"
+alias youtube-dl-playlist-ordered="youtube-dl --yes-playlist -f best -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 alias youtube-dl-song="youtube-dl -x --audio-format mp3"
 alias youtube-dl-song-playlist="youtube-dl --yes-playlist -x --audio-format mp3 -o '%(playlist_uploader)s - %(playlist_title)s/%(title)s.%(ext)s'"
 
