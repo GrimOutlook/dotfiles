@@ -1,5 +1,8 @@
 !.gitignore
+!.vim
+!.*
+.vim/swap/*
+.vim/backup/*
+.vim/defaults/*
 *.swp
-vim/swap
-vim/backup
-*.un~
+*~
