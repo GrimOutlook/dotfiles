@@ -132,7 +132,7 @@ Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
-"Plug 'scrooloose/nerdcommenter' " \c<space> to toggle comment
+Plug 'scrooloose/nerdcommenter' " \c<space> to toggle comment
 Plug 'jiangmiao/auto-pairs'
 Plug 'severin-lemaignan/vim-minimap' " \gt - toggle minimap
 call plug#end()
@@ -141,8 +141,36 @@ syntax on
 
 " ********************** PLUGINS  ************************* "
 
+" This remaps hitting the leader button and typing vimrc to open vimrc in a
+" new tab
+map <leader>vimrc :tabe ~/.vimrc<cr>
+" This makes it so vim is automatically reladed with the new vimrc options
+" after save and quit
+autocmd bufwritepost $MYVIMRC source $MYVIMRC
+
 " ***** Tagbar ***** "
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>t :TagbarOpenAutoClose<CR>
+nmap <leader>T :TagbarToggle<CR>
+let g:tagbar_sort = 0
+
+" ***** Tab options ***** "
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+
+nnoremap H gT
+nnoremap L gt
+
+nmap <S-Enter> O<Esc>j
+nmap <CR> o<Esc>k
 
 " ***** Syntastic ***** "
 set statusline+=%#warningmsg#
@@ -267,3 +295,6 @@ colorscheme gruvbox
 set background=dark " for dark version
 
 set t_Co=256
+
+set showcmd " Shows when leader is pressed"
+let mapleader = " " "Remaps leader to space"
