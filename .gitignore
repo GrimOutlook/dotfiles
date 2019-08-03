@@ -6,3 +6,4 @@
 .vim/defaults/*
 *.swp
 *~
+.ssh/*
