@@ -14,7 +14,7 @@ export QT_IM_MODULE=ibus
 [[ $- != *i* ]] && return
 
 # Color option for ls depending on if you are using linux or OSX
-ls --color=al > /dev/null 2>&1 && alias ls='ls -F --color=al' || alias ls='ls -G'
+ls --color=al > /dev/null 2>&1 && alias ls='ls -F --color=al'
 LS_COLORS=$LS_COLORS:'ow=0;32:' ; export LS_COLORS
 
 #Set up my history file to ignore duplicates and be much larger than the default

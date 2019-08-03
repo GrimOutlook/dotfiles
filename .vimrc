@@ -28,6 +28,8 @@ augroup END
 " Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
 
+set autoread
+
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
 else
@@ -127,17 +129,21 @@ Plug 'joshdick/onedark.vim'
 "Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'Yggdroot/indentLine'
 "Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'xolox/vim-misc'
 "Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdcommenter' " \c<space> to toggle comment
 Plug 'jiangmiao/auto-pairs'
-Plug 'severin-lemaignan/vim-minimap' " \gt - toggle minimap
+Plug 'pseewald/vim-anyfold'
 call plug#end()
 
-syntax on
+filetype plugin indent on " required
+syntax on                 " required
+
+autocmd Filetype * AnyFoldActivate               " activate for all filetypes
+set foldlevel=0  " close all folds
 
 " ********************** PLUGINS  ************************* "
 
