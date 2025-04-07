@@ -1,9 +1,0 @@
-!.gitignore
-!.vim
-!.*
-.vim/swap/*
-.vim/backup/*
-.vim/defaults/*
-*.swp
-*~
-.ssh/*
