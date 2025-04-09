@@ -1,8 +1,11 @@
 # Whitelist mode
-/*
+*
+!*/
 
-# Add this file to VC
+# Add top level files to VC
 !.gitignore
+!install.fish
+!README.md
 
 # Allow source files
 !/fish/
