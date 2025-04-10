@@ -9,7 +9,7 @@ function drive-mount
         set letter (echo $LETTER | tr '[:upper:]' '[:lower:]')
 	set mount_path "/mnt/$letter"
 	if test -d $mount_path
-             continue
+        continue
 	end
 	echo "Mounting drive $LETTER:\\ to $mount_path"
 	sudo mkdir -p $mount_path
