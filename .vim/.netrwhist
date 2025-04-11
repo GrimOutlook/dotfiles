@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/dom/Constellations/Gemini/Neutron/Code/Work/PyTorch/ObjectDetector/a-PyTorch-Tutorial-to-Object-Detection'
-let g:netrw_dirhist_2='/home/dom/Constellations/Gemini/Neutron/Code/Work/PyTorch/ObjectDetector/pytorch-ssd/models'
-let g:netrw_dirhist_3='/home/dom/Constellations/Gemini/Neutron/Code/Work/PyTorch/ObjectDetector/pytorch-ssd/vision/ssd'

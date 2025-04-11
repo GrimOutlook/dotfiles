@@ -1,9 +1,23 @@
+# Whitelist mode
+*
+!*/
+
+# Add top level files to VC
 !.gitignore
-!.vim
-!.*
-.vim/swap/*
-.vim/backup/*
-.vim/defaults/*
-*.swp
-*~
-.ssh/*
+!install.fish
+!README.md
+
+# Allow source files
+!/fish/**
+!/bash/**
+
+# Disallow known nested repos. The format for each below essentially works out
+# to ignore symlinks with a given name but allow everything else of the same
+# name.
+#
+# TODO: Figure out if there is a better way to just ignore symlinks
+# entirely as they should not be tracked in this repo. Maybe make a pre-commit
+# hook that checks for symlinks and fails if one is found in the directory? That
+# would likely just be an add on to this fix though.
+work
+!*/work
