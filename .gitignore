@@ -3,13 +3,14 @@
 !*/
 
 # Add top level files to VC
-!.gitignore
-!install.fish
-!README.md
+!/.gitignore
+!/install.fish
+!/README.md
 
 # Allow source files
 !/fish/**
 !/bash/**
+!/vscode/**
 
 # Disallow known nested repos. The format for each below essentially works out
 # to ignore symlinks with a given name but allow everything else of the same
