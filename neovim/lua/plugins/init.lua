@@ -18,4 +18,8 @@ return {
   -- Smooth scroll in neovim
   -- https://github.com/karb94/neoscroll.nvim
   "karb94/neoscroll.nvim",
+
+  -- Git integration for buffers
+  -- https://github.com/lewis6991/gitsigns.nvim
+  "lewis6991/gitsigns.nvim"
 }
