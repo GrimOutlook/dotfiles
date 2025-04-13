@@ -8,6 +8,9 @@ set fish_complete_path (path resolve $__fish_config_dir/completions/*/) $fish_co
 set -gx EDITOR "/usr/bin/nvim"
 set -gx SYSTEMD_EDITOR "/usr/bin/nvim"
 
+# Make bat color man output
+set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
