@@ -141,3 +141,8 @@ vim.opt.formatoptions = "1qcrn2tjlv"
 --       'W' -- Dont show [w] or written when writing
 --     }
 --  )
+
+vim.keymap.set("n", "<C-w>h", "C-h")
+vim.keymap.set("n", "<C-w>j", "C-j")
+vim.keymap.set("n", "<C-w>k", "C-k")
+vim.keymap.set("n", "<C-w>l", "C-l")
