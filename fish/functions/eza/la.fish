@@ -1,1 +1,1 @@
-alias ls="eza -ahl@ --git"
+alias la="eza -hl@ --git"
