@@ -24,3 +24,6 @@
 # would likely just be an add on to this fix though.
 work
 !*/work
+
+# Exclude fish_variables from source control
+/fish/fish_variables
