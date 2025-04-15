@@ -26,7 +26,10 @@ return {
 	-- Lightweight yet powerful formatter plugin for Neovim
 	-- https://github.com/stevearc/conform.nvim
 	--"stevearc/conform.nvim",
-	
 
 	{ "nvim-tree/nvim-web-devicons", opts = {} },
+
+	-- Git command integrations
+	-- https://github.com/tpope/vim-fugitive
+	"tpope/vim-fugitive",
 }
