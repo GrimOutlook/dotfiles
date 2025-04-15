@@ -13,3 +13,7 @@ ln -s $SCRIPT_DIR/fish /home/$USER/.config/fish
 # Install bash files
 mv /home/$USER/.bashrc /home/$USER/.bashrc.old
 ln -s $SCRIPT_DIR/bash/.bashrc /home/$USER/.bashrc
+
+# Install neovim files
+mv /home/$USER/.config/nvim /home/$USER/.config/.nvim.old
+ln -s $SCRIPT_DIR/neovim /home/$USER/.config/nvim

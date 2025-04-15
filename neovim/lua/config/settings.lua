@@ -7,11 +7,14 @@
 -- provided by rust-analyzer.
 vim.g.lazyvim_rust_diagnostics = "rust-analyzer"
 
+-- Fixes an error when using neovim-colorizer
+vim.opt.termguicolors = true
+
 vim.o.linebreak = true -- lines wrap at words rather than random characters
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
-vim.o.colorcolumn = '+1' -- Set the colour column to highlight one column after the 'textwidth'
+vim.o.colorcolumn = "+1" -- Set the colour column to highlight one column after the 'textwidth'
 vim.o.wrap = true
 vim.opt.textwidth = 80
 vim.o.shiftwidth = 4
@@ -19,26 +22,23 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.showtabline = 2
 
-
-
 -- Format Options {{{
 
 vim.opt.formatoptions = "1qcrn2tjlv"
-      -- '1',
-      -- 'q', -- continue comments with gq"
-      -- 'c', -- Auto-wrap comments using textwidth
-      -- 'r', -- Continue comments when pressing Enter
-      -- 'n', -- Recognize numbered lists
-      -- '2', -- Use indent from 2nd line of a paragraph
-      -- 't', -- autowrap lines using text width value
-      -- 'j', -- remove a comment leader when joining lines.
-      -- -- Only break if the line was not longer than 'textwidth' when the insert
-      -- -- started and only at a white character that has been entered during the
-      -- -- current insert command.
-      -- 'lv'
+-- '1',
+-- 'q', -- continue comments with gq"
+-- 'c', -- Auto-wrap comments using textwidth
+-- 'r', -- Continue comments when pressing Enter
+-- 'n', -- Recognize numbered lists
+-- '2', -- Use indent from 2nd line of a paragraph
+-- 't', -- autowrap lines using text width value
+-- 'j', -- remove a comment leader when joining lines.
+-- -- Only break if the line was not longer than 'textwidth' when the insert
+-- -- started and only at a white character that has been entered during the
+-- -- current insert command.
+-- 'lv'
 
 -- }}}
-
 
 -- -- Wild and file globbing stuff in command mode {{{
 --
