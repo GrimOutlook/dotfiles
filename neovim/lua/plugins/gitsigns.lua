@@ -3,14 +3,6 @@ return {
 	config = function()
 		local gitsigns = require("gitsigns")
 		gitsigns.setup({
-			signs = {
-				add = { text = "│" },
-				change = { text = "│" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-				untracked = { text = "┆" },
-			},
 			signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 			numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
 			linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
@@ -39,9 +31,6 @@ return {
 				relative = "cursor",
 				row = 0,
 				col = 1,
-			},
-			yadm = {
-				enable = false,
 			},
 		})
 	end,

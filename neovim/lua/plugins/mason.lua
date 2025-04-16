@@ -10,12 +10,26 @@ return {
 		require("mason-lspconfig").setup({
 			automatic_installation = true,
 			ensure_installed = {
+				-- "astgrep",
+				-- "codelldb",
+				-- "codespell",
+				-- "cspell",
 				"cssls",
+				-- "dotenv-linter",
 				"eslint",
+				-- "google-java-format",
 				"html",
 				"jsonls",
+				-- "markdownlint",
+				-- "mdformat",
+				-- "misspell",
+				-- "prettierd",
 				"pyright",
+				-- "rust-analyzer",
+				-- "shellcheck",
+				-- "shellharden",
 				"tailwindcss",
+				-- "tex-fmt",
 			},
 		})
 
