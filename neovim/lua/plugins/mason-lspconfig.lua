@@ -3,7 +3,7 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/lazydev.nvim", opts = {} },
 	},
 	config = function()
 		local nvim_lsp = require("lspconfig")
@@ -67,6 +67,9 @@ return {
 					on_attach = on_attach,
 					capabilities = capabilities,
 				})
+			end,
+			["rust_analyzer"] = function()
+				return true
 			end,
 		})
 	end,
