@@ -14,7 +14,3 @@ vim.keymap.set(
 
 vim.o.textwidth = 80
 vim.o.formatoptions = "1qcrn2tjlv"
-
-vim.cmd.RustLsp("openDocs")
-vim.cmd.RustLsp({ "explainError", "cycle" })
-vim.cmd.RustLsp({ "renderDiagnostic", "cycle" })

@@ -20,6 +20,7 @@ return {
 			ensure_installed = {
 				"bash",
 				"c",
+				"comment",
 				"css",
 				"dockerfile",
 				"gitignore",

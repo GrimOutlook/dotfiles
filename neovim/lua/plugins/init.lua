@@ -1,5 +1,10 @@
 return {
-	"dyng/ctrlsf.vim",
+	-- A task runner and job management plugin for Neovim
+	-- https://github.com/stevearc/overseer.nvim
+	"stevearc/overseer.nvim",
+
+	-- Library of 40+ independent Lua modules improving overall Neovim
+	-- https://github.com/echasnovski/mini.nvim
 	{ "echasnovski/mini.nvim", version = "*" },
 
 	-- Manage global and project-local settings.
@@ -17,12 +22,6 @@ return {
 	-- Smooth scroll in neovim
 	-- https://github.com/karb94/neoscroll.nvim
 	"karb94/neoscroll.nvim",
-
-	-- Lightweight yet powerful formatter plugin for Neovim
-	-- https://github.com/stevearc/conform.nvim
-	--"stevearc/conform.nvim",
-
-	{ "nvim-tree/nvim-web-devicons", opts = {} },
 
 	-- Git command integrations
 	-- https://github.com/tpope/vim-fugitive

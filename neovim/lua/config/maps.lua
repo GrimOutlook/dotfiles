@@ -1,34 +1,47 @@
-vim.g.mapleader = " "
+vim.g.mapsleader = " "
 
+local function map_call(mode, lhs, rhs, silent)
+	vim.keymap.set(mode, lhs, rhs, { silent = silent })
+end
+local function maps(mode, lhs, rhs)
+	map_call(mode, lhs, rhs, true )
+end
 local function map(mode, lhs, rhs)
-	vim.keymap.set(mode, lhs, rhs, { silent = true })
+	map_call(mode, lhs, rhs, false )
 end
 
 -- Save
-map("n", "<leader>w", "<CMD>update<CR>")
+maps("n", "<leader>w", "<CMD>update<CR>")
 
 -- Quit
-map("n", "<leader>q", "<CMD>q<CR>")
+maps("n", "<leader>q", "<CMD>q<CR>")
 
 -- Exit insert mode
-map("i", "jk", "<ESC>")
+maps("i", "jk", "<ESC>")
 
 -- NeoTree
-map("n", "<leader>e", "<CMD>Neotree toggle<CR>")
-map("n", "<leader>r", "<CMD>Neotree focus<CR>")
-
--- New Windows
-map("n", "<leader>o", "<CMD>vsplit<CR>")
-map("n", "<leader>p", "<CMD>split<CR>")
+maps("n", "<leader>ee", "<CMD>Neotree toggle<CR>")
+maps("n", "<leader>er", "<CMD>Neotree focus<CR>")
 
 -- Window Navigation
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-l>", "<C-w>l")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-j>", "<C-w>j")
+maps("n", "<C-h>", "<C-w>h")
+maps("n", "<C-l>", "<C-w>l")
+maps("n", "<C-k>", "<C-w>k")
+maps("n", "<C-j>", "<C-w>j")
+
+-- Tab Navigation
+maps("n", "<C-H>", "<CMD>tabprevious<CR>")
+maps("n", "<C-L>", "<CMD>tabnext<CR>")
 
 -- Resize Windows
-map("n", "<C-Left>", "<C-w><")
-map("n", "<C-Right>", "<C-w>>")
-map("n", "<C-Up>", "<C-w>+")
-map("n", "<C-Down>", "<C-w>-")
+maps("n", "<C-Left>", "<C-w><")
+maps("n", "<C-Right>", "<C-w>>")
+maps("n", "<C-Up>", "<C-w>+")
+maps("n", "<C-Down>", "<C-w>-")
+
+-- Rename symbol
+maps("n", "<leader>r", vim.lsp.buf.rename)
+
+-- Snacks
+maps("n", "<leader>j", function() Snacks.picker.jumps() end)
+
