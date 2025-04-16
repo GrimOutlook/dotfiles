@@ -3,7 +3,7 @@
     editor = nvim
     autocrlf = input
     eol = lf
-    hooksPath = "$HOME/.dotfiles/git/hooks/"
+    hooksPath = '.dotfiles/git/hooks/'
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
