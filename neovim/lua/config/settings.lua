@@ -3,6 +3,7 @@
 -- https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7
 local global = vim.g
 local o = vim.opt
+local fn = vim.fn
 
 global.mapleader = " "
 
@@ -23,6 +24,14 @@ o.colorcolumn = "+1" -- Set the colour column to highlight one column after the 
 o.textwidth = 80
 o.formatoptions = "1qcrn2tjlv"
 
+o.tabstop = 8 -- Tab characters will appear 8 character wide.
+o.softtabstop = 0 -- Prevent tabs from being anything other than 8 characters
+  -- wide
+o.shiftwidth = 4 -- Tabs should be 4 spaces wide by default
+o.expandtab = true -- When pressing tab, insert spaces up to a shift width wide.
+o.smarttab = true -- Pressing tab goes to the next indent, rather than always
+  -- being 4 characters wide.
+
 -- Emoji {{{
 
 -- emoji is true by default but makes (n)vim treat all emoji as double width
@@ -37,9 +46,9 @@ vim.o.emoji = false
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
--- if fn.isdirectory(vim.o.undodir) == 0 then
---   fn.mkdir(vim.o.undodir, 'p')
--- end
+if fn.isdirectory(vim.o.undodir) == 0 then
+  fn.mkdir(vim.o.undodir, 'p')
+end
 vim.o.undofile = true
 
 -- }}}

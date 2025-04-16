@@ -36,3 +36,5 @@ neoverim conviguration.
 | gI | Goto implementation |
 | gy | Goto type definitions |
 | :[LINE_NUMBER] | Jump to specific line number |
+| retab | Convert tabs to spaces |
+
