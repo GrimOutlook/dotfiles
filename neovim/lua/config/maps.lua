@@ -20,14 +20,14 @@ maps("n", "<leader>q", "<CMD>q<CR>")
 maps("i", "jk", "<ESC>")
 
 -- Window Navigation
-maps("n", "<C-h>", "<C-w>h")
-maps("n", "<C-l>", "<C-w>l")
-maps("n", "<C-k>", "<C-w>k")
-maps("n", "<C-j>", "<C-w>j")
+maps("n", "<C-k>", "<CMD>wincmd k<CR>")
+maps("n", "<C-j>", "<CMD>wincmd j<CR>")
+maps("n", "<C-h>", "<CMD>wincmd h<CR>")
+maps("n", "<C-l>", "<CMD>wincmd l<CR>")
 
 -- Tab Navigation
-maps("n", "<C-H>", "<CMD>tabprevious<CR>")
-maps("n", "<C-L>", "<CMD>tabnext<CR>")
+maps("n", "<C-S-h>", "<CMD>tabprevious<CR>")
+maps("n", "<C-S-l>", "<CMD>tabnext<CR>")
 
 -- Resize Windows
 maps("n", "<C-Left>", "<C-w><")

@@ -10,3 +10,4 @@
   for more inspiration
 - Figure out how to handle nested tmux sessions
 - Look into adding coq_nvim -> https://github.com/ms-jpq/coq_nvim
+- Create function backup file. Should move a $FILENAME to .$FILENAME.bkp

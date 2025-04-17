@@ -11,6 +11,15 @@ vim.keymap.set(
 	end,
 	{ silent = true, buffer = bufnr }
 )
+vim.keymap.set("n", "E", function()
+	vim.cmd.RustLsp("explainError") -- default to 'cycle'
+end, { silent = true, buffer = bufnr })
+vim.keymap.set("n", "D", function()
+	vim.cmd.RustLsp("renderDiagnostic") -- defaults to 'cycle'
+end, { silent = true, buffer = bufnr })
+vim.keymap.set("n", "M", function()
+	vim.cmd.RustLsp("expandMacro")
+end, { silent = true, buffer = bufnr })
 
 vim.o.textwidth = 80
 vim.o.formatoptions = "1qcrn2tjlv"

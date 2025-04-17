@@ -27,8 +27,12 @@
 
 [push]
     autoSetupRemote = true
+
 [pull]
 	rebase = false
+
 [alias]
 	cma = commit -a -m
 	cam = commit -a -m
+	mr = push -u origin
+
