@@ -4,6 +4,7 @@
 
 # Add top level files to VC
 !/.gitignore
+!/.gitconfig
 !/install.fish
 !/README.md
 
@@ -25,6 +26,3 @@
 # would likely just be an add on to this fix though.
 work
 !*/work
-
-# Exclude fish_variables from source control
-/fish/fish_variables
