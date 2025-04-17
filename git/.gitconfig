@@ -29,3 +29,6 @@
     autoSetupRemote = true
 [pull]
 	rebase = false
+[alias]
+	cma = commit -a -m
+	cam = commit -a -m
