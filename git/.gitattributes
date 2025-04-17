@@ -3,6 +3,7 @@
 # Text files
 *.bash          text
 *.compose       text
+*.conf          text
 *.css           text
 *.fish          text
 *.groovy        text
@@ -12,7 +13,9 @@
 *.json          text
 *.jsx           text
 *.lock          text
+*.lua           text
 *.md            text
+*.pl            text
 *.py            text
 *.rs            text
 *.sh            text
