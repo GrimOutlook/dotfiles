@@ -52,6 +52,7 @@ neoverim conviguration.
 | gD             | Goto declaraction                |
 | gI             | Goto implementation              |
 | gy             | Goto type definitions            |
+| gr             | Goto references                  |
 | :[LINE_NUMBER] | Jump to specific line number     |
 | retab          | Convert tabs to spaces           |
 
