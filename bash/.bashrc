@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-#
-# ~/.bashrc
-#
 
 # If not running interactively, don't do anything
 case $- in
@@ -20,7 +17,13 @@ source "$HOME/.cargo/env"
 
 ALIASES=$HOME/.bash_aliases
 if [[ -f $ALIASES ]]; then
-    source $ALIASES
+    source "$ALIASES"
+fi
+BASH_SCRIPTS=$HOME/.bash_scripts
+if [[ -d $BASH_SCRIPTS ]]; then
+    for file in $(fd -t f . "$BASH_SCRIPTS"); do
+        source "$file"
+    done
 fi
 
 # Set up fzf key bindings and fuzzy completion
