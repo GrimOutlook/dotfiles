@@ -13,23 +13,28 @@ alias cp="xcp"
 alias j="just"
 
 # Git
-alias st="git status --short"
-function push-all() {
+function commit-all() {
     if [ ! $# -gt 0 ]; then
-        echo "No commit message provided, not continuing"
+        echo "No commit message provided." >&2
+        return 1
     fi
 
     commit_message="'$@'"
     git commit -a -m "$commit_message" || {
-        echo "Failed to commit to repo" >&2
+        echo "Failed to commit to repo." >&2
         return 1;
     }
+}
+function push-all() {
+    commit-all $@ || return 1
     git push -u origin || {
-        echo "Failed to push to remote" >&2
+        echo "Failed to push to remote." >&2
         return 1
     }
 }
+alias ca="commit-all"
 alias pa="push-all"
+alias st="git status --short"
 
 
 function nvim-mkdir() {
