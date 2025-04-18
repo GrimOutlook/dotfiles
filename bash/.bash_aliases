@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 
+alias bashrc="$EDITOR $HOME/.bashrc"
+alias bash_aliases="$EDITOR $HOME/.bash_aliases"
+
 EZA_DEFAULT_OPTIONS='-hl@'
 alias ls='eza $EZA_DEFAULT_OPTIONS'
 alias la='eza -a $EZA_DEFAULT_OPTIONS'
 alias reload='source $HOME/.bashrc'
+
+alias cat='bat --color=always'
+alias cp="xcp"
+alias j="just"
 
 
 function nvim-mkdir() {
