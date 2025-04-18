@@ -1,0 +1,8 @@
+*
+!*/
+
+!.gitignore
+!tmux.conf
+!tmux-powerline/**
+
+/plugins

@@ -40,6 +40,7 @@ neoverim conviguration.
 | gq1              | Wrap one line (in Normal mode)                        |
 | C-o              | Previous cursor position (including after file jumps) |
 | C-i              | Next cursor position                                  |
+| zR               | Unfold all                                            |
 
 ## Useful Commands
 

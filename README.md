@@ -11,3 +11,12 @@
 - Figure out how to handle nested tmux sessions
 - Look into adding coq_nvim -> https://github.com/ms-jpq/coq_nvim
 - Create function backup file. Should move a $FILENAME to .$FILENAME.bkp
+
+## Current Issues
+
+### Windows Font Cache
+
+Upon restart Windows Terminal can no longer find the custom font that I use
+(JetBrainsMono NF). Need to add steps on how to fix this on every startup for
+non-priviledged users as the main fix out there is to install for all users
+which only admins have rights to.
