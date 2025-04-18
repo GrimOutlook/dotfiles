@@ -13,6 +13,7 @@ alias cp="xcp"
 alias j="just"
 
 # Git
+alias st="git status --short"
 function push-all() {
     if [ ! $# -gt 0 ]; then
         echo "No commit message provided, not continuing"
@@ -28,6 +29,7 @@ function push-all() {
         return 1
     }
 }
+alias pa="push-all"
 
 
 function nvim-mkdir() {
