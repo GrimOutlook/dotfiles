@@ -6,6 +6,8 @@ case $- in
 	*) return ;;
 esac
 
+export EDITOR=/usr/bin/nvim
+
 
 # Ignore duplicates in bash history
 export HISTCONTROL=ignoreboth:erasedups

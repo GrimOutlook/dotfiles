@@ -12,6 +12,23 @@ alias cat='bat --color=always'
 alias cp="xcp"
 alias j="just"
 
+# Git
+function push-all() {
+    if [ ! $# -gt 0 ]; then
+        echo "No commit message provided, not continuing"
+    fi
+
+    commit_message="'$@'"
+    git commit -a -m "$commit_message" || {
+        echo "Failed to commit to repo" >&2
+        return 1;
+    }
+    git push -u origin || {
+        echo "Failed to push to remote" >&2
+        return 1
+    }
+}
+
 
 function nvim-mkdir() {
     if [[ $# -gt 1 ]]; then
