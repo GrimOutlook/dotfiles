@@ -26,6 +26,12 @@ TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SE
 # See `man tmux` for additional formatting options for the status line.
 # The `format regular` and `format inverse` functions are provided as conveniences
 
+PINK_SEG="1 235"
+BLUE_SEG="4 235"
+WHITE_SEG="15 235"
+GREY_SEG="238 15"
+
+
 # shellcheck disable=SC2128
 if [ -z "$TMUX_POWERLINE_WINDOW_STATUS_CURRENT" ]; then
 	TMUX_POWERLINE_WINDOW_STATUS_CURRENT=(
@@ -99,11 +105,6 @@ fi
 # of options to support the spacing_disable and separator_disable features can be used
 # The default_* and no_* can be used to keep the default behaviour.
 
-PINK_SEG="1 235"
-BLUE_SEG="4 235"
-WHITE_SEG="15 235"
-GREY_SEG="57 15"
-
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
@@ -112,10 +113,10 @@ if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 		#"mode_indicator 165 0"
 		#"ifstat 30 255"
 		#"ifstat_sys 30 255"
-		"lan_ip $WHITE_SEG ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
-		"wan_ip $WHITE_SEG ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
+		"lan_ip $WHITE_SEG"
+		#"wan_ip $WHITE_SEG"
 		#"vpn 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"
-		"vcs_branch $PINK_SEG"
+		"vcs_branch $GREY_SEG"
 		#"vcs_compare 60 255"
 		#"vcs_staged 64 255"
 		#"vcs_modified 9 255"
@@ -127,7 +128,7 @@ fi
 if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
 		#"earthquake 3 0"
-		"pwd $PINK_SEG"
+		"pwd $GREY_SEG"
 		#"macos_notification_count 29 255"
 		#"mailcount 9 255"
 		# "now_playing 234 37"
@@ -136,12 +137,12 @@ if [ -z "$TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS" ]; then
 		#"tmux_mem_cpu_load 234 136"
 		#"battery 137 127"
 		#"air ${TMUX_POWERLINE_SEG_AIR_COLOR} 255"
-		"weather 37 255"
+		#"weather 37 255"
 		#"rainbarf 0 ${TMUX_POWERLINE_DEFAULT_FOREGROUND_COLOR}"
 		#"xkb_layout 125 117"
-		"date_day $BLUE_SEG"
-		"date $BLUE_SEG ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"time $BLUE_SEG ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
-		"utc_time $BLUE_SEG ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}"
+		"date_day $WHITE_SEG"
+		"date $BLUE_SEG"
+		"time $PINK_SEG"
+		#"utc_time $PINK_SEG"
 	)
 fi
