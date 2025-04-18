@@ -12,10 +12,16 @@ vim.keymap.set(
 	{ silent = true, buffer = bufnr }
 )
 vim.keymap.set("n", "E", function()
-	vim.cmd.RustLsp("explainError") -- default to 'cycle'
+	vim.cmd.RustLsp({ "explainError", "current" })
+end, { silent = true, buffer = bufnr })
+vim.keymap.set("n", "M-E", function()
+	vim.cmd.RustLsp({ "explainError", "cycle" })
 end, { silent = true, buffer = bufnr })
 vim.keymap.set("n", "D", function()
-	vim.cmd.RustLsp("renderDiagnostic") -- defaults to 'cycle'
+	vim.cmd.RustLsp({ "renderDiagnostic", "current" })
+end, { silent = true, buffer = bufnr })
+vim.keymap.set("n", "M-D", function()
+	vim.cmd.RustLsp({ "renderDiagnostic", "cycle" })
 end, { silent = true, buffer = bufnr })
 vim.keymap.set("n", "M", function()
 	vim.cmd.RustLsp("expandMacro")

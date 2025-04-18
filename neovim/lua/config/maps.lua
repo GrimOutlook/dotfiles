@@ -11,7 +11,7 @@ local function map(mode, lhs, rhs)
 end
 
 -- Save
-maps("n", "<leader>w", "<CMD>update<CR>")
+vim.keymap.set("n", "<leader>w", "<CMD>update<CR>", { silent = true, desc = "Save current buffer" })
 
 -- Quit
 maps("n", "<leader>q", "<CMD>q<CR>")
@@ -37,6 +37,10 @@ maps("n", "<C-Down>", "<C-w>-")
 
 -- Rename symbol
 maps("n", "<leader>r", vim.lsp.buf.rename)
+
+maps("n", "<leader>t", "<CMD>ToggleTerm<CR>")
+-- TODO Why tf doesn't this work?
+vim.keymap.set("n", "<c-/>", "<CMD>ToggleTerm<CR>")
 
 -- Snacks
 maps("n", "<leader>j", function()

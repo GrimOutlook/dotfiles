@@ -15,6 +15,7 @@ neoverim conviguration.
 | <leader>sk       | Search keymaps                                        |
 | <leader>sC       | Search available commands                             |
 | <leader>s/       | Search search history                                 |
+| <leader>ss       | Search symbols in file (functions, classes)           |
 | <leader>w        | Save                                                  |
 | <leader>q        | Quit                                                  |
 | C-u              | Move down half a page                                 |
