@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 function rst() {
     # TODO: Make this work when multiple paths are given
-    if [ $# -gt 1 ]; then
+    if [ ! $# -eq 1 ]; then
         echo "More than one argument is currently not supported!" >&2
         return 1
     fi
