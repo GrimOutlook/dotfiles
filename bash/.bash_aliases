@@ -19,7 +19,7 @@ function commit-all() {
         return 1
     fi
 
-    commit_message="'$@'"
+    commit_message="$@"
     git commit -a -m "$commit_message" || {
         echo "Failed to commit to repo." >&2
         return 1;
