@@ -6,8 +6,9 @@ case $- in
 	*) return ;;
 esac
 
+export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/
+export DOTFILES=$HOME/.dotfiles
 export EDITOR=/usr/bin/nvim
-
 
 # Ignore duplicates in bash history
 export HISTCONTROL=ignoreboth:erasedups
@@ -20,12 +21,6 @@ source "$HOME/.cargo/env"
 ALIASES=$HOME/.bash_aliases
 if [[ -f $ALIASES ]]; then
     source "$ALIASES"
-fi
-BASH_SCRIPTS=$HOME/.bash_scripts
-if [[ -d $BASH_SCRIPTS ]]; then
-    for file in $(fd -t f . "$BASH_SCRIPTS"); do
-        source "$file"
-    done
 fi
 
 # Set up fzf key bindings and fuzzy completion

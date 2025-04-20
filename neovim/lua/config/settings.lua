@@ -26,11 +26,11 @@ o.formatoptions = "1qcrn2tjlv"
 
 o.tabstop = 8 -- Tab characters will appear 8 character wide.
 o.softtabstop = 0 -- Prevent tabs from being anything other than 8 characters
-  -- wide
+-- wide
 o.shiftwidth = 4 -- Tabs should be 4 spaces wide by default
 o.expandtab = true -- When pressing tab, insert spaces up to a shift width wide.
 o.smarttab = true -- Pressing tab goes to the next indent, rather than always
-  -- being 4 characters wide.
+-- being 4 characters wide.
 
 -- Emoji {{{
 
@@ -47,7 +47,7 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.writebackup = false
 if fn.isdirectory(vim.o.undodir) == 0 then
-  fn.mkdir(vim.o.undodir, 'p')
+	fn.mkdir(vim.o.undodir, "p")
 end
 vim.o.undofile = true
 
@@ -67,4 +67,3 @@ vim.o.sidescrolloff = 10
 vim.o.sidescroll = 1
 
 -- }}}
-

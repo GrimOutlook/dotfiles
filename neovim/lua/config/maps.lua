@@ -20,14 +20,14 @@ maps("n", "<leader>q", "<CMD>q<CR>")
 maps("i", "jk", "<ESC>")
 
 -- Window Navigation
-maps("n", "<C-k>", "<CMD>wincmd k<CR>")
-maps("n", "<C-j>", "<CMD>wincmd j<CR>")
-maps("n", "<C-h>", "<CMD>wincmd h<CR>")
-maps("n", "<C-l>", "<CMD>wincmd l<CR>")
+vim.keymap.set("n", "<M-h>", "<CMD>wincmd k<CR>", { noremap = true })
+vim.keymap.set("n", "<M-j>", "<CMD>wincmd j<CR>", { noremap = true })
+vim.keymap.set("n", "<M-h>", "<CMD>wincmd h<CR>", { noremap = true })
+vim.keymap.set("n", "<M-l>", "<CMD>wincmd l<CR>", { noremap = true })
 
 -- Tab Navigation
-maps("n", "<C-S-h>", "<CMD>tabprevious<CR>")
-maps("n", "<C-S-l>", "<CMD>tabnext<CR>")
+vim.keymap.set("n", "<M-C-H>", "<CMD>tabprevious<CR>", { noremap = true })
+vim.keymap.set("n", "<M-C-L>", "<CMD>tabnext<CR>", { noremap = true })
 
 -- Resize Windows
 maps("n", "<C-Left>", "<C-w><")
