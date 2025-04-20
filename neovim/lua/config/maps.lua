@@ -19,12 +19,6 @@ maps("n", "<leader>q", "<CMD>q<CR>")
 -- Exit insert mode
 maps("i", "jk", "<ESC>")
 
--- Window Navigation
-vim.keymap.set("n", "<M-h>", "<CMD>wincmd k<CR>", { noremap = true })
-vim.keymap.set("n", "<M-j>", "<CMD>wincmd j<CR>", { noremap = true })
-vim.keymap.set("n", "<M-h>", "<CMD>wincmd h<CR>", { noremap = true })
-vim.keymap.set("n", "<M-l>", "<CMD>wincmd l<CR>", { noremap = true })
-
 -- Tab Navigation
 vim.keymap.set("n", "<M-C-H>", "<CMD>tabprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<M-C-L>", "<CMD>tabnext<CR>", { noremap = true })
