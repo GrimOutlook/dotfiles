@@ -31,6 +31,9 @@ maps("n", "<C-Down>", "<C-w>-")
 
 -- Rename symbol
 maps("n", "<leader>r", vim.lsp.buf.rename)
+-- Clear search hightlighting
+-- TODO: Why isn't this working?
+maps("n", "M-S-/", "<CMD>nohlsearch<CR>")
 
 maps("n", "<leader>t", "<CMD>ToggleTerm<CR>")
 -- TODO Why tf doesn't this work?
