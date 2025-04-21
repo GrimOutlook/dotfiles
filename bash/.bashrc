@@ -6,7 +6,7 @@ case $- in
 	*) return ;;
 esac
 
-export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/
+export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/SysWOW64/
 export DOTFILES=$HOME/.dotfiles
 export EDITOR=/usr/bin/nvim
 
