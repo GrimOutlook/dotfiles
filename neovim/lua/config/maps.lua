@@ -20,8 +20,8 @@ maps("n", "<leader>q", "<CMD>q<CR>")
 maps("i", "jk", "<ESC>")
 
 -- Tab Navigation
-vim.keymap.set("n", "<M-C-H>", "<CMD>tabprevious<CR>", { noremap = true })
-vim.keymap.set("n", "<M-C-L>", "<CMD>tabnext<CR>", { noremap = true })
+vim.keymap.set("n", "<M-S-H>", "<CMD>tabprevious<CR>", { noremap = true })
+vim.keymap.set("n", "<M-S-L>", "<CMD>tabnext<CR>", { noremap = true })
 
 -- Resize Windows
 maps("n", "<C-Left>", "<C-w><")
