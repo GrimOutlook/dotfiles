@@ -5,7 +5,7 @@
 # Add top level files to VC
 !/.gitignore
 !/.gitconfig
-!/install.fish
+!/install.bash
 !/README.md
 
 # Allow source files
