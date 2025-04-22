@@ -9,7 +9,7 @@ function mklink() {
     source=$1
 
     destination=$2
-    if [ -e "$destination" ]; then
+    if [ -f "$destination" ]; then
         bkp "$destination" || return 1
     fi
 

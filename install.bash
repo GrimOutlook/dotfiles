@@ -6,14 +6,16 @@ for file in $(fd -t f . "$SCRIPT_DIR/bash/functions/"); do
     source "$file"
 done
 
+export DOTFILES="$SCRIPT_DIR"
+
 # Install Bash stuff
-source $HOME/.dotfiles/tmux/install.bash
+source $DOTFILES/bash/install.bash
 
 # Install TMUX stuff
-source $HOME/.dotfiles/tmux/install.bash
+source $DOTFILES/tmux/install.bash
 
 # Install git stuff
-source $HOME/.dotfiles/git/install.bash
+source $DOTFILES/git/install.bash
 
 # Install neovim stuff
-source $HOME/.dotfiles/neovim/install.bash
+source $DOTFILES/neovim/install.bash

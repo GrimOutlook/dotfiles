@@ -2,4 +2,4 @@
 
 GIT_DIR="$SCRIPT_DIR/git"
 
-mklink "$GIT_DIR/.gitconfig" "$HOME/." || exit 1
+mklink "$GIT_DIR/.gitconfig" "$HOME/" || exit 1
