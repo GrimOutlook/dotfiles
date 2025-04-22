@@ -10,11 +10,10 @@
 
 # Allow source files
 !/bash/**
-!/fish/**
 !/git/**
+!/misc/**
 !/neovim/**
 !/tmux/**
-!/vscode/**
 
 # Disallow known nested repos. The format for each below essentially works out
 # to ignore symlinks with a given name but allow everything else of the same

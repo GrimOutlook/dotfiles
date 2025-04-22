@@ -19,3 +19,6 @@ source $DOTFILES/git/install.bash
 
 # Install neovim stuff
 source $DOTFILES/neovim/install.bash
+
+# Install miscellaneous items
+source $DOTFILES/misc/install.bash

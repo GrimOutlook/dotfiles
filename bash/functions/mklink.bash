@@ -9,16 +9,20 @@ function mklink() {
     source=$1
 
     destination=$2
-    if [ -f "$destination" ]; then
+    if [ -e "$destination" ]; then
         bkp "$destination" || return 1
     fi
 
-    destination_directory="$(dirname "$destination")"
-    if [ ! -d "$destination_directory" ]; then
-        mkdir -p "$destination_directory" || {
-            echo "Failed to create directory"
-            return 1
-        }
+    if [ -d "$destination" ]; then
+        destination_directory="$destination"
+    else
+        destination_directory="$(dirname "$destination")"
+        if [ ! -d "$destination_directory" ]; then
+            mkdir -p "$destination_directory" || {
+                echo "Failed to create directory"
+                return 1
+            }
+        fi
     fi
 
     ln -s "$source" "$destination" || {
