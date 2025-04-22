@@ -23,6 +23,20 @@ maps("i", "jk", "<ESC>")
 vim.keymap.set("n", "<M-S-H>", "<CMD>tabprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<M-S-L>", "<CMD>tabnext<CR>", { noremap = true })
 
+-- Disable Arrow Navigation to convince puny brain to use correct keys
+maps("n", "<Left>", "<CMD>echo 'Use h'<CR>")
+maps("n", "<Right>", "<CMD>echo 'Use l'<CR>")
+maps("n", "<Up>", "<CMD>echo 'Use k'<CR>")
+maps("n", "<Down>", "<CMD>echo 'Use j'<CR>")
+maps("i", "<Left>", "<CMD>echo 'Use h'<CR>")
+maps("i", "<Right>", "<CMD>echo 'Use l'<CR>")
+maps("i", "<Up>", "<CMD>echo 'Use k'<CR>")
+maps("i", "<Down>", "<CMD>echo 'Use j'<CR>")
+maps("v", "<Left>", "<CMD>echo 'Use h'<CR>")
+maps("v", "<Right>", "<CMD>echo 'Use l'<CR>")
+maps("v", "<Up>", "<CMD>echo 'Use k'<CR>")
+maps("v", "<Down>", "<CMD>echo 'Use j'<CR>")
+
 -- Resize Windows
 maps("n", "<C-Left>", "<C-w><")
 maps("n", "<C-Right>", "<C-w>>")
