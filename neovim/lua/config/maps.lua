@@ -39,6 +39,11 @@ maps("n", "<leader>t", "<CMD>ToggleTerm<CR>")
 -- TODO Why tf doesn't this work?
 vim.keymap.set("n", "<c-/>", "<CMD>ToggleTerm<CR>")
 
+-- Duplicate the line and comment the line that it was duplicated from.
+vim.keymap.set("n", "ycc", "yygccp", { remap = true })
+-- Search within visual selection - this is magic
+vim.keymap.set("x", "/", "<Esc>/\\%V")
+
 -- Snacks
 maps("n", "<leader>j", function()
 	Snacks.picker.jumps()

@@ -5,11 +5,12 @@
 - Add this, it's sick: https://github.com/christoomey/vim-tmux-navigator
 - Make batcat the default pager for all programs
 - Make batcat the default pager for man pages
-- Check
-  https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7
-  for more inspiration
+- Check [here](https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7) for more inspiration
 - Figure out how to handle nested tmux sessions
-- Look into adding coq_nvim -> https://github.com/ms-jpq/coq_nvim
+- [Look into adding coq_nvim](https://github.com/ms-jpq/coq_nvim)
+- [Implement keymaps from here](https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moad2aq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+- [Use for inspiration](https://castel.dev/post/lecture-notes-1/)
+- [More inspiration](https://github.com/KiLLeRRaT/.dotfiles/blob/master/nvim-lua/.config/nvim/lua/killerrat/remap.lua#L52)
 
 ## Current Issues
 
