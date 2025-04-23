@@ -26,4 +26,8 @@ return {
 	-- Git command integrations
 	-- https://github.com/tpope/vim-fugitive
 	"tpope/vim-fugitive",
+
+	-- Single tabpage interface for easily cycling through diffs
+	-- https://github.com/sindrets/diffview.nvim
+	"sindrets/diffview.nvim",
 }

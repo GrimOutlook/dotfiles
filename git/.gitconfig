@@ -3,7 +3,6 @@
     editor = nvim
     autocrlf = input
     eol = lf
-    hooksPath = '.dotfiles/git/hooks/'
     pager = delta
 
 [filter "lfs"]
@@ -35,7 +34,11 @@
 	cma = commit -a -m
 	cam = commit -a -m
 	mr = push -u origin
-
+	d = difftool
 [user]
-	email = dominic.j.grimaldi@gmail.com
 	name = Dominic Grimaldi
+	email = dominic.j.grimaldi2.ctr@army.mil
+[diff]
+	tool = nvim -d
+[difftool]
+	prompt = false

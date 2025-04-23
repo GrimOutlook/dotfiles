@@ -1,6 +1,7 @@
 function nvim-mkdir() {
-    if [[ $# -ne 1 ]]; then
-        return $(/usr/bin/nvim "$@")
+    if [ $# -le 1 ]; then
+        /usr/bin/nvim "$@"
+        return $?
     fi
 
     path=$1

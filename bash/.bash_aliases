@@ -9,6 +9,12 @@ else
     echo "Failed to load bash functions" >&2
 fi
 
+# Check if work bash aliases exists
+WORK_ALIASES="$HOME/.bash_aliases.work"
+if [ -f "$WORK_ALIASES" ]; then
+    source "$WORK_ALIASES"
+fi
+
 alias reload='source $HOME/.bashrc'
 alias j='just'
 alias grep='rg'
