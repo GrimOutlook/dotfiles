@@ -36,3 +36,6 @@
 	cam = commit -a -m
 	mr = push -u origin
 
+[user]
+	email = dominic.j.grimaldi@gmail.com
+	name = Dominic Grimaldi
