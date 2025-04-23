@@ -6,11 +6,24 @@ function mklink() {
         return 1
     fi
 
-    source=$1
+    SED="$(which sed)" || {
+        echo "sed is not installed" >&2
+        return 1
+    }
 
-    destination=$2
+
+    source=$(echo "$1" | $SED 's/\/$//')
+    destination=$(echo "$2" | $SED 's/\/$//')
+    
+    if [ ! -e "$source" ]; then
+        echo "$source is does not exist" >&2
+        return 1
+    fi
+
     if [ -e "$destination" ]; then
         bkp "$destination" || return 1
+    elif [ -L "$destination" ]; then
+        unlink "$destination" || return 1
     fi
 
     if [ -d "$destination" ]; then
