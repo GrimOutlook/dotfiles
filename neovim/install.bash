@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash -l
+set -euo pipefail
 
 NVIM_DIR=$DOTFILES/neovim
 

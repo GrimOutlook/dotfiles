@@ -24,6 +24,8 @@ fi
 # -- Environment Variables -----------------------------------------------------
 export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/SysWOW64/
 export DOTFILES=$HOME/.dotfiles
+export CONFIG=$HOME/.config
+
 export EDITOR=/usr/bin/nvim
 
 # Ignore duplicates in bash history
@@ -31,27 +33,41 @@ export HISTCONTROL=ignoreboth:erasedups
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+
+# Color manpage output with bat
+if command -v bat &>/dev/null; then
+    export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+else
+    echo "bat is not installed" >&2
+fi
 
 # -- Source Additional Files ---------------------------------------------------
-
-source "$HOME/.cargo/env"
 
 ALIASES=$HOME/.bash_aliases
 if [[ -f $ALIASES ]]; then
     source "$ALIASES"
 fi
 
+source "$HOME/.cargo/env" &>/dev/null
+
 # -- Run Startup Scripts -------------------------------------------------------
 
 # Set up fzf key bindings and fuzzy completion
 if command -v fzf &>/dev/null; then
     eval "$(fzf --bash)"
+else
+    echo "fzf is not installed" >&2
 fi
 
 # Launch the startship prompt
 if command -v starship &>/dev/null; then
     eval "$(starship init bash)"
+else
+    echo "starship is not installed" >&2
 fi
 
- eval "$(thefuck --alias)"
+if command -v thefuck &>/dev/null; then
+    eval "$(thefuck --alias)"
+else
+    echo "fzf is not installed" >&2
+fi

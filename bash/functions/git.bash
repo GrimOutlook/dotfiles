@@ -42,6 +42,9 @@ function push-all() {
         return 1
     }
 }
+export -f push-all
+export -f commit-all
+export -f add-all
 
 alias ca='commit-all'
 alias pa='push-all'

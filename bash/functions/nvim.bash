@@ -1,6 +1,6 @@
 function nvim-mkdir() {
-    if [[ $# -gt 1 ]]; then
-        return $(nvim "$@")
+    if [[ $# -ne 1 ]]; then
+        return $(/usr/bin/nvim "$@")
     fi
 
     path=$1
@@ -10,8 +10,9 @@ function nvim-mkdir() {
             return 1
     fi
     mkdir -p "$parent_dir"
-    nvim $path
+    /usr/bin/nvim $path
 }
+export -f nvim-mkdir
 alias v='nvim-mkdir'
 alias vi='nvim-mkdir'
 alias vim='nvim-mkdir'

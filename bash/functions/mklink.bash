@@ -43,3 +43,6 @@ function mklink() {
         return 1
     }
 }
+export -f mklink
+
+export -f mklink

@@ -16,9 +16,6 @@ vim.keymap.set("n", "<leader>w", "<CMD>update<CR>", { silent = true, desc = "Sav
 -- Quit
 maps("n", "<leader>q", "<CMD>q<CR>")
 
--- Exit insert mode
-maps("i", "jk", "<ESC>")
-
 -- Tab Navigation
 vim.keymap.set("n", "<M-S-H>", "<CMD>tabprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<M-S-L>", "<CMD>tabnext<CR>", { noremap = true })

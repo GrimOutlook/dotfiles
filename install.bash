@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
-set -euxo pipefail
+#!/usr/bin/env -S bash -l
+set -euo pipefail
 
 export SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 for file in $(fd -t f . "$SCRIPT_DIR/bash/functions/"); do
@@ -9,16 +9,16 @@ done
 export DOTFILES="$SCRIPT_DIR"
 
 # Install Bash stuff
-source $DOTFILES/bash/install.bash
+bash -l $DOTFILES/bash/install.bash
 
 # Install TMUX stuff
-source $DOTFILES/tmux/install.bash
+$DOTFILES/tmux/install.bash
 
 # Install git stuff
-source $DOTFILES/git/install.bash
+$DOTFILES/git/install.bash
 
 # Install neovim stuff
-source $DOTFILES/neovim/install.bash
+$DOTFILES/neovim/install.bash
 
 # Install miscellaneous items
-source $DOTFILES/misc/install.bash
+$DOTFILES/misc/install.bash
