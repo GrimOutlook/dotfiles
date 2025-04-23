@@ -31,6 +31,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
 # -- Source Additional Files ---------------------------------------------------
 
