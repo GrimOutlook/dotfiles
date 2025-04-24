@@ -52,7 +52,7 @@ if [[ -f $ALIASES ]]; then
 fi
 
 COMPLETIONS=$HOME/.bash_completions/
-completions=$(fd -type f "$COMPLETIONS")
+completions=$(fd -t f . "$COMPLETIONS")
 for file in $completions; do
     source "$file"
 done
