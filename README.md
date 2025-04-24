@@ -1,5 +1,9 @@
 # .dotfiles
 
+## Shell
+
+I like Bash because it is so widely used. I attempted to use fish but all of the good prompts that I found used the `fish_variables` files
+
 ## TODO:
 
 - Add this, it's sick: https://github.com/christoomey/vim-tmux-navigator

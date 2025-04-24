@@ -1,4 +1,3 @@
-function git-root() {
     ( # Run in subshell
         if [ -d '.git' ]; then
             echo "$(pwd)"
@@ -13,4 +12,3 @@ function git-root() {
             return $?
         fi
     )
-}

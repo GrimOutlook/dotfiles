@@ -1,0 +1,10 @@
+    in-git || {
+        err "Not in a git repository."
+        return 1
+    }
+
+    commit-all $@ || return 1
+    git push -u origin || {
+        err "Failed to push to remote."
+        return 1
+    }

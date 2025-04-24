@@ -16,7 +16,7 @@ function mklink() {
     destination=$(echo "$2" | $SED 's/\/$//')
     
     if [ ! -e "$source" ]; then
-        echo "$source is does not exist" >&2
+        echo "Source file $source does not exist" >&2
         return 1
     fi
 

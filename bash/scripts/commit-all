@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+
+    in-git || {
+        err "Not in a git repository."
+        return 1
+    }
+
+    # This syntax allows for the user to not have to use quotes when making
+    # a commit message.
+    if [ ! $# -gt 0 ]; then
+        err "No commit message provided."
+        return 1
+    fi
+
+    commit_message="$@"
+    git commit -m "$commit_message" || {
+        err "Failed to commit to repo."
+        return 1
+    }
+

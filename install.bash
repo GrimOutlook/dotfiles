@@ -8,7 +8,10 @@ done
 
 export DOTFILES="$SCRIPT_DIR"
 
+fd -t d --max-depth 1 -x bash -c 'test -f "{}/install.bash" || echo "{} does not have an install script." >&2 ' -- . $DOTFILES
+
 install_files=$(fd -t f --min-depth 2 "install.bash" $DOTFILES)
-for install in "$install_files"; do 
+for install in $install_files; do 
+	chmod +x "$install"
     "$install"
 done

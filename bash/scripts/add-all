@@ -1,0 +1,11 @@
+    in-git || {
+        err "Not in a git repository."
+        return 1
+    }
+
+    git add -A || {
+        err "Failed to add all files to staging."
+        return 1
+    }
+
+    git status --short

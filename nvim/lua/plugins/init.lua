@@ -30,4 +30,8 @@ return {
 	-- Single tabpage interface for easily cycling through diffs
 	-- https://github.com/sindrets/diffview.nvim
 	"sindrets/diffview.nvim",
+
+	-- Painless Java in Neovim
+	-- https://github.com/nvim-java/nvim-java
+	"nvim-java/nvim-java",
 }

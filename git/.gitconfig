@@ -42,3 +42,6 @@
 	tool = nvim -d
 [difftool]
 	prompt = false
+
+[include]
+    path = ~/.gitconfig.work

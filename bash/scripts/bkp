@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-function bkp() {
+
     # TODO: Make this work when multiple paths are given
     if [ ! $# -eq 1 ]; then
         echo "More than one argument is currently not supported!" >&2
@@ -26,4 +26,3 @@ function bkp() {
     }
 
     echo "Backed up $path to $new_path"
-}

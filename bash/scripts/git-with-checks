@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-function git() {
     GIT="$(which git)"
     if [ ! $? ]; then
         err "git is not installed."
@@ -42,15 +41,21 @@ function git() {
     check-args-for-global $@ || return 1
 
     $GIT "$@"
-}
 
 function any-author-check() {
     config_file="$1"
     user_section="$(user-section $config_file)"
-    test $? || return 0
+    test $? || return 1
 
-    echo "$user_section" | rg 'name' &>/dev/null && return 1
-    echo "$user_section" | rg 'email' &>/dev/null && return 1
+    echo "$user_section" | rg 'name' &>/dev/null && {
+	    err "Name field is set in $config_file"
+	    return 0
+    }
+    echo "$user_section" | rg 'email' &>/dev/null && {
+	err "Email field is set in $config_file"
+	    return 0
+    }
+    return 1
 }
 
 function all-author-check() {
@@ -59,7 +64,10 @@ function all-author-check() {
     test $? || return 1
 
     echo "$user_section" | rg 'name' &>/dev/null && \
-    echo "$user_section" | rg 'email' &>/dev/null || return 1
+    echo "$user_section" | rg 'email' &>/dev/null || {
+	    err "Not all fields for author information is set in $config_file"
+	    return 1
+    }
 }
 
 function user-section() {
@@ -122,10 +130,4 @@ function push-all() {
         return 1
     }
 }
-
-alias ca='commit-all'
-alias pa='push-all'
-alias aa='add-all'
-alias st='git status --short'
-alias ig='git check-ignore -v -- **/*'
 

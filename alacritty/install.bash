@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env -S bash -l
 
-ALACRITTY="$(absolute-parent $BASH_SOURCE)"
+ALACRITTY="$DOTFILES/alacritty"
 
-mklink "$ALACRITTY/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+mklink "$ALACRITTY/alacritty.toml" "$CONFIG/alacritty/alacritty.toml"

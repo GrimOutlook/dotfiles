@@ -27,6 +27,9 @@ export DOTFILES=$HOME/.dotfiles
 export CONFIG=$HOME/.config
 
 export EDITOR=/usr/bin/nvim
+# Prevent go from creating a `go/` directory in the middle of your home
+# directory.
+export GOPATH=$HOME/.go
 
 # Ignore duplicates in bash history
 export HISTCONTROL=ignoreboth:erasedups
@@ -47,6 +50,12 @@ ALIASES=$HOME/.bash_aliases
 if [[ -f $ALIASES ]]; then
     source "$ALIASES"
 fi
+
+COMPLETIONS=$HOME/.bash_completions/
+completions=$(fd -type f "$COMPLETIONS")
+for file in $completions; do
+    source "$file"
+done
 
 source "$HOME/.cargo/env" &>/dev/null
 
