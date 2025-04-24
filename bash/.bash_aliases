@@ -24,3 +24,5 @@ alias mkdir='mkdir -p'
 alias docker='podman'
 alias debug-bash='set -uxo pipefail'
 alias debug-bash-undo='set +uxo pipefail'
+
+alias explicitly-installed='pacman -Qe'
