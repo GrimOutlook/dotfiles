@@ -17,7 +17,7 @@ if command -v tmux &> /dev/null && \
     [[ ! "$TERM" =~ screen ]] && \
     [[ ! "$TERM" =~ tmux ]] && \
     [ -z "$TMUX" ]; then 
-  tmux attach || tmux new-session
+    tmux new-session
 fi
 
 

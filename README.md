@@ -11,11 +11,14 @@
 - [Add this (tmux vim integration)](https://smartbear.com/blog/tmux-and-vim/)
 - [More tmux vim integration](https://gist.github.com/tsl0922/d79fc1f8097dde660b34)
 - [Steal all of this](https://github.com/nots1dd/dotfiles). It's sick.
+- https://www.reddit.com/r/unixporn/comments/12bpvos/rofi_rofilbonnwaylandgit_good_application/
 
 ### SDDM
+
 - https://github.com/MarianArlt/sddm-sugar-dark
 
 ### Neovim
+
 - [Look into adding coq_nvim](https://github.com/ms-jpq/coq_nvim)
 - [Implement keymaps from here](https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moad2aq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 
