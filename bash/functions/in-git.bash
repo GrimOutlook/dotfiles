@@ -3,4 +3,3 @@ function in-git() {
         git-root &>/dev/null
     )
 }
-export -f in-git

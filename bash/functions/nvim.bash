@@ -13,7 +13,6 @@ function nvim-mkdir() {
     mkdir -p "$parent_dir"
     /usr/bin/nvim $path
 }
-export -f nvim-mkdir
 alias v='nvim-mkdir'
 alias vi='nvim-mkdir'
 alias vim='nvim-mkdir'

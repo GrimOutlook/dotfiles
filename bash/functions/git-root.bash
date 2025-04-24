@@ -14,4 +14,3 @@ function git-root() {
         fi
     )
 }
-export -f git-root

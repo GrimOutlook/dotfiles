@@ -43,7 +43,6 @@ function git() {
 
     $GIT "$@"
 }
-export -f git
 
 function any-author-check() {
     config_file="$1"
@@ -90,7 +89,6 @@ function add-all() {
 
     git status --short
 }
-export -f add-all
 
 function commit-all() {
     in-git || {
@@ -111,7 +109,6 @@ function commit-all() {
         return 1
     }
 }
-export -f commit-all
 
 function push-all() {
     in-git || {
@@ -125,7 +122,6 @@ function push-all() {
         return 1
     }
 }
-export -f push-all
 
 alias ca='commit-all'
 alias pa='push-all'
