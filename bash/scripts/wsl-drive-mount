@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-function wsl-drive-mount() {
     SUDO=""
     if ! is-root; then
         if ! is-interactive; then
@@ -27,4 +26,3 @@ function wsl-drive-mount() {
 	${SUDO}mount -t drvfs $LETTER: $mount_path
 
     done
-}

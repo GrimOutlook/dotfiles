@@ -17,6 +17,14 @@ I like Bash because it is so widely used. I attempted to use fish but all of the
 - [Steal all of this](https://github.com/nots1dd/dotfiles). It's sick.
 - https://www.reddit.com/r/unixporn/comments/12bpvos/rofi_rofilbonnwaylandgit_good_application/
 
+### Hyprland
+
+- https://github.com/ErikReider/SwayOSD
+- https://github.com/wwmm/easyeffects 
+- Change launcher to https://github.com/anyrun-org/anyrun
+- https://github.com/russelltg/wl-screenrec
+- Get creative https://github.com/elkowar/eww/
+
 ### SDDM
 
 - https://github.com/MarianArlt/sddm-sugar-dark

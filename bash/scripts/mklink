@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-function mklink() {
     if [ ! $# -eq 2 ]; then
         echo "Only 2 arguments allowed when calling mklink" >&2
         return 1
@@ -42,5 +41,3 @@ function mklink() {
         echo "Failed to link $source to $destination" >&2
         return 1
     }
-}
-

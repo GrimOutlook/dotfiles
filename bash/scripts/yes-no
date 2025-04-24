@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-function yes-no() {
     PROMPT=$1
     while true; do
         read -n 1 -p "$PROMPT (y/N): " answer
@@ -12,4 +11,3 @@ function yes-no() {
             ;;
         esac
     done
-}
