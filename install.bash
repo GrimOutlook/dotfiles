@@ -8,17 +8,7 @@ done
 
 export DOTFILES="$SCRIPT_DIR"
 
-# Install Bash stuff
-bash -l $DOTFILES/bash/install.bash
-
-# Install TMUX stuff
-$DOTFILES/tmux/install.bash
-
-# Install git stuff
-$DOTFILES/git/install.bash
-
-# Install neovim stuff
-$DOTFILES/neovim/install.bash
-
-# Install miscellaneous items
-$DOTFILES/misc/install.bash
+install_files=$(fd -t f --min-depth 2 "install.bash" $DOTFILES)
+for install in "$install_files"; do 
+    "$install"
+done
