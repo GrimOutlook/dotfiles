@@ -1,1 +1,0 @@
-alias ba='bat'
