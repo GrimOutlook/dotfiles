@@ -4,16 +4,20 @@
 
 - Add this, it's sick: https://github.com/christoomey/vim-tmux-navigator
 - Make batcat the default pager for all programs
-- Make batcat the default pager for man pages
 - Check [here](https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7) for more inspiration
 - Figure out how to handle nested tmux sessions
-- [Look into adding coq_nvim](https://github.com/ms-jpq/coq_nvim)
-- [Implement keymaps from here](https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moad2aq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 - [Use for inspiration](https://castel.dev/post/lecture-notes-1/)
 - [More inspiration](https://github.com/KiLLeRRaT/.dotfiles/blob/master/nvim-lua/.config/nvim/lua/killerrat/remap.lua#L52)
 - [Add this (tmux vim integration)](https://smartbear.com/blog/tmux-and-vim/)
 - [More tmux vim integration](https://gist.github.com/tsl0922/d79fc1f8097dde660b34)
 - [Steal all of this](https://github.com/nots1dd/dotfiles). It's sick.
+
+### SDDM
+- https://github.com/MarianArlt/sddm-sugar-dark
+
+### Neovim
+- [Look into adding coq_nvim](https://github.com/ms-jpq/coq_nvim)
+- [Implement keymaps from here](https://www.reddit.com/r/neovim/comments/1k4efz8/comment/moad2aq/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
 
 ## Current Issues
 
