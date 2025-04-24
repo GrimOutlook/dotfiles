@@ -24,6 +24,7 @@ return {
 				"css",
 				"dockerfile",
 				"gitignore",
+				"vala",
 				"html",
 				"javascript",
 				"json",

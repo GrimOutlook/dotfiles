@@ -22,9 +22,9 @@ fi
 
 
 # -- Environment Variables -----------------------------------------------------
-# export PATH=$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/SysWOW64/
 export DOTFILES=$HOME/.dotfiles
 export CONFIG=$HOME/.config
+export PATH+=":$DOTFILES/bash/scripts/"
 
 export EDITOR=/usr/bin/nvim
 # Prevent go from creating a `go/` directory in the middle of your home
@@ -36,6 +36,7 @@ export HISTCONTROL=ignoreboth:erasedups
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+export JAVA_HOME=/usr/lib/jvm/java-24-openjdk/
 
 # Color manpage output with bat
 if command -v bat &>/dev/null; then

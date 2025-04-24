@@ -1,0 +1,4 @@
+alias v='nvim-mkdir'
+alias vi='nvim-mkdir'
+alias vim='nvim-mkdir'
+alias nvim='nvim-mkdir'

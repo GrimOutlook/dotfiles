@@ -13,9 +13,6 @@ end
 -- Save
 vim.keymap.set("n", "<leader>w", "<CMD>update<CR>", { silent = true, desc = "Save current buffer" })
 
--- Quit
-maps("n", "<leader>q", "<CMD>q<CR>")
-
 -- Tab Navigation
 vim.keymap.set("n", "<M-S-H>", "<CMD>tabprevious<CR>", { noremap = true })
 vim.keymap.set("n", "<M-S-L>", "<CMD>tabnext<CR>", { noremap = true })
@@ -42,7 +39,7 @@ maps("n", "<C-Down>", "<C-w>-")
 
 -- Rename symbol
 maps("n", "<leader>r", vim.lsp.buf.rename)
--- Clear search hightlighting
+-- Clear search highlighting
 -- TODO: Why isn't this working?
 maps("n", "M-S-/", "<CMD>nohlsearch<CR>")
 

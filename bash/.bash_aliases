@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-BASH_FUNCTIONS="$DOTFILES/bash/functions"
+BASH_FUNCTIONS="$DOTFILES/bash/aliases"
 if [[ -d "$BASH_FUNCTIONS" ]]; then
     for file in $(fd -t f . "$BASH_FUNCTIONS"); do
         source "$file"
