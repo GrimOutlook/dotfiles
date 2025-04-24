@@ -13,6 +13,7 @@
 - [More inspiration](https://github.com/KiLLeRRaT/.dotfiles/blob/master/nvim-lua/.config/nvim/lua/killerrat/remap.lua#L52)
 - [Add this (tmux vim integration)](https://smartbear.com/blog/tmux-and-vim/)
 - [More tmux vim integration](https://gist.github.com/tsl0922/d79fc1f8097dde660b34)
+- [Steal all of this](https://github.com/nots1dd/dotfiles). It's sick.
 
 ## Current Issues
 
