@@ -30,6 +30,8 @@ return {
 				"json",
 				"jsonc",
 				"lua",
+				"java",
+				"groovy",
 				"markdown",
 				"markdown_inline",
 				"norg",

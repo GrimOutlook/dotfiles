@@ -8,6 +8,7 @@ local ensure_installed = {
     "docker_compose_language_service",
     "dockerls",
     "eslint",
+    "java_language_server",
     "harper_ls",
     "html",
     "hyprls",
@@ -85,13 +86,9 @@ return {
 
             mason_lspconfig.setup_handlers({
                 default_handler,
-                ["lua_ls"] = function()
-                    nvim_lsp["lua_ls"].setup({
-                        settings = {
-                            completions = {
-                                completeFunctionCalls = true,
-                            },
-                        },
+                ["java_language_server"] = function()
+                    nvim_lsp["java_language_server"].setup({
+                        cmd = {"java-language-server"}
                     })
                 end,
             })
