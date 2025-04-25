@@ -14,7 +14,6 @@ local ensure_installed = {
     "jsonls",
     "kotlin_language_server",
     "lemminx",
-    "ltex",
     "lua_ls",
     "markdown_oxide",
     "neocmake",
@@ -97,10 +96,20 @@ return {
                 end,
             })
 
-            vim.keymap.set("n", "<space>fo", vim.diagnostic.open_float)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {desc = "Goto prev diagnostic"})
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {desc = "Goto next diagnostic"})
+            vim.keymap.set("n", "<C-f>", vim.diagnostic.open_float)
+            vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Goto prev diagnostic" })
+            vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count= 1, float=true}) end, { desc = "Goto next diagnostic" })
             vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+            vim.keymap.set(
+                "n",
+                "<C-f>",
+                function()
+                    if vim.diagnostic.jump({count=1, float=true}) then
+                        vim.lsp.buf.code_action()
+                    end
+                end,
+                { desc = "Show next diagnostic and fix?" }
+            )
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -125,7 +134,7 @@ return {
                     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
                     vim.keymap.set({ "n", "v" }, "<space>a", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-                    vim.keymap.set("n", "<C-f>", function()
+                    vim.keymap.set("n", "<C-M-f>", function()
                         vim.lsp.buf.format({ async = true })
                     end, opts)
                 end,
