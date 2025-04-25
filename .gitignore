@@ -9,17 +9,18 @@
 !/README.md
 
 # Allow source files
-!/bash/**
-!/git/**
-!/misc/**
-!/nvim/**
-!/tmux/**
 !/alacritty/**
+!/bash/**
 !/eza/**
-!/starship/**
+!/fuzzel/**
+!/git/**
+!/harper-ls/**
 !/hypr/**
 !/inputrc/**
-!/fuzzel/**
+!/misc/**
+!/nvim/**
+!/starship/**
+!/tmux/**
 !/tmux/**
 !/waybar/**
 
