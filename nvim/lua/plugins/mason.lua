@@ -99,10 +99,11 @@ return {
             vim.keymap.set("n", "<S-f>", vim.diagnostic.open_float)
             vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Goto prev diagnostic" })
             vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count= 1, float=true}) end, { desc = "Goto next diagnostic" })
+            vim.keymap.set("n", "<C-a>", function() vim.diagnostic.jump({count= 1, float=true}) end, { desc = "Goto next diagnostic" })
             vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
             vim.keymap.set(
                 "n",
-                "<C-a>",
+                "<C-n>",
                 function()
                     if vim.diagnostic.jump({count=1, float=true}) then
                         vim.lsp.buf.code_action()
