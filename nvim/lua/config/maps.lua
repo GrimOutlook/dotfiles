@@ -41,7 +41,7 @@ maps("n", "<C-Down>", "<C-w>-")
 maps("n", "<leader>r", vim.lsp.buf.rename)
 -- Clear search highlighting
 -- TODO: Why isn't this working?
-maps("n", "M-S-/", "<CMD>nohlsearch<CR>")
+maps("n", "M-/", "<CMD>nohlsearch<CR>")
 
 maps("n", "<leader>t", "<CMD>ToggleTerm<CR>")
 -- TODO Why tf doesn't this work?
@@ -51,8 +51,3 @@ vim.keymap.set("n", "<c-/>", "<CMD>ToggleTerm<CR>")
 vim.keymap.set("n", "ycc", "yygccp", { remap = true })
 -- Search within visual selection - this is magic
 vim.keymap.set("x", "/", "<Esc>/\\%V")
-
--- Snacks
-maps("n", "<leader>j", function()
-	Snacks.picker.jumps()
-end)

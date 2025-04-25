@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-    source=$1
-    parent="$(dirname $source)"
-    pushd $parent &>/dev/null || return 1
-    absolute_path="$(pwd)"
-    popd &>/dev/null || return 1
-    echo "$absolute_path"
+source=$1
+parent="$(dirname "$source")"
+pushd "$parent" &>/dev/null || exit 1
+absolute_path="$(pwd)"
+popd &>/dev/null || exit 1
+echo "$absolute_path"
+

@@ -1,43 +1,43 @@
 #!/usr/bin/env bash
 
-    if [ ! $# -eq 2 ]; then
-        echo "Only 2 arguments allowed when calling mklink" >&2
-        return 1
+if [ ! $# -eq 2 ]; then
+    echo "Only 2 arguments allowed when calling mklink" >&2
+    exit 1
+fi
+
+SED="$(which sed)" || {
+    echo "sed is not installed" >&2
+    exit 1
+}
+
+
+source=$(echo "$1" | $SED 's/\/$//')
+destination=$(echo "$2" | $SED 's/\/$//')
+
+if [ ! -e "$source" ]; then
+    echo "Source file $source does not exist" >&2
+    exit 1
+fi
+
+if [ -e "$destination" ]; then
+    bkp "$destination" || exit 1
+elif [ -L "$destination" ]; then
+    unlink "$destination" || exit 1
+fi
+
+if [ -d "$destination" ]; then
+    destination_directory="$destination"
+else
+    destination_directory="$(dirname "$destination")"
+    if [ ! -d "$destination_directory" ]; then
+        mkdir -p "$destination_directory" || {
+            echo "Failed to create directory"
+            exit 1
+        }
     fi
+fi
 
-    SED="$(which sed)" || {
-        echo "sed is not installed" >&2
-        return 1
-    }
-
-
-    source=$(echo "$1" | $SED 's/\/$//')
-    destination=$(echo "$2" | $SED 's/\/$//')
-    
-    if [ ! -e "$source" ]; then
-        echo "Source file $source does not exist" >&2
-        return 1
-    fi
-
-    if [ -e "$destination" ]; then
-        bkp "$destination" || return 1
-    elif [ -L "$destination" ]; then
-        unlink "$destination" || return 1
-    fi
-
-    if [ -d "$destination" ]; then
-        destination_directory="$destination"
-    else
-        destination_directory="$(dirname "$destination")"
-        if [ ! -d "$destination_directory" ]; then
-            mkdir -p "$destination_directory" || {
-                echo "Failed to create directory"
-                return 1
-            }
-        fi
-    fi
-
-    ln -s "$source" "$destination" || {
-        echo "Failed to link $source to $destination" >&2
-        return 1
-    }
+ln -s "$source" "$destination" || {
+    echo "Failed to link $source to $destination" >&2
+    exit 1
+}

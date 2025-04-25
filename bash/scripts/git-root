@@ -1,14 +1,16 @@
-    ( # Run in subshell
-        if [ -d '.git' ]; then
-            echo "$(pwd)"
-            return 0
-        fi
-        
-        if [ "$(pwd)" == "/" ]; then
-            return 1
-        else
-            cd .. || return 1
-            in-git
-            return $?
-        fi
-    )
+#!/usr/bin/env bash
+
+( # Run in subshell
+    if [ -d '.git' ]; then
+        echo "$(pwd)"
+        exit 0
+    fi
+    
+    if [ "$(pwd)" == "/" ]; then
+        exit 1
+    else
+        cd .. || exit 1
+        in-git
+        exit $?
+    fi
+)

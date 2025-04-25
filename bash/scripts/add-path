@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 new_path=":$@"
 if [[ ! "$PATH" =~ "$new_path" ]]; then
     echo "${PATH}${new_path}"

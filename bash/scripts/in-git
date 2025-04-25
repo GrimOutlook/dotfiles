@@ -1,3 +1,5 @@
-    ( # Run in subshell
-        git-root &>/dev/null
-    )
+#!/usr/bin/env bash
+
+( # Run in subshell
+    git-root &>/dev/null
+)

@@ -16,7 +16,7 @@ global.lazyvim_rust_diagnostics = "rust-analyzer"
 -- Fixes an error when using neovim-colorizer
 o.termguicolors = true
 
-o.linebreak = true -- lines wrap at words rather than random characters
+o.linebreak = true -- Lines wrap at words rather than random characters
 o.number = true
 o.relativenumber = true
 o.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
@@ -31,6 +31,7 @@ o.shiftwidth = 4 -- Tabs should be 4 spaces wide by default
 o.expandtab = true -- When pressing tab, insert spaces up to a shift width wide.
 o.smarttab = true -- Pressing tab goes to the next indent, rather than always
 -- being 4 characters wide.
+o.modeline = false
 
 -- Emoji {{{
 

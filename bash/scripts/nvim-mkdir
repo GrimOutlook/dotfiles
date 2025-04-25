@@ -1,13 +1,15 @@
-    if [ $# -le 1 ]; then
-        /usr/bin/nvim "$@"
-        exit $?
-    fi
+#!/usr/bin/env bash
 
-    path=$1
-    parent_dir="$(dirname $path)"
-    if [[ ! -d "$parent_dir" ]]; then
-        yes-no "$parent_dir doesn't exist. Would you like to create it?" || \
-            exit 1
-    fi
-    mkdir -p "$parent_dir"
-    /usr/bin/nvim $path
+if [ $# -le 1 ]; then
+    nvim "$@"
+    exit $?
+fi
+
+path=$1
+parent_dir="$(dirname $path)"
+if [[ ! -d "$parent_dir" ]]; then
+    yes-no "$parent_dir doesn't exist. Would you like to create it?" || \
+        exit 1
+fi
+mkdir -p "$parent_dir"
+nvim $path

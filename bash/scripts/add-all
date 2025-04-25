@@ -1,11 +1,13 @@
-    in-git || {
-        err "Not in a git repository."
-        return 1
-    }
+#!/usr/bin/env bash
 
-    git add -A || {
-        err "Failed to add all files to staging."
-        return 1
-    }
+in-git || {
+    err "Not in a git repository."
+    exit 1
+}
 
-    git status --short
+git add -A || {
+    err "Failed to add all files to staging."
+    exit 1
+}
+
+git status --short

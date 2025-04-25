@@ -1,4 +1,4 @@
-ensure_installed = {
+local ensure_installed = {
     "ast_grep",
     "basedpyright",
     "bashls",
@@ -62,16 +62,16 @@ return {
             local protocol = require("vim.lsp.protocol")
 
             local on_attach = function(client, bufnr)
-            	-- format on save
-            	if client.server_capabilities.documentFormattingProvider then
-            		vim.api.nvim_create_autocmd("BufWritePre", {
-            			group = vim.api.nvim_create_augroup("Format", { clear = true }),
-            			buffer = bufnr,
-            			callback = function()
-            				vim.lsp.buf.format()
-            			end,
-            		})
-            	end
+                -- format on save
+                if client.server_capabilities.documentFormattingProvider then
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = vim.api.nvim_create_augroup("Format", { clear = true }),
+                        buffer = bufnr,
+                        callback = function()
+                            vim.lsp.buf.format()
+                        end,
+                    })
+                end
             end
             ---
             -- LSP servers
@@ -97,9 +97,9 @@ return {
                 end,
             })
 
-            vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+            vim.keymap.set("n", "<space>fo", vim.diagnostic.open_float)
+            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {desc = "Goto prev diagnostic"})
+            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, {desc = "Goto next diagnostic"})
             vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
             -- Use LspAttach autocommand to only map the following keys
             -- after the language server attaches to the current buffer
@@ -123,9 +123,9 @@ return {
                     end, opts)
                     vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
                     vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-                    vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+                    vim.keymap.set({ "n", "v" }, "<space>a", vim.lsp.buf.code_action, opts)
                     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-                    vim.keymap.set("n", "<space>f", function()
+                    vim.keymap.set("n", "<C-f>", function()
                         vim.lsp.buf.format({ async = true })
                     end, opts)
                 end,
