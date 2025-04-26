@@ -62,22 +62,23 @@ source "$HOME/.cargo/env" &>/dev/null
 
 # -- Run Startup Scripts -------------------------------------------------------
 
+function eval-if-available() {
+    full_command="$1"
+
+    command="$(echo "$full_command" | cut -d ' ' -f 1)"
+    if command -v "$command" &>/dev/null; then
+        eval 'eval "$($full_command)"'
+    else
+        echo "$command is not installed" >&2
+    fi
+}
+
 # Set up fzf key bindings and fuzzy completion
-if command -v fzf &>/dev/null; then
-    eval "$(fzf --bash)"
-else
-    echo "fzf is not installed" >&2
-fi
+eval-if-available "fzf --bash"
 
 # Launch the startship prompt
-if command -v starship &>/dev/null; then
-    eval "$(starship init bash)"
-else
-    echo "starship is not installed" >&2
-fi
+eval-if-available "starship init bash"
 
-if command -v thefuck &>/dev/null; then
-    eval "$(thefuck --alias)"
-else
-    echo "fzf is not installed" >&2
-fi
+eval-if-available "thefuck --alias"
+
+eval-if-available "zoxide init bash"
