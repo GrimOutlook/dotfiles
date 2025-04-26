@@ -11,6 +11,7 @@
 # Allow source files
 !/alacritty/**
 !/bash/**
+!/ble/**
 !/eza/**
 !/fuzzel/**
 !/git/**
