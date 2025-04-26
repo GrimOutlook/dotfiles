@@ -60,6 +60,9 @@ done
 
 source "$HOME/.cargo/env" &>/dev/null
 
+# Add the ble.sh functionality
+source "$HOME/.local/share/blesh/ble.sh"
+
 # -- Run Startup Scripts -------------------------------------------------------
 
 function eval-if-available() {
@@ -79,6 +82,9 @@ eval-if-available "fzf --bash"
 # Launch the startship prompt
 eval-if-available "starship init bash"
 
+# Easy reruns after typo
 eval-if-available "thefuck --alias"
 
+# Jump to directories smartly
 eval-if-available "zoxide init bash"
+

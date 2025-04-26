@@ -18,7 +18,6 @@ fi
 alias reload='source $HOME/.bashrc'
 alias j='just'
 alias grep='rg'
-alias time='hyperfine'
 alias cp='xcp'
 alias mkdir='mkdir -p'
 alias docker='podman'
