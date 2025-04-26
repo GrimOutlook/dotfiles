@@ -37,7 +37,7 @@
 	d = difftool
 [user]
 	name = Dominic Grimaldi
-	email = dominic.j.grimaldi2.ctr@army.mil
+	email = dominic.j.grimaldi@gmail.com
 [diff]
 	tool = nvim -d
 [difftool]

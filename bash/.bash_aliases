@@ -40,5 +40,5 @@ alias ca='commit-all'
 alias pa='push-all'
 alias aa='add-all'
 alias st='git status --short'
-alias ig='git check-ignore -v -- **/*'
+alias ig="find . -not -path './.git/*' | git check-ignore --stdin"
 alias sed='sd'

@@ -21,7 +21,6 @@ local ensure_installed = {
     "nginx_language_server",
     "nil_ls",
     "powershell_es",
-    "rust_analyzer",
     "sqls",
     "tailwindcss",
     "taplo",
