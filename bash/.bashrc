@@ -20,8 +20,14 @@ if command -v tmux &> /dev/null && \
     tmux new-session
 fi
 
+# ---------------------------------------------------------------------------- #
+# -- Bash Options ------------------------------------------------------------ #
+# ---------------------------------------------------------------------------- #
+shopt -s autocd
 
-# -- Environment Variables -----------------------------------------------------
+# ---------------------------------------------------------------------------- #
+# -- Environment Variables --------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
 export DOTFILES=$HOME/.dotfiles
 export CONFIG=$HOME/.config
 export PATH+=":$DOTFILES/bash/scripts/"
@@ -31,12 +37,18 @@ export EDITOR=/usr/bin/nvim
 # directory.
 export GOPATH=$HOME/.go
 
+# -- History ----------------------------------------------------------------- #
 # Ignore duplicates in bash history
 export HISTCONTROL=ignoreboth:erasedups
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
-export JAVA_HOME=/usr/lib/jvm/java-24-openjdk/
+
+# -- Java -------------------------------------------------------------------- #
+export JAVA_HOME=/usr/lib/jvm/default/
+
+# -- Zoxide ------------------------------------------------------------------ #
+export _ZO_ECHO=1
 
 # Color manpage output with bat
 if command -v bat &>/dev/null; then
@@ -45,7 +57,9 @@ else
     echo "bat is not installed" >&2
 fi
 
-# -- Source Additional Files ---------------------------------------------------
+# ---------------------------------------------------------------------------- #
+# -- Source Additional Files ------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
 
 ALIASES=$HOME/.bash_aliases
 if [[ -f $ALIASES ]]; then
@@ -62,6 +76,9 @@ source "$HOME/.cargo/env" &>/dev/null
 
 # Add the ble.sh functionality
 source "$HOME/.local/share/blesh/ble.sh"
+
+# Add hook for finding matching command if it doesn't exist
+source "/usr/share/doc/pkgfile/command-not-found.bash"
 
 # -- Run Startup Scripts -------------------------------------------------------
 
@@ -86,5 +103,5 @@ eval-if-available "starship init bash"
 eval-if-available "thefuck --alias"
 
 # Jump to directories smartly
-eval-if-available "zoxide init bash"
+eval-if-available "zoxide init bash --cmd cd"
 
