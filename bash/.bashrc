@@ -20,10 +20,17 @@ if command -v tmux &> /dev/null && \
     tmux new-session
 fi
 
+# Add the ble.sh functionality
+source "$HOME/.local/share/blesh/ble.sh" --noattach
+
 # ---------------------------------------------------------------------------- #
 # -- Bash Options ------------------------------------------------------------ #
 # ---------------------------------------------------------------------------- #
+# Run the 'cd' command when typing only a path into the prompt
 shopt -s autocd
+
+# Append history entries.
+shopt -s histappend
 
 # ---------------------------------------------------------------------------- #
 # -- Environment Variables --------------------------------------------------- #
@@ -43,6 +50,9 @@ export HISTCONTROL=ignoreboth:erasedups
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
+
+# After each command, save and reload history
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # -- Java -------------------------------------------------------------------- #
 export JAVA_HOME=/usr/lib/jvm/default/
@@ -66,16 +76,7 @@ if [[ -f $ALIASES ]]; then
     source "$ALIASES"
 fi
 
-COMPLETIONS=$HOME/.bash_completions/
-completions=$(fd -t f . "$COMPLETIONS")
-for file in $completions; do
-    source "$file"
-done
-
 source "$HOME/.cargo/env" &>/dev/null
-
-# Add the ble.sh functionality
-source "$HOME/.local/share/blesh/ble.sh"
 
 # Add hook for finding matching command if it doesn't exist
 source "/usr/share/doc/pkgfile/command-not-found.bash"
@@ -105,3 +106,5 @@ eval-if-available "thefuck --alias"
 # Jump to directories smartly
 eval-if-available "zoxide init bash --cmd cd"
 
+# Please put the following line in the end of .bashrc
+[[ ! ${BLE_VERSION-} ]] || ble-attach

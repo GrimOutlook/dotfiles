@@ -94,8 +94,8 @@ bleopt editor=nvim
 ## not. If "indent_tabs" is set to 0, tabs will never be used. Otherwise
 ## indentation is made with tabs and spaces.
 
-#bleopt indent_offset=4
-#bleopt indent_tabs=1
+bleopt indent_offset=4
+bleopt indent_tabs=1
 
 
 ## "undo_point" controls the cursor position after "undo".  When "beg" and
@@ -132,7 +132,7 @@ bleopt editor=nvim
 ## magic-space with a colon-separated list of expansion types. "history",
 ## "sabbrev", "alias", and "autocd" can be specified.
 
-#bleopt edit_magic_expand=history:sabbrev
+bleopt edit_magic_expand=history:sabbrev:autocd
 
 
 ## This option configures the detailed behavior of the widget "magic-space"
@@ -226,7 +226,7 @@ bleopt info_display=bottom
 ## command output is not ended with newlines. The value can contain ANSI escape
 ## sequences.
 
-#bleopt prompt_eol_mark=$'\e[94m[ble: EOF]\e[m'
+bleopt prompt_eol_mark=$'\e[94m[ble: EOF]\e[m'
 
 
 ## "prompt_ruler" specifies the ruler between the previous command and the
@@ -281,7 +281,7 @@ bleopt info_display=bottom
 ## of the command when it is non-zero.  If this setting is an empty string, the
 ## exit status will not be shown.  The value can contain ANSI escape sequences.
 
-#bleopt exec_errexit_mark=$'\e[91m[ble: exit %d]\e[m'
+bleopt exec_errexit_mark=$'\e[91m[ble: exit %d]\e[m'
 
 
 ## "exec_elapsed_mark" specifies the format of the command execution time
@@ -601,19 +601,19 @@ bleopt info_display=bottom
 ## Settings for completion
 
 
-## The following settings turn on/off the corresponding functionalities. When
-## non-empty strings are set, the functionality is enabled. Otherwise, the
-## functionality is inactive.
+# The following settings turn on/off the corresponding functionalities. When
+# non-empty strings are set, the functionality is enabled. Otherwise, the
+# functionality is inactive.
 
-#bleopt complete_auto_complete=1
-#bleopt complete_menu_complete=1
-#bleopt complete_menu_filter=1
+bleopt complete_auto_complete=
+bleopt complete_menu_complete=1
+bleopt complete_menu_filter=1
 
 
-## If "complete_ambiguous" has non-empty values, ambiguous completion
-## candidates are generated for completion.
+# If "complete_ambiguous" has non-empty values, ambiguous completion
+# candidates are generated for completion.
 
-#bleopt complete_ambiguous=1
+bleopt complete_ambiguous=1
 
 
 ## If "complete_contract_function_names" has non-empty values, the function
@@ -626,7 +626,7 @@ bleopt info_display=bottom
 ## candidates does not contain the existing text.  If this setting has
 ## non-empty values, ble.sh rewrites the existing text.
 
-#bleopt complete_allow_reduction=1
+bleopt complete_allow_reduction=1
 
 
 ## This option specifies the threshold to simplify the quotation type of the
@@ -643,7 +643,7 @@ bleopt info_display=bottom
 ## If "complete_auto_history" has non-empty values, auto-complete searches
 ## matching command lines from history.
 
-#bleopt complete_auto_history=1
+bleopt complete_auto_history=1
 
 
 ## The following setting controls the delay of auto-complete after the last
@@ -653,13 +653,13 @@ bleopt info_display=bottom
 
 
 ## The face "auto_complete" can be used to specify the graphic style of the
-## suggestion by auto-complete.  The default style is choosed just to make it
+## suggestion by auto-complete.  The default style is chosen just to make it
 ## work in both the terminals with light and dark backgrounds.  A better style
 ## can be specified based on the user's preference.
 
 #ble-face auto_complete='fg=238,bg=254'           # default
 #ble-face auto_complete='fg=231,bg=69'            # blue background
-#ble-face auto_complete='fg=240,underline,italic' # darker background
+ble-face auto_complete='fg=240,underline,italic' # darker background
 
 
 ## The setting "complete_auto_wordbreaks" is used as the delimiters for
@@ -748,7 +748,7 @@ bleopt info_display=bottom
 ## each. "desc-text" is different from "desc" in the behavior that it does not
 ## interprets ANSI escape sequences in the descriptions.
 
-#bleopt complete_menu_style=align-nowrap
+bleopt complete_menu_style=align-nowrap
 
 
 ## When a non-empty value is specified to this setting, the matching text on
@@ -786,14 +786,14 @@ bleopt info_display=bottom
 ## complete_menu_style="align" and "align-nowrap".
 
 #bleopt menu_align_min=4
-#bleopt menu_align_max=20
+bleopt menu_align_max=20
 
 
 ## The following setting specifies the maximal height of the menu.  When this
 ## value is evaluated to be a positive integer, the maximal line number of the
 ## menu is limited to that value.
 
-#bleopt complete_menu_maxlines=10
+bleopt complete_menu_maxlines=20
 
 
 ## The following settings specify the prefix of the menu items.  "menu_prefix"
@@ -1202,7 +1202,7 @@ function blerc/vim-load-hook {
   ## With this setting, M-RET can be used to insert a newline in the
   ## commandline.
 
-  #ble-decode/keymap:vi_imap/define-meta-bindings
+  ble-decode/keymap:vi_imap/define-meta-bindings
 
   ## In this case, C-RET can be optionally configured so that it forcibly
   ## executes the command.
@@ -1276,12 +1276,12 @@ function blerc/vim-load-hook {
 
   ## Cursor settings
 
-  #ble-bind -m vi_nmap --cursor 2
-  #ble-bind -m vi_imap --cursor 5
-  #ble-bind -m vi_omap --cursor 4
-  #ble-bind -m vi_xmap --cursor 2
-  #ble-bind -m vi_smap --cursor 2
-  #ble-bind -m vi_cmap --cursor 0
+  ble-bind -m vi_nmap --cursor 2
+  ble-bind -m vi_imap --cursor 5
+  ble-bind -m vi_omap --cursor 4
+  ble-bind -m vi_xmap --cursor 2
+  ble-bind -m vi_smap --cursor 2
+  ble-bind -m vi_cmap --cursor 0
 
   ## DECSCUSR setting
   ##
@@ -1337,11 +1337,11 @@ function blerc/vim-load-hook {
   #----------------------------------------------------------------------------
   # plugins
 
-  ## vim-surround
+  # vim-surround
 
-  #ble-import vim-surround
-  #bleopt vim_surround_45:=$'$( \r )'
-  #bleopt vim_surround_61:=$'$(( \r ))'
+  ble-import vim-surround
+  bleopt vim_surround_45:=$'$( \r )'
+  bleopt vim_surround_61:=$'$(( \r ))'
 
   ## vim-arpeggio
 
@@ -1349,22 +1349,22 @@ function blerc/vim-load-hook {
   #bleopt vim_arpeggio_timeoutlen=10
   #ble/lib/vim-arpeggio.sh/bind -s jk 'hello'
 
-  ## vim-airline
+  # vim-airline
 
-  #ble-import vim-airline
-  #bleopt vim_airline_theme=light
-  #bleopt vim_airline_section_a='\e[1m\q{lib/vim-airline/mode}'
-  #bleopt vim_airline_section_b='\q{lib/vim-airline/gitstatus}'
-  #bleopt vim_airline_section_c='\w'
-  #bleopt vim_airline_section_x='bash'
-  #bleopt vim_airline_section_y='$_ble_util_locale_encoding[unix]'
-  #bleopt vim_airline_section_z=' \q{history-percentile} \e[1m!\q{history-index}/\!\e[22m \q{position}'
-  #bleopt vim_airline_left_sep=$'\uE0B0'
-  #bleopt vim_airline_left_alt_sep=$'\uE0B1'
-  #bleopt vim_airline_right_sep=$'\uE0B2'
-  #bleopt vim_airline_right_alt_sep=$'\uE0B3'
-  #bleopt vim_airline_symbol_branch=$'\uE0A0'
-  #bleopt vim_airline_symbol_dirty=$'\u26A1'
+  ble-import vim-airline
+  bleopt vim_airline_theme=light
+  bleopt vim_airline_section_a='\e[1m\q{lib/vim-airline/mode}'
+  bleopt vim_airline_section_b='\q{lib/vim-airline/gitstatus}'
+  bleopt vim_airline_section_c='\w'
+  bleopt vim_airline_section_x='bash'
+  bleopt vim_airline_section_y='$_ble_util_locale_encoding[unix]'
+  bleopt vim_airline_section_z=' \q{history-percentile} \e[1m!\q{history-index}/\!\e[22m \q{position}'
+  bleopt vim_airline_left_sep=$'\uE0B0'
+  bleopt vim_airline_left_alt_sep=$'\uE0B1'
+  bleopt vim_airline_right_sep=$'\uE0B2'
+  bleopt vim_airline_right_alt_sep=$'\uE0B3'
+  bleopt vim_airline_symbol_branch=$'\uE0A0'
+  bleopt vim_airline_symbol_dirty=$'\u26A1'
 }
 blehook/eval-after-load keymap_vi blerc/vim-load-hook
 
@@ -1496,3 +1496,17 @@ blehook/eval-after-load keymap_vi blerc/vim-load-hook
 ## execution will be skipped.  The default value is 5.0 msec.
 
 #bleopt debug_profiler_tree_threshold=5.0
+
+# Note: If you would like to combine fzf-completion with bash_completion, you
+# need to load bash_completion earlier than fzf-completion.
+COMPLETIONS=$HOME/.bash_completions/
+completions=$(fd -t f . "$COMPLETIONS")
+for file in $completions; do
+    source "$file"
+done
+
+# ---------------------------------------------------------------------------- #
+# -- BLE Imports ------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+ble-import -d integration/fzf-completion
+ble-import -d integration/fzf-key-bindings
