@@ -20,8 +20,10 @@ if command -v tmux &> /dev/null && \
     tmux new-session
 fi
 
-# Add the ble.sh functionality
-source "$HOME/.local/share/blesh/ble.sh" --noattach
+# Add the ble.sh functionality. Needs to be towards the top.
+source "$HOME/.local/share/blesh/ble.sh" \
+    --noattach \
+    --rcfile "$HOME/.config/ble/blerc"
 
 # ---------------------------------------------------------------------------- #
 # -- Bash Options ------------------------------------------------------------ #
@@ -46,7 +48,7 @@ export GOPATH=$HOME/.go
 
 # -- History ----------------------------------------------------------------- #
 # Ignore duplicates in bash history
-export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=ignoreboth
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
