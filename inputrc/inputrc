@@ -1,0 +1,35 @@
+$include /etc/inputrc
+# When this Readline setting is enabled, the cases of alphabets are ignored on
+# completion generation.
+
+set completion-ignore-case on
+
+
+# When this Readline setting is turned on, suffixes are added to the filename
+# completions in the menu.  The characters "@", "/" and "*" are added to
+# symbolic links, directories and executables, respectively.
+
+set visible-stats on
+
+
+# When this Readline setting is turned on, the suffix "/" is inserted after
+# the insertion of directory names.
+
+set mark-directories on
+
+
+# When this Readline setting is turned on, the suffix "/" is inserted after
+# symbolic links pointing to directories.
+
+set mark-symlinked-directories on
+
+
+# When this Readline setting is turned on, the filenames starting with "." is
+# also generated as possible completions.
+
+set match-hidden-files on
+
+
+set enable-bracketed-paste On
+
+set editing-mode vi

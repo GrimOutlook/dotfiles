@@ -12,3 +12,5 @@ ble-bind -m vi_imap -x C-t '__fzf_file_widget__'
 ble-bind -m vi_nmap -s C-t 'i\C-t'
 ble-bind -m vi_imap -x C-f '__fzf_rg__'
 ble-bind -m vi_nmap -s C-f 'i\C-f'
+
+ble-sabbrev L='| less'

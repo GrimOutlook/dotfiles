@@ -115,7 +115,7 @@ bleopt indent_tabs=1
 ## magic-space with a colon-separated list of expansion types. "history",
 ## "sabbrev", "alias", and "autocd" can be specified.
 
-bleopt edit_magic_expand=history:sabbrev:autocd
+bleopt edit_magic_expand=history:autocd:sabbrev
 
 
 ## This option configures the detailed behavior of the widget "magic-space"
@@ -825,32 +825,32 @@ bleopt complete_menu_maxlines=20
 ## When this Readline setting is enabled, the cases of alphabets are ignored on
 ## completion generation.
 
-#bind 'set completion-ignore-case off'
+bind 'set completion-ignore-case on'
 
 
 ## When this Readline setting is turned on, suffixes are added to the filename
 ## completions in the menu.  The characters "@", "/" and "*" are added to
 ## symbolic links, directories and executables, respectively.
 
-#bind 'set visible-stats off'
+bind 'set visible-stats on'
 
 
 ## When this Readline setting is turned on, the suffix "/" is inserted after
 ## the insertion of directory names.
 
-#bind 'set mark-directories on'
+bind 'set mark-directories on'
 
 
 ## When this Readline setting is turned on, the suffix "/" is inserted after
 ## symbolic links pointing to directories.
 
-#bind 'set mark-symlinked-directories on'
+bind 'set mark-symlinked-directories on'
 
 
 ## When this Readline setting is turned on, the filenames starting with "." is
 ## also generated as possible completions.
 
-#bind 'set match-hidden-files on'
+bind 'set match-hidden-files on'
 
 
 ## By default, when filenames of the form "dir/file*" is shown in the menu, the
@@ -1486,9 +1486,21 @@ for file in $completions; do
 done
 
 # ---------------------------------------------------------------------------- #
-# -- BLE Imports ------------------------------------------------------------- #
+# -- Pre Import Settings ----------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
-ble-import -d integration/fzf-completion
+_ble_contrib_fzf_git_config=key-binding:sabbrev
+
+# ---------------------------------------------------------------------------- #
+# -- Imports ----------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+ble-import -d integration/bash-completion
+ble-import -d integration/fzf-git
 ble-import -d integration/fzf-key-bindings
 ble-import -d integration/fzf-menu
+ble-import -d integration/zoxide
+
+# ---------------------------------------------------------------------------- #
+# -- Post Import Settings ---------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
 
