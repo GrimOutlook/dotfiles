@@ -81,13 +81,14 @@ export GOPATH=$HOME/.go
 
 # -- History ----------------------------------------------------------------- #
 # Ignore duplicates in bash history
-export HISTCONTROL=ignoreboth:erasedups
+export HISTCONTROL=ignoreboth
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
 
-# After each command, save and reload history
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# After each command, save and reload history. This should only be enables if
+# ble.sh is not in use.
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # -- Java -------------------------------------------------------------------- #
 # Set the Java home. Change this to a specific version if needed.

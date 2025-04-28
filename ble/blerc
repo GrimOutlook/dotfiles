@@ -149,7 +149,7 @@ bleopt edit_magic_expand=history:autocd:sabbrev
 ## value "bottom" is specified, the info pane is shown at the bottom of the
 ## terminal.  The default is "top".
 
-bleopt info_display=bottom
+# bleopt info_display=bottom
 
 
 ## The following settings controls the prompt after the cursor left the command
@@ -327,7 +327,7 @@ bleopt exec_errexit_mark=$'\e[91m[ble: exit %d]\e[m'
 ## history is shared with the other Bash ble.sh sessions with the history
 ## sharing turned on.
 
-#bleopt history_share=
+bleopt history_share=1
 
 
 ## This option controls the target range in the command history for
@@ -1331,20 +1331,20 @@ function blerc/vim-load-hook {
 
   # vim-airline
 
-  ble-import vim-airline
-  bleopt vim_airline_theme=base16_gruvbox_dark_hard.bash
-  bleopt vim_airline_section_a='\e[1m\q{lib/vim-airline/mode}'
-  bleopt vim_airline_section_b='\q{lib/vim-airline/gitstatus}'
-  bleopt vim_airline_section_c='\w'
-  bleopt vim_airline_section_x='bash'
-  bleopt vim_airline_section_y='$_ble_util_locale_encoding[unix]'
-  bleopt vim_airline_section_z=' \q{history-percentile} \e[1m!\q{history-index}/\!\e[22m \q{position}'
-  bleopt vim_airline_left_sep=$'\uE0B0'
-  bleopt vim_airline_left_alt_sep=$'\uE0B1'
-  bleopt vim_airline_right_sep=$'\uE0B2'
-  bleopt vim_airline_right_alt_sep=$'\uE0B3'
-  bleopt vim_airline_symbol_branch=$'\uE0A0'
-  bleopt vim_airline_symbol_dirty=$'\u26A1'
+  # ble-import vim-airline
+  # bleopt vim_airline_theme=base16_gruvbox_dark_hard.bash
+  # bleopt vim_airline_section_a='\e[1m\q{lib/vim-airline/mode}'
+  # bleopt vim_airline_section_b='\q{lib/vim-airline/gitstatus}'
+  # bleopt vim_airline_section_c='\w'
+  # bleopt vim_airline_section_x='bash'
+  # bleopt vim_airline_section_y='$_ble_util_locale_encoding[unix]'
+  # bleopt vim_airline_section_z=' \q{history-percentile} \e[1m!\q{history-index}/\!\e[22m \q{position}'
+  # bleopt vim_airline_left_sep=$'\uE0B0'
+  # bleopt vim_airline_left_alt_sep=$'\uE0B1'
+  # bleopt vim_airline_right_sep=$'\uE0B2'
+  # bleopt vim_airline_right_alt_sep=$'\uE0B3'
+  # bleopt vim_airline_symbol_branch=$'\uE0A0'
+  # bleopt vim_airline_symbol_dirty=$'\u26A1'
 }
 blehook/eval-after-load keymap_vi blerc/vim-load-hook
 
