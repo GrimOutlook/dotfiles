@@ -1176,7 +1176,7 @@ function blerc/vim-load-hook {
   #----------------------------------------------------------------------------
   # Keybindings
 
-  ble-import -d ~/.config/ble/keybinds
+  ble-import -d ~/.config/ble/ble_keybinds
 
   ## The following setting sets up the keymap settings with Meta modifiers.
   ## With this setting, M-RET can be used to insert a newline in the
@@ -1497,7 +1497,7 @@ _ble_contrib_fzf_git_config=key-binding:sabbrev
 ble-import -d integration/bash-completion
 ble-import -d integration/fzf-git
 ble-import -d integration/fzf-key-bindings
-ble-import -d integration/fzf-menu
+# ble-import -d integration/fzf-menu
 ble-import -d integration/zoxide
 
 # ---------------------------------------------------------------------------- #
