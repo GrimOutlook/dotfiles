@@ -6,7 +6,8 @@ I like Bash because it is so widely used. I attempted to use fish but all of the
 
 ## TODO:
 
-- FIX HISTORY NOT SAVING WHILE MULTIPLE SESSIONS ARE IN USE.
+- Fork [this repo](https://gitlab.com/waterkip/bum/) and add desired functionality to it. Probably make it
+a submodule of this repo.
 - Add this, it's sick: https://github.com/christoomey/vim-tmux-navigator
 - Make batcat the default pager for all programs
 - Check [here](https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7) for more inspiration

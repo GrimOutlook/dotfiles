@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# [Source](https://gist.github.com/srebalaji/4b23fb62f6ce26c17b73ca07ae7cfc67#file-git-lazypush)
+
+# Git Switch With Changes (Staged and Unstaged, but not Untracked)
+
+BranchName=$1
+
+if [ ! -z "$BranchName" ]
+then
+    if [ $(git branch -l | grep $BranchName) ]
+    then
+        git stash
+        git switch $BranchName
+        git stash pop
+    else 
+        git stash
+        git switch -c $BranchName
+        git stash pop
+    fi
+else
+  echo "Branch name is not specified"
+fi

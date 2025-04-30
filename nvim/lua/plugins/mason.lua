@@ -8,7 +8,6 @@ local ensure_installed = {
     "docker_compose_language_service",
     "dockerls",
     "eslint",
-    "java_language_server",
     "harper_ls",
     "html",
     "hyprls",
@@ -85,11 +84,13 @@ return {
 
             mason_lspconfig.setup_handlers({
                 default_handler,
-                ["java_language_server"] = function()
-                    nvim_lsp["java_language_server"].setup({
-                        cmd = {"java-language-server"}
-                    })
-                end,
+                -- -- Java language server is no longer used. Keeping this here
+                -- -- so I know how to configure lsps in the future.
+                -- ["java_language_server"] = function()
+                --     nvim_lsp["java_language_server"].setup({
+                --         cmd = {"java-language-server"}
+                --     })
+                -- end,
             })
 
             vim.keymap.set("n", "<S-f>", vim.diagnostic.open_float)

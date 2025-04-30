@@ -73,7 +73,7 @@ export DOTFILES=$HOME/.dotfiles
 export CONFIG=$HOME/.config
 
 # Update the PATH variable to enable using the custom scripts in this repo.
-export PATH+=":$DOTFILES/bash/scripts/"
+export PATH+=":$DOTFILES/bash/scripts/:$DOTFILES/git/scripts/"
 
 # Prevent go from creating a `go/` directory in the middle of your home
 # directory.

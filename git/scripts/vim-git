@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# [Source](https://gitlab.com/waterkip/bum)
+# SPDX-FileCopyrightText: 2023 - 2024 Wesley Schwengle <wesleys@opperschaap.net>
+#
+# SPDX-License-Identifier: MIT
+
+is_commit='.git/COMMIT_EDITMSG'
+
+[ "${1##$is_commit}" ] || exec vim $1
+
+FIRST_COMMENT="$(grep -m 1 -n '^#' $1| awk -F\: '{print $1}')"
+FIRST_EMPTY=$(grep -m 1 -Exn '[[:blank:]]*' $1| awk -F\: '{print $1}')
+FIRST_NON_COMMENT=$(grep -m 1  -vn '^#' $1| awk -F\: '{print $1}')
+
+if [[ $FIRST_EMPTY -eq 1 ]] || [[ $FIRST_EMPTY -eq $FIRST_NON_COMMENT ]]
+then
+    exec nvim +$FIRST_EMPTY +'norm$' +'star!' $1
+else
+    exec nvim +$FIRST_NON_COMMENT +'norm$' +'star!' $1
+fi
+

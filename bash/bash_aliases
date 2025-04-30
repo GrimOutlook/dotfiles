@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# -- Externally Defined Aliases ------------------------------------------------
 ALIAS_FILES="$DOTFILES/bash/aliases"
 if [[ -d "$ALIAS_FILES" ]]; then
     for file in $(fd -t f . "$ALIAS_FILES"); do
@@ -15,28 +16,41 @@ if [ -f "$WORK_ALIASES" ]; then
     source "$WORK_ALIASES"
 fi
 
+# -- General Helpers -----------------------------------------------------------
 alias reload='source $HOME/.bashrc'
 alias j='just'
+alias e='$EDITOR'
+alias edit='$EDITOR'
 alias cp='xcp'
 alias mkdir='mkdir -p'
 alias docker='podman'
+alias cat='bat'
+
+# -- Bash Scripting ------------------------------------------------------------
+# Don't set -e in this alias. It will cause the interactive shell you called the
+# script with to exit if the script fails for any reason.
 alias debug-bash='set -uxo pipefail'
 alias debug-bash-undo='set +uxo pipefail'
 
+# -- Pacman --------------------------------------------------------------------
 alias explicitly-installed='pacman -Qe'
-alias cat='bat'
+
+# -- Navigation ----------------------------------------------------------------
 alias dotfiles='cd $DOTFILES'
 alias home='cd $HOME'
 alias cdd='cd ..'
-alias e='$EDITOR'
-alias edit='$EDITOR'
-alias bash_aliases='$EDITOR $HOME/.bash_aliases'
-alias bashrc='$EDITOR $HOME/.bashrc'
 
+# -- Quick Config Access -------------------------------------------------------
+alias conf-aliases='$EDITOR $HOME/.bash_aliases'
+alias conf-bashrc='$EDITOR $HOME/.bashrc'
+alias conf-tmux='$EDITOR $HOME/.config/tmux/tmux.conf'
+
+# -- Git -----------------------------------------------------------------------
 alias ca='commit-all'
 alias pa='push-all'
 alias aa='add-all'
-alias st='git status --short'
+alias st='git status --short --branch'
 alias ig="find . -not -path './.git/*' | git check-ignore --stdin"
 alias push='git push'
 alias pull='git pull'
+alias log='git log'
