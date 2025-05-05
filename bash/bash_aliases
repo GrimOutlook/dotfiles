@@ -53,4 +53,4 @@ alias st='git status --short --branch'
 alias ig="find . -not -path './.git/*' | git check-ignore --stdin"
 alias push='git push'
 alias pull='git pull'
-alias log='git log'
+alias glog='git log'

@@ -18,6 +18,7 @@ a submodule of this repo.
 - [More tmux vim integration](https://gist.github.com/tsl0922/d79fc1f8097dde660b34)
 - [Steal all of this](https://github.com/nots1dd/dotfiles). It's sick.
 - https://www.reddit.com/r/unixporn/comments/12bpvos/rofi_rofilbonnwaylandgit_good_application/
+- Add [scope](https://github.com/tiagovla/scope.nvim) to nvim.
 
 ### Hyprland
 

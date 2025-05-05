@@ -1,7 +1,4 @@
 return {
-    -- Extensions for the built-in LSP support in Neovim for eclipse.jdt.ls
-    -- https://github.com/mfussenegger/nvim-jdtls
-    "mfussenegger/nvim-jdtls",
     -- A task runner and job management plugin for Neovim
     -- https://github.com/stevearc/overseer.nvim
     "stevearc/overseer.nvim",
