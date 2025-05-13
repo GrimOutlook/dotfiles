@@ -12,20 +12,8 @@ end
 
 -- Save
 vim.keymap.set("n", "<leader>w", "<CMD>update<CR>", { silent = true, desc = "Save current buffer" })
-
--- Disable Arrow Navigation to convince puny brain to use correct keys
-maps("n", "<Left>", "<CMD>echo 'Use h'<CR>")
-maps("n", "<Right>", "<CMD>echo 'Use l'<CR>")
-maps("n", "<Up>", "<CMD>echo 'Use k'<CR>")
-maps("n", "<Down>", "<CMD>echo 'Use j'<CR>")
-maps("i", "<Left>", "<CMD>echo 'Use h'<CR>")
-maps("i", "<Right>", "<CMD>echo 'Use l'<CR>")
-maps("i", "<Up>", "<CMD>echo 'Use k'<CR>")
-maps("i", "<Down>", "<CMD>echo 'Use j'<CR>")
-maps("v", "<Left>", "<CMD>echo 'Use h'<CR>")
-maps("v", "<Right>", "<CMD>echo 'Use l'<CR>")
-maps("v", "<Up>", "<CMD>echo 'Use k'<CR>")
-maps("v", "<Down>", "<CMD>echo 'Use j'<CR>")
+vim.keymap.set("n", "<A-w>", "<CMD>update<CR>", { silent = true, desc = "Save current buffer" })
+vim.keymap.set("n", "<A-S-q>", "<CMD>quit<CR>", { silent = true, desc = "Save current buffer" })
 
 -- Resize Windows
 maps("n", "<C-Left>", "<C-w><")
@@ -36,7 +24,7 @@ maps("n", "<C-Down>", "<C-w>-")
 -- Rename symbol
 maps("n", "<leader>r", vim.lsp.buf.rename)
 -- Clear search highlighting
-maps("n", "<M-c>", "<CMD>nohlsearch<CR>")
+maps("n", "<ESC>", "<CMD>nohlsearch<CR>")
 
 maps("n", "<leader>t", "<CMD>ToggleTerm<CR>")
 -- TODO Why tf doesn't this work?
@@ -79,6 +67,7 @@ map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 
 -- Close buffer
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<A-S-c>', '<Cmd>BufferClose!<CR>', opts)
 
 -- Wipeout buffer
 --                 :BufferWipeout
@@ -100,3 +89,48 @@ map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', opts)
 map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
 map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
 map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+
+            vim.keymap.set("n", "<S-f>", vim.diagnostic.open_float)
+            vim.keymap.set("n", "[d", function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Goto prev diagnostic" })
+            vim.keymap.set("n", "]d", function() vim.diagnostic.jump({count= 1, float=true}) end, { desc = "Goto next diagnostic" })
+            vim.keymap.set("n", "<C-a>", function() vim.diagnostic.jump({count= 1, float=true}) end, { desc = "Goto next diagnostic" })
+            vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+            vim.keymap.set(
+                "n",
+                "<C-n>",
+                function()
+                    if vim.diagnostic.jump({count=1, float=true}) then
+                        vim.lsp.buf.code_action()
+                    end
+                end,
+                { desc = "Show next diagnostic and fix?" }
+            )
+            -- Use LspAttach autocommand to only map the following keys
+            -- after the language server attaches to the current buffer
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+                callback = function(ev)
+                    -- Enable completion triggered by <c-x><c-o>
+                    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+                    -- Buffer local mappings.
+                    -- See `:help vim.lsp.*` for documentation on any of the below functions
+                    local opts = { buffer = ev.buf }
+                    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+                    vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+                    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+                    vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, opts)
+                    vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, opts)
+                    vim.keymap.set("n", "<space>wl", function()
+                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                    end, opts)
+                    vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, opts)
+                    vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+                    vim.keymap.set({ "n", "v" }, "<A-a>", vim.lsp.buf.code_action, opts)
+                    vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+                    vim.keymap.set("n", "<C-M-f>", function()
+                        vim.lsp.buf.format({ async = true })
+                    end, opts)
+                end,
+            })

@@ -5,6 +5,10 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	options = { theme = "gruvbox-material" },
 	config = function()
-		require("lualine").setup()
+		require("lualine").setup({
+sections = {
+    lualine_c = { require("doing").status },
+  }, 
+        })
 	end,
 }

@@ -1,4 +1,18 @@
 return {
+    -- The superior project management solution for neovim.
+    -- https://github.com/ahmedkhalf/project.nvim
+    --
+    -- I used this to CD to the project directory automatically for other
+    -- operations.
+    "ahmedkhalf/project.nvim",
+
+    -- Vim Just Syntax
+    -- https://github.com/NoahTheDuke/vim-just
+    {
+        "NoahTheDuke/vim-just",
+        ft = { "just" },
+    },
+
     -- A task runner and job management plugin for Neovim
     -- https://github.com/stevearc/overseer.nvim
     "stevearc/overseer.nvim",
@@ -30,10 +44,6 @@ return {
     -- Single tabpage interface for easily cycling through diffs
     -- https://github.com/sindrets/diffview.nvim
     "sindrets/diffview.nvim",
-
-    -- Painless Java in Neovim
-    -- https://github.com/nvim-java/nvim-java
-    "nvim-java/nvim-java",
 
     -- Delete/change/add parentheses/quotes/XML-tags/much more with ease
     -- https://github.com/tpope/vim-surround
