@@ -3,17 +3,17 @@
 # -- Externally Defined Aliases ------------------------------------------------
 ALIAS_FILES="$DOTFILES/bash/aliases"
 if [[ -d "$ALIAS_FILES" ]]; then
-    for file in $(fd -t f . "$ALIAS_FILES"); do
-        source "$file"
-    done
+  for file in $(fd -t f . "$ALIAS_FILES"); do
+    source "$file"
+  done
 else
-    echo "Failed to load bash functions" >&2
+  echo "Failed to load bash functions" >&2
 fi
 
 # Check if work bash aliases exists
 WORK_ALIASES="$HOME/.bash_aliases.work"
 if [ -f "$WORK_ALIASES" ]; then
-    source "$WORK_ALIASES"
+  source "$WORK_ALIASES"
 fi
 
 # -- General Helpers -----------------------------------------------------------
@@ -25,6 +25,10 @@ alias cp='xcp'
 alias mkdir='mkdir -p'
 alias docker='podman'
 alias cat='bat'
+function ntemp() {
+  tmp="$(mktemp -d)"
+  cd "$tmp"
+}
 
 # -- Bash Scripting ------------------------------------------------------------
 # Don't set -e in this alias. It will cause the interactive shell you called the

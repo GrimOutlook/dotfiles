@@ -1,2 +1,51 @@
 pkgfile
 strace
+mise
+
+# A better ls
+# https://github.com/ogham/exa
+exa
+
+hexyl
+
+# A cat(1) clone with wings.
+# https://github.com/sharkdp/bat
+bat
+
+# A simple, fast and user-friendly alternative to 'find' 
+# https://github.com/sharkdp/fd
+fd
+
+hyperfine
+
+pastel
+
+procs
+
+sd
+
+dust
+
+ripgrep
+
+starship
+
+tokei
+
+ytop
+
+btop
+
+tealdear
+
+grex
+
+zoxide
+
+delta
+
+trippy
+
+# A command-line DNS client.
+# https://github.com/ogham/dog
+dog
