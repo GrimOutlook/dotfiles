@@ -2,8 +2,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-	*i*) ;;
-	*) return ;;
+*i*) ;;
+*) return ;;
 esac
 
 # Verify that:
@@ -12,18 +12,18 @@ esac
 # 3. We aren't in a screen session
 # 4. We aren't in a TMUX session already
 # 5. Additional check to make sure we aren't in a tmux session
-if command -v tmux &> /dev/null && \
-    [ -n "$PS1" ] && \
-    [[ ! "$TERM" =~ screen ]] && \
-    [[ ! "$TERM" =~ tmux ]] && \
-    [ -z "$TMUX" ]; then 
-    tmux new-session
+if command -v tmux &>/dev/null &&
+  [ -n "$PS1" ] &&
+  [[ ! "$TERM" =~ screen ]] &&
+  [[ ! "$TERM" =~ tmux ]] &&
+  [ -z "$TMUX" ]; then
+  tmux new-session
 fi
 
 # Add the ble.sh functionality. Needs to be towards the top.
 source "$HOME/.local/share/blesh/ble.sh" \
-    --noattach \
-    --rcfile "$HOME/.config/ble/blerc"
+  --noattach \
+  --rcfile "$HOME/.config/ble/blerc"
 
 # ---------------------------------------------------------------------------- #
 # -- Bash Options ------------------------------------------------------------ #
@@ -42,7 +42,7 @@ shopt -s cdspell
 # If set, Bash lists the status of any stopped and running jobs before exiting
 # an interactive shell. If any jobs are running, this causes the exit to be
 # deferred until a second exit is attempted without an intervening command (see
-# Job Control). The shell always postpones exiting if any jobs are stopped. 
+# Job Control). The shell always postpones exiting if any jobs are stopped.
 shopt -s checkjobs
 
 # If set, Bash attempts spelling correction on directory names during word
@@ -54,7 +54,7 @@ shopt -s dirspell
 shopt -s histappend
 
 # If set, and Readline is being used, a user is given the opportunity to re-edit
-# a failed history substitution. 
+# a failed history substitution.
 shopt -s histreedit
 
 # If set, and Readline is being used, the results of history substitution are
@@ -81,7 +81,7 @@ export GOPATH=$HOME/.go
 
 # -- History ----------------------------------------------------------------- #
 # Ignore duplicates in bash history
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoreboth:erasedups
 # Increase bash history size
 export HISTSIZE=10000
 export HISTFILESIZE=10000
@@ -101,10 +101,10 @@ export _ZO_ECHO=1
 # -- Bat --------------------------------------------------------------------- #
 # Color manpage output with bat
 if command -v bat &>/dev/null; then
-    export MANPAGER="sh -c \
+  export MANPAGER="sh -c \
         'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 else
-    echo "bat is not installed" >&2
+  echo "bat is not installed" >&2
 fi
 
 # ---------------------------------------------------------------------------- #
@@ -114,7 +114,7 @@ fi
 # Import aliases defined by us
 ALIASES=$HOME/.bash_aliases
 if [[ -f $ALIASES ]]; then
-    source "$ALIASES"
+  source "$ALIASES"
 fi
 
 # Import cargo commands
@@ -126,14 +126,14 @@ source "/usr/share/doc/pkgfile/command-not-found.bash"
 # -- Run Startup Scripts -------------------------------------------------------
 
 function eval-if-available() {
-    full_command="$1"
+  full_command="$1"
 
-    command="$(echo "$full_command" | cut -d ' ' -f 1)"
-    if command -v "$command" &>/dev/null; then
-        eval 'eval "$($full_command)"'
-    else
-        echo "$command is not installed" >&2
-    fi
+  command="$(echo "$full_command" | cut -d ' ' -f 1)"
+  if command -v "$command" &>/dev/null; then
+    eval 'eval "$($full_command)"'
+  else
+    echo "$command is not installed" >&2
+  fi
 }
 
 # Set up fzf key bindings and fuzzy completion

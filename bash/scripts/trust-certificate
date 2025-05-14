@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 if [ $# -lt 2 ]; then
-    err "2 arguments required"
-    exit 1
+  err "2 arguments required"
+  exit 1
 fi
 url=$1
-cert_str="$(openssl s_client -showcerts -connect ${url}:443 < /dev/null)"
-echo "$cert_str" | awk "/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){a++}; out=\"$2/cert\"a\".crt\"; print >out}"
+destination=$2
+cert_str="$(openssl s_client -showcerts -connect "${url}":443 </dev/null)"
+echo "$cert_str" | awk "/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){num++}; out=\"$destination/cert\"num\".crt\"; print >out}"

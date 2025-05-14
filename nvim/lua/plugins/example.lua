@@ -11,19 +11,6 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
-    version = "1.11.0",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        "shellcheck",
-        "shfmt",
-        "flake8",
-      },
-    },
-  },
-
-  {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = "VeryLazy", -- Or `LspAttach`
     priority = 1000, -- needs to be loaded in first
@@ -31,6 +18,94 @@ return {
       require("tiny-inline-diagnostic").setup()
       vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
     end,
+  },
+
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = {
+        "<leader>cr",
+        function()
+          local inc_rename = require("inc_rename")
+          return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+        end,
+        expr = true,
+        desc = "Rename (inc-rename.nvim)",
+        has = "rename",
+      }
+    end,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    ---@param opts cmp.ConfigSchema
+    --- override nvim-cmp and add cmp-emoji
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "emoji" })
+
+      -- -- Use <tab> for completion and snippets (supertab).
+      -- local has_words_before = function()
+      --   unpack = unpack or table.unpack
+      --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      --   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      -- end
+      --
+      -- local cmp = require("cmp")
+      --
+      -- opts.mapping = vim.tbl_extend("force", opts.mapping, {
+      --   ["<Tab>"] = cmp.mapping(function(fallback)
+      --     if cmp.visible() then
+      --       -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
+      --       cmp.select_next_item()
+      --     elseif vim.snippet.active({ direction = 1 }) then
+      --       vim.schedule(function()
+      --         vim.snippet.jump(1)
+      --       end)
+      --     elseif has_words_before() then
+      --       cmp.complete()
+      --     else
+      --       fallback()
+      --     end
+      --   end, { "i", "s" }),
+      --   ["<S-Tab>"] = cmp.mapping(function(fallback)
+      --     if cmp.visible() then
+      --       cmp.select_prev_item()
+      --     elseif vim.snippet.active({ direction = -1 }) then
+      --       vim.schedule(function()
+      --         vim.snippet.jump(-1)
+      --       end)
+      --     else
+      --       fallback()
+      --     end
+      --   end, { "i", "s" }),
+      -- })
+    end,
+  },
+
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "groovy",
+        "json",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+        "query",
+        "regex",
+        "tsx",
+        "typescript",
+        "vim",
+        "yaml",
+      },
+    },
   },
 }
 
@@ -51,16 +126,6 @@ return {
 --
 --   -- disable trouble
 --   { "folke/trouble.nvim", enabled = false },
---
---   -- override nvim-cmp and add cmp-emoji
---   {
---     "hrsh7th/nvim-cmp",
---     dependencies = { "hrsh7th/cmp-emoji" },
---     ---@param opts cmp.ConfigSchema
---     opts = function(_, opts)
---       table.insert(opts.sources, { name = "emoji" })
---     end,
---   },
 --
 --   -- change some telescope options and a keymap to browse plugin files
 --   {
@@ -137,28 +202,6 @@ return {
 --   -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
 --   { import = "lazyvim.plugins.extras.lang.typescript" },
 --
---   -- add more treesitter parsers
---   {
---     "nvim-treesitter/nvim-treesitter",
---     opts = {
---       ensure_installed = {
---         "bash",
---         "html",
---         "javascript",
---         "json",
---         "lua",
---         "markdown",
---         "markdown_inline",
---         "python",
---         "query",
---         "regex",
---         "tsx",
---         "typescript",
---         "vim",
---         "yaml",
---       },
---     },
---   },
 --
 --   -- since `vim.tbl_deep_extend`, can only merge tables and not lists, the code above
 --   -- would overwrite `ensure_installed` with the new value.
