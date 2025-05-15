@@ -2,13 +2,14 @@
 
 ## Shell
 
-I like Bash because it is so widely used. I attempted to use fish but all of the good prompts that I found used the `fish_variables` files
+I like Bash because it is so widely used. I attempted to use fish but all the
+good prompts that I found used the `fish_variables` files
 
-## TODO:
+## TODO
 
 - Fork [this repo](https://gitlab.com/waterkip/bum/) and add desired functionality to it. Probably make it
 a submodule of this repo.
-- Add this, it's sick: https://github.com/christoomey/vim-tmux-navigator
+- Add this, it's sick: <https://github.com/christoomey/vim-tmux-navigator>
 - Make batcat the default pager for all programs
 - Check [here](https://dev.to/slydragonn/ultimate-neovim-setup-guide-lazynvim-plugin-manager-23b7) for more inspiration
 - Figure out how to handle nested tmux sessions
@@ -17,20 +18,21 @@ a submodule of this repo.
 - [Add this (tmux vim integration)](https://smartbear.com/blog/tmux-and-vim/)
 - [More tmux vim integration](https://gist.github.com/tsl0922/d79fc1f8097dde660b34)
 - [Steal all of this](https://github.com/nots1dd/dotfiles). It's sick.
-- https://www.reddit.com/r/unixporn/comments/12bpvos/rofi_rofilbonnwaylandgit_good_application/
+- <https://www.reddit.com/r/unixporn/comments/12bpvos/rofi_rofilbonnwaylandgit_good_application/>
 - Add [scope](https://github.com/tiagovla/scope.nvim) to nvim.
+- Look into [fbterm](https://wiki.archlinux.org/title/Fbterm)
 
 ### Hyprland
 
-- https://github.com/ErikReider/SwayOSD
-- https://github.com/wwmm/easyeffects 
-- Change launcher to https://github.com/anyrun-org/anyrun
-- https://github.com/russelltg/wl-screenrec
-- Get creative https://github.com/elkowar/eww/
+- <https://github.com/ErikReider/SwayOSD>
+- <https://github.com/wwmm/easyeffects>
+- Change launcher to <https://github.com/anyrun-org/anyrun>
+- <https://github.com/russelltg/wl-screenrec>
+- Get creative <https://github.com/elkowar/eww/>
 
 ### SDDM
 
-- https://github.com/MarianArlt/sddm-sugar-dark
+- <https://github.com/MarianArlt/sddm-sugar-dark>
 
 ### Neovim
 
