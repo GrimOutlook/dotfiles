@@ -140,3 +140,5 @@
 [clean]
     requireForce = true
 
+[user]
+	name = Dominic Grimaldi

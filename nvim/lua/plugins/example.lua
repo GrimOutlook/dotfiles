@@ -144,6 +144,79 @@ return {
       { "<leader>fR", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     },
   },
+
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+      { "<leader>qS", function() require("persistence").select() end,desc = "Select Session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+    },
+  },
+
+  {
+    -- jdtls spams the hell out of the bottom right hand corner so I want to
+    -- hide a lot of the messages that appear.
+    "folke/noice.nvim",
+    require("noice").setup({
+      routes = {
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          find = "jdtls",
+        },
+        opts = { skip = true },
+      },
+    }),
+  },
+
+  {
+    "Hashino/doing.nvim",
+    cmd = "Do",
+    lazy = true,
+    -- stylua: ignore
+    init = function()
+      local doing = require("doing")
+
+      vim.keymap.set("n", "<leader>dda", doing.add, { desc = "[D]oing: [A]dd" })
+      vim.keymap.set("n", "<leader>dde", doing.edit, { desc = "[D]oing: [E]dit" })
+      vim.keymap.set("n", "<leader>ddn", doing.done, { desc = "[D]oing: Do[n]e" })
+      vim.keymap.set("n", "<leader>ddt", doing.toggle, { desc = "[D]oing: [T]oggle" })
+
+      vim.keymap.set("n", "<leader>dds", function()
+        vim.notify(doing.status(true), vim.log.levels.INFO,
+          { title = "Doing:", icon = "", })
+      end, { desc = "[D]oing: [S]tatus", })
+
+    vim.api.nvim_create_autocmd({ "User", }, {
+      pattern = "TaskModified",
+      desc = "This is called when a task is added, edited or completed",
+      callback = function()
+        vim.defer_fn(function()
+          local status = doing.status()
+          if status ~= "" then
+            vim.notify(status, vim.log.levels.INFO,
+              { title = "Doing:", icon = "", })
+          end
+        end, 0)
+      end,})
+    end,
+  },
+
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      opts.sections.lualine_c = {}
+      opts.sections.lualine_z = {
+        { require("doing").status },
+      }
+    end,
+  },
 }
 
 -- -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
@@ -251,15 +324,6 @@ return {
 --         "tsx",
 --         "typescript",
 --       })
---     end,
---   },
---
---   -- the opts function can also be used to change the default opts:
---   {
---     "nvim-lualine/lualine.nvim",
---     event = "VeryLazy",
---     opts = function(_, opts)
---       table.insert(opts.sections.lualine_x, "😄")
 --     end,
 --   },
 --
