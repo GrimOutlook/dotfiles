@@ -1,14 +1,14 @@
 return {
-  -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
-
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
-  },
+  -- -- add gruvbox
+  -- { "ellisonleao/gruvbox.nvim" },
+  --
+  -- -- Configure LazyVim to load gruvbox
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "gruvbox",
+  --   },
+  -- },
 
   {
     "rachartier/tiny-inline-diagnostic.nvim",
@@ -103,6 +103,7 @@ return {
     opts = {
       ensure_installed = {
         "bash",
+        "cpp",
         "html",
         "javascript",
         "groovy",
@@ -129,20 +130,22 @@ return {
 
   {
     "folke/flash.nvim",
+    opts = {
+      modes = {
+        char = {
+          enabled = false,
+        },
+      },
+    },
     -- stylua: ignore
     keys = {
-      -- Disable the old flash bindings
-      { "s", mode = { "n", "x", "o" }, false },
-      { "S", mode = { "n", "o", "x" }, false },
-      { "r", mode = "o", false },
-      { "R", mode = { "o", "x" }, false },
-
-      -- Move them to leader bindings
-      { "<leader>fs", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "<leader>fS", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "<leader>fr", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "<leader>fR", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    },
+        -- Move them to leader bindings
+        { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+        { "F", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+        { "t", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+        { "T", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+        { "<leader>uu", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      },
   },
 
   {
@@ -216,6 +219,17 @@ return {
         { require("doing").status },
       }
     end,
+  },
+  {
+    "sindrets/diffview.nvim",
+  },
+  { "tpope/vim-fugitive" },
+  { "abecodes/tabout.nvim" },
+  {
+    "m4xshen/hardtime.nvim",
+    lazy = false,
+    dependencies = { "MunifTanjim/nui.nvim" },
+    opts = {},
   },
 }
 

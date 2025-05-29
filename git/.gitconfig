@@ -39,7 +39,7 @@
 
 [pull]
     # Avoid creating merge commits in non-main branches.
-    rebase = true
+    rebase = false
 
 [alias]
     # Shorten common commands
@@ -79,6 +79,7 @@
     ddiff = -c diff.external=difft diff
     d = -c diff.external=difft diff
     dnc = difftool --extcmd 'difft --ignore-comments'
+    unstage = restore --staged
 
 [apply]
     # Detect whitespace errors when applying a patch

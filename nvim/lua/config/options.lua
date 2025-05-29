@@ -11,3 +11,4 @@ o.showbreak = [[↪ ]] -- Options include -> '…', '↳ ', '→','↪ '
 o.colorcolumn = "+1" -- Set the color column to highlight one column after the 'textwidth'
 o.textwidth = 80
 o.formatoptions = "1qcrn2tjlv"
+o.diffopt = "iwhite,internal,filler,hiddenoff,closeoff,indent-heuristic,linematch:60,algorithm:histogram"
