@@ -11,6 +11,7 @@
     whitespace = space-before-tab,trailing-space
 
     logallrefupdates = true
+	excludesfile = /home/dom/.gitignore
 
 
 [filter "lfs"]
@@ -80,6 +81,7 @@
     d = -c diff.external=difft diff
     dnc = difftool --extcmd 'difft --ignore-comments'
     unstage = restore --staged
+    reset-hard = reset --hard HEAD
 
 [apply]
     # Detect whitespace errors when applying a patch

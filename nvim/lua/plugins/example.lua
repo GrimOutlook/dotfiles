@@ -1,12 +1,16 @@
 return {
-  -- -- add gruvbox
-  -- { "ellisonleao/gruvbox.nvim" },
+  -- add gruvbox
+  -- {
+  --   -- "ellisonleao/gruvbox.nvim",
+  --   "sainnhe/gruvbox-material",
+  --   lazy = false,
+  -- },
   --
   -- -- Configure LazyVim to load gruvbox
   -- {
   --   "LazyVim/LazyVim",
   --   opts = {
-  --     colorscheme = "gruvbox",
+  --     colorscheme = "gruvbox-material",
   --   },
   -- },
 
@@ -138,14 +142,16 @@ return {
       },
     },
     -- stylua: ignore
-    keys = {
+    keys = function ()
+      return {
         -- Move them to leader bindings
         { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
         { "F", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
         { "t", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
         { "T", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
         { "<leader>uu", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-      },
+      }
+    end,
   },
 
   {
@@ -220,17 +226,22 @@ return {
       }
     end,
   },
-  {
-    "sindrets/diffview.nvim",
-  },
-  { "tpope/vim-fugitive" },
-  { "abecodes/tabout.nvim" },
+
   {
     "m4xshen/hardtime.nvim",
+    enabled = false,
     lazy = false,
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
+
+  { "sindrets/diffview.nvim" },
+
+  { "tpope/vim-fugitive" },
+
+  { "abecodes/tabout.nvim" },
+
+  { "bignimbus/you-are-here.vim" },
 }
 
 -- -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
