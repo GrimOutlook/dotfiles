@@ -2,5 +2,6 @@
 *.bkp
 *~
 .tasks
+.settings
 
 !.gitignore

@@ -1,18 +1,31 @@
 return {
   -- add gruvbox
-  -- {
-  --   -- "ellisonleao/gruvbox.nvim",
-  --   "sainnhe/gruvbox-material",
-  --   lazy = false,
-  -- },
-  --
-  -- -- Configure LazyVim to load gruvbox
-  -- {
-  --   "LazyVim/LazyVim",
-  --   opts = {
-  --     colorscheme = "gruvbox-material",
-  --   },
-  -- },
+  {
+    "ellisonleao/gruvbox.nvim",
+    -- "sainnhe/gruvbox-material",
+    lazy = false,
+    config = true,
+    opts = function()
+      local colors = require("gruvbox").palette
+      return {
+        inverse = false, -- invert background for search, diffs, statuslines and errors
+        overrides = {
+          DiffDelete = { bg = colors.dark_red },
+          DiffAdd = { bg = colors.dark_green },
+          DiffChange = { bg = colors.dark_aqua },
+          DiffText = { bg = colors.faded_yellow },
+        },
+      }
+    end,
+  },
+
+  -- Configure LazyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox",
+    },
+  },
 
   {
     "rachartier/tiny-inline-diagnostic.nvim",
@@ -235,13 +248,68 @@ return {
     opts = {},
   },
 
-  { "sindrets/diffview.nvim" },
+  {
+    "sindrets/diffview.nvim",
+    opts = {
+      config = {
+        enhanced_diff_hl = true,
+      },
+    },
+  },
 
   { "tpope/vim-fugitive" },
 
   { "abecodes/tabout.nvim" },
 
   { "bignimbus/you-are-here.vim" },
+
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    opts = {
+      config = {
+        mac_window_bar = true,
+        title = "CodeSnap.nvim",
+        code_font_family = "CaskaydiaCove Nerd Font",
+        watermark_font_family = "Pacifico",
+        watermark = "CodeSnap.nvim",
+        bg_theme = "summer",
+        breadcrumbs_separator = "/",
+        has_breadcrumbs = true,
+        has_line_number = true,
+        show_workspace = true,
+        min_width = 0,
+        bg_x_padding = 60,
+        bg_y_padding = 45,
+      },
+    },
+  },
+
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+      "TmuxNavigatorProcessList",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
+  },
+
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
+  },
 }
 
 -- -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
