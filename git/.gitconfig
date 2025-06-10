@@ -92,7 +92,7 @@
     
     # /HumanGit
 
-    wip = "!git add . && git commit --fixup -m 'Work in progress'"
+  wip = "commit --fixup=HEAD -am 'Work in progress'"
     oops = "!f() {git amend && git pleasesend; }; f"
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 
