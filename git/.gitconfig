@@ -49,11 +49,12 @@
 
     untracked = ls-files -o
     add = add -v
+    add-all = add -Av
     unstage = restore --staged
     unadd = restore --staged
     untrack = rm --cached
     discard = reset --hard HEAD
-    uncommit = reset soft HEAD^
+    uncommit = reset --soft HEAD^
     deepclean = clean -x -f -d
 
     tags = tag -l
@@ -75,12 +76,14 @@
     # list all defined aliases
     aliases = config --get-regexp alias
 
+    commitdiff = "!f() { git rev-list --left-right --pretty=oneline \"${1}...${2}\"; }; f"
     changedfiles = "diff-tree --no-commit-id -r --name-only"
     searchfiles = "log --name-status --source --all -S" 
     searchtext = "!f() { git grep \"$*\" $(git rev-list --all); }; f"
 
     graph = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(yellow)%ad%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=human --decorate=full --all
 
+    diff-commits = "!f() { git rev-list --left-right --pretty=oneline HEAD...origin; }; f"
     diff-no-comment = difftool --extcmd 'difft --ignore-comments'
     diff-last-commit = diff --cached HEAD^ 
     word-diff = diff -w --word-diff=color --ignore-space-at-eol
@@ -89,7 +92,7 @@
     
     # /HumanGit
 
-    wip = "!f() { git add . && git commit --fixup -m 'Work in progress'; }; f"
+    wip = "!git add . && git commit --fixup -m 'Work in progress'"
     oops = "!f() {git amend && git pleasesend; }; f"
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 

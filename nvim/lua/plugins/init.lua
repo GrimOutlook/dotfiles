@@ -57,6 +57,20 @@ return {
     end,
   },
 
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    init = function()
+      vim.o.formatexpr = [[v:lua.require("conform").formatexpr()]]
+    end,
+    opts = {
+      formatters_by_ft = {
+        -- Use the "*" filetype to run formatters on all filetypes.
+        ["*"] = { "codespell", "typos", "trim_whitespace" },
+      },
+    },
+  },
+
   -- {
   --   "hrsh7th/nvim-cmp",
   --   dependencies = { "hrsh7th/cmp-emoji" },
