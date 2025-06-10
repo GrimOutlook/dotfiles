@@ -6,13 +6,12 @@
     editor = nvim
     autocrlf = input
     eol = lf
-    
+
     # Treat spaces before tabs, and all kinds of trailing whitespace as an error
     whitespace = space-before-tab,trailing-space
 
     logallrefupdates = true
-	excludesfile = /home/dom/.gitignore
-
+    excludesfile = ~/.gitignore
 
 [filter "lfs"]
     clean = git-lfs clean -- %f
@@ -40,48 +39,59 @@
 
 [pull]
     # Avoid creating merge commits in non-main branches.
-    rebase = false
+    rebase = true
 
 [alias]
-    # Shorten common commands
-    st = status
-    ci = commit
-    co = checkout
-    br = branch
-    ls = ls-files
-    # Merge for code review
-    rev = merge --no-ff --no-commit
-    # Other custom shortcuts
-    lol = log --graph --decorate --oneline
-    lola = log --graph --decorate --oneline --all
-    revlog = log --first-parent
+    ### Human Git
+    branches = branch -a
+    tags = tag
+    stashes = stash list
+
     untracked = ls-files -o
     add = add -v
-    A = add -vA
-    grep = grep -n
+    unstage = restore --staged
+    unadd = restore --staged
+    untrack = rm --cached
+    discard = reset --hard HEAD
+    uncommit = reset soft HEAD^
+    deepclean = clean -x -f -d
 
-    mr = push -u origin HEAD
-    cm = commit -m
-    acm = commit -a -m
-    cma = commit -a -m
-    cam = commit -a -m
-    # View the SHA, description, and history graph of the latest 20 commits
-    l = log --pretty=oneline -n 20 --graph
-    # View the current working tree status using the short format
-    s = status -sb
-    # Show verbose output about tags, branches or remotes
     tags = tag -l
     branches = branch -a
     remotes = remote -v
+    stashes = stash list
+
+    amend = commit --amend --reset-author --no-edit
+    nuke = !git discard && git deepclean
+
+    precommit = diff --cached --diff-algorithm=minimal -w
+
+    send = push -u origin HEAD
+    send-please = send --force-with-lease
+    send-NOW = send --force
+
+    autosqaush = rebase --autosqaush
+
+    # list all defined aliases
+    aliases = config --get-regexp alias
+
+    changedfiles = "diff-tree --no-commit-id -r --name-only"
+    searchfiles = "log --name-status --source --all -S" 
+    searchtext = "!f() { git grep \"$*\" $(git rev-list --all); }; f"
+
+    graph = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(yellow)%ad%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=human --decorate=full --all
+
+    diff-no-comment = difftool --extcmd 'difft --ignore-comments'
+    diff-last-commit = diff --cached HEAD^ 
+    word-diff = diff -w --word-diff=color --ignore-space-at-eol
+
+    new-branch = "!f() { git checkout \"$1\" && git pull && git checkout -b \"$2\"; }; f"
     
-    # Difftastic aliases, so `git dlog` is `git log` with difftastic and so on.
-    dlog = -c diff.external=difft log --ext-diff
-    dshow = -c diff.external=difft show --ext-diff
-    ddiff = -c diff.external=difft diff
-    d = -c diff.external=difft diff
-    dnc = difftool --extcmd 'difft --ignore-comments'
-    unstage = restore --staged
-    reset-hard = reset --hard HEAD
+    # /HumanGit
+
+    wip = "!f() { git add . && git commit --fixup -m 'Work in progress'; }; f"
+    oops = "!f() {git amend && git pleasesend; }; f"
+    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 
 [apply]
     # Detect whitespace errors when applying a patch
@@ -107,11 +117,6 @@
 
 [include]
     path = ~/.gitconfig.work
-    
-[color]
-    ui = auto
-    advice = never
-    branch = never
 
 [color "branch"]
     current = green
@@ -138,10 +143,13 @@
 
 [rebase]
     autoStash = true
+    autosquash =  true
     forkpoint = false
 
 [clean]
     requireForce = true
 
 [user]
-	name = Dominic Grimaldi
+    name = Dominic Grimaldi
+[commit]
+	template = /home/dom/.dotfiles/git/templates/default-commit-template.txt

@@ -28,16 +28,6 @@ return {
   },
 
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = "VeryLazy", -- Or `LspAttach`
-    priority = 1000, -- needs to be loaded in first
-    config = function()
-      require("tiny-inline-diagnostic").setup()
-      vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
-    end,
-  },
-
-  {
     "neovim/nvim-lspconfig",
     opts = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
@@ -53,7 +43,7 @@ return {
           has = "rename",
         },
         -- Disable the default gr binding which takes you to a references picker
-        -- and move it to grp.
+        -- and move it to grp. Want to use gr for other things.
         { "gr", false },
         {
           "grr",
@@ -67,52 +57,52 @@ return {
     end,
   },
 
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    ---@param opts cmp.ConfigSchema
-    --- override nvim-cmp and add cmp-emoji
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-
-      -- Use <tab> for completion and snippets (supertab).
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
-
-      local cmp = require("cmp")
-
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
-            cmp.select_next_item()
-          elseif vim.snippet.active({ direction = 1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(1)
-            end)
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif vim.snippet.active({ direction = -1 }) then
-            vim.schedule(function()
-              vim.snippet.jump(-1)
-            end)
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-      })
-    end,
-  },
+  -- {
+  --   "hrsh7th/nvim-cmp",
+  --   dependencies = { "hrsh7th/cmp-emoji" },
+  --   ---@param opts cmp.ConfigSchema
+  --   --- override nvim-cmp and add cmp-emoji
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, { name = "emoji" })
+  --
+  --     -- Use <tab> for completion and snippets (supertab).
+  --     local has_words_before = function()
+  --       unpack = unpack or table.unpack
+  --       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  --       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  --     end
+  --
+  --     local cmp = require("cmp")
+  --
+  --     opts.mapping = vim.tbl_extend("force", opts.mapping, {
+  --       ["<Tab>"] = cmp.mapping(function(fallback)
+  --         if cmp.visible() then
+  --           -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
+  --           cmp.select_next_item()
+  --         elseif vim.snippet.active({ direction = 1 }) then
+  --           vim.schedule(function()
+  --             vim.snippet.jump(1)
+  --           end)
+  --         elseif has_words_before() then
+  --           cmp.complete()
+  --         else
+  --           fallback()
+  --         end
+  --       end, { "i", "s" }),
+  --       ["<S-Tab>"] = cmp.mapping(function(fallback)
+  --         if cmp.visible() then
+  --           cmp.select_prev_item()
+  --         elseif vim.snippet.active({ direction = -1 }) then
+  --           vim.schedule(function()
+  --             vim.snippet.jump(-1)
+  --           end)
+  --         else
+  --           fallback()
+  --         end
+  --       end, { "i", "s" }),
+  --     })
+  --   end,
+  -- },
 
   -- add more treesitter parsers
   {
@@ -309,6 +299,54 @@ return {
     dependencies = "nvzone/volt",
     opts = {},
     cmd = { "Typr", "TyprStats" },
+  },
+
+  {
+    "snacks.nvim",
+    opts = {
+      picker = {},
+    },
+    keys = {
+      {
+        "<leader>fr",
+        function()
+          require("snacks").picker.recent({ filter = { cwd = true } })
+        end,
+        desc = "Recent Files (CWD Only)",
+      },
+    },
+  },
+
+  {
+    "snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          keys = {
+            { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            {
+              icon = " ",
+              key = "r",
+              desc = "Recent Files (CWD)",
+              action = ":lua Snacks.picker.recent({ filter = { cwd = true } })",
+            },
+            { icon = " ", key = "R", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            {
+              icon = " ",
+              key = "c",
+              desc = "Config",
+              action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+            },
+            { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+        },
+      },
+    },
   },
 }
 
