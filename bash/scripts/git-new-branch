@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+if [ $# -lt 3 ]; then
+  echo "New branches must be in the form tag/TICKET-####_description" >&2
+  echo "Please supply the arguments [TAG] [TICKET-0000 | #0] [DESCRIPTION WITH SPACES]" >&2
+  echo "" >&2
+  echo "Valid tags: [feat/fix/refactor/perf/style/test/docs/ops/chore]" >&2
+  echo "Reference to valid tags: https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13#types" >&2
+  exit 1
+fi
+git checkout -b "$1/${2}_$(echo ${@:3} | tr ' ' '_')"

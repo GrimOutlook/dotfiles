@@ -56,6 +56,7 @@
     discard = reset --hard HEAD
     uncommit = reset --soft HEAD^
     deepclean = clean -x -f -d
+    undo = checkout --
 
     tags = tag -l
     branches = branch -a
@@ -88,11 +89,13 @@
     diff-last-commit = diff --cached HEAD^ 
     word-diff = diff -w --word-diff=color --ignore-space-at-eol
 
-    new-branch = "!f() { git checkout \"$1\" && git pull && git checkout -b \"$2\"; }; f"
+    amend-all-and-send-please = "!git add-all && git amend && git send-please"
+
+    new-branch = "!f() { git-new-branch; }; f"
     
     # /HumanGit
 
-  wip = "commit --fixup=HEAD -am 'Work in progress'"
+    wip = "commit --fixup=HEAD -am 'Work in progress'"
     oops = "!f() {git amend && git pleasesend; }; f"
     br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 

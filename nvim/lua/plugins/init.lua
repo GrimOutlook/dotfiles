@@ -159,14 +159,15 @@ return {
       },
     },
     -- stylua: ignore
-    keys = function ()
+    keys = function()
       return {
         -- Move them to leader bindings
-        { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-        { "F", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-        { "t", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-        { "T", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-        { "<leader>uu", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        { "<CR>",  mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+        { "f",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+        { "F",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+        { "t",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+        { "T",     mode = { "n", "o", "x" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+        { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
       }
     end,
   },
@@ -177,10 +178,10 @@ return {
     opts = {},
     -- stylua: ignore
     keys = {
-      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
-      { "<leader>qS", function() require("persistence").select() end,desc = "Select Session" },
+      { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
+      { "<leader>qS", function() require("persistence").select() end,              desc = "Select Session" },
       { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+      { "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
     },
   },
 
@@ -218,18 +219,19 @@ return {
           { title = "Doing:", icon = "", })
       end, { desc = "[D]oing: [S]tatus", })
 
-    vim.api.nvim_create_autocmd({ "User", }, {
-      pattern = "TaskModified",
-      desc = "This is called when a task is added, edited or completed",
-      callback = function()
-        vim.defer_fn(function()
-          local status = doing.status()
-          if status ~= "" then
-            vim.notify(status, vim.log.levels.INFO,
-              { title = "Doing:", icon = "", })
-          end
-        end, 0)
-      end,})
+      vim.api.nvim_create_autocmd({ "User", }, {
+        pattern = "TaskModified",
+        desc = "This is called when a task is added, edited or completed",
+        callback = function()
+          vim.defer_fn(function()
+            local status = doing.status()
+            if status ~= "" then
+              vim.notify(status, vim.log.levels.INFO,
+                { title = "Doing:", icon = "", })
+            end
+          end, 0)
+        end,
+      })
     end,
   },
 
@@ -300,10 +302,10 @@ return {
       "TmuxNavigatorProcessList",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
