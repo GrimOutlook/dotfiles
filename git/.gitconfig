@@ -55,7 +55,7 @@
     untrack = rm --cached
     discard = reset --hard HEAD
     uncommit = reset --soft HEAD^
-    deepclean = clean -x -f -d
+    deepclean = clean -x -ff -dd
     undo = checkout --
 
     tags = tag -l
