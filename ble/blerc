@@ -1363,7 +1363,7 @@ _ble_contrib_fzf_git_config=key-binding:sabbrev
 # ---------------------------------------------------------------------------- #
 # ---------------------------------------------------------------------------- #
 ble-import -d integration/bash-completion
-ble-import -d integration/fzf-git
+# ble-import -d integration/fzf-git
 ble-import -d integration/fzf-key-bindings
 # ble-import -d integration/fzf-menu
 ble-import -d integration/zoxide
