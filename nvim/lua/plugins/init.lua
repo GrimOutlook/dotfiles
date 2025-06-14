@@ -1,9 +1,5 @@
 return {
   ------ Local Plugins
-  {
-    dir = "~/code/lumberjack.nvim",
-    opts = {}
-  },
 
   ------ Remote Plugins
   {
@@ -403,6 +399,25 @@ return {
           )
         end,
         desc = "Search and replace file for selection/word"
+      }
+    }
+  },
+
+  {
+    "stevearc/overseer.nvim",
+    keys = {
+      {
+        "<leader>ol",
+        function()
+          local overseer = require("overseer")
+          local tasks = overseer.list_tasks({ recent_first = true })
+          if vim.tbl_isempty(tasks) then
+            vim.notify("No tasks found", vim.log.levels.WARN)
+          else
+            overseer.run_action(tasks[1], "restart")
+          end
+        end,
+        desc = "Run last task"
       }
     }
   }
