@@ -1,17 +1,9 @@
 return {
+  ------ Local Plugins
 
-  {
-    dir = '~/code/lumberjack.nvim', -- Path to your local plugin's root directory
-    -- Optional: Add other lazy.nvim options if needed, e.g.,
-    -- name = 'lumberjack',                -- If your directory name doesn't match the repo name
-    -- lazy = false,      -- Load immediately on startup (default for 'dir' plugins)
-    opts = {}, -- Pass options to your plugin's setup function
-  },
-
-  -- add gruvbox
+  ------ Remote Plugins
   {
     "ellisonleao/gruvbox.nvim",
-    -- "sainnhe/gruvbox-material",
     lazy = false,
     config = true,
     opts = function()
@@ -52,7 +44,7 @@ return {
           has = "rename",
         },
         -- Disable the default gr binding which takes you to a references picker
-        -- and move it to grp. Want to use gr for other things.
+        -- and move it to "grr". Want to use gr for other things.
         { "gr", false },
         {
           "grr",
@@ -311,10 +303,10 @@ return {
       "TmuxNavigatorProcessList",
     },
     keys = {
-      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
@@ -378,13 +370,51 @@ return {
     "MagicDuck/grug-far.nvim",
     keys = {
       {
-        "<leader>sr",
-        function()
-          require('grug-far').open({ transient = true, prefills = { search = vim.fn.expand("<cword>"), replacement = vim.fn.expand("<cword>") } })
-        end,
         mode = { "n", "v" },
-        desc = "Search for word under cursor"
+        "<leader>sff",
+        function()
+          require("grug-far").open({
+            prefills = {
+              search = vim.fn.expand("<cword>"),
+              replacement = vim.fn.expand("<cword>"),
+            },
+          })
+        end,
+        desc = "Search and replace everywhere for selection/word",
       },
-    }
-  }
+      {
+        mode = { "n", "v" },
+        "<leader>sfa",
+        function()
+          require("grug-far").open({
+            prefills = {
+              paths = vim.fn.expand("%"),
+              search = vim.fn.expand("<cword>"),
+              replacement = vim.fn.expand("<cword>"),
+            },
+          })
+        end,
+        desc = "Search and replace file for selection/word",
+      },
+    },
+  },
+
+  {
+    "stevearc/overseer.nvim",
+    keys = {
+      {
+        "<leader>ol",
+        function()
+          local overseer = require("overseer")
+          local tasks = overseer.list_tasks({ recent_first = true })
+          if vim.tbl_isempty(tasks) then
+            vim.notify("No tasks found", vim.log.levels.WARN)
+          else
+            overseer.run_action(tasks[1], "restart")
+          end
+        end,
+        desc = "Run last task",
+      },
+    },
+  },
 }
