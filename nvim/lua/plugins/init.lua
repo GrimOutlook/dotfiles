@@ -2,31 +2,34 @@ return {
   ------ Local Plugins
 
   ------ Remote Plugins
+  ---
+  --- START THEMES
+  { "ellisonleao/gruvbox.nvim" },
+  { "cryptomilk/nightcity.nvim" },
+  { "luisiacc/gruvbox-baby" },
+
+  -- Setup the theme changer
   {
-    "ellisonleao/gruvbox.nvim",
+    "zaldih/themery.nvim",
     lazy = false,
-    config = true,
-    opts = function()
-      local colors = require("gruvbox").palette
-      return {
-        inverse = false, -- invert background for search, diffs, statuslines and errors
-        overrides = {
-          DiffDelete = { bg = colors.dark_red },
-          DiffAdd = { bg = colors.dark_green },
-          DiffChange = { bg = colors.dark_aqua },
-          DiffText = { bg = colors.faded_yellow },
-        },
-      }
-    end,
+    config = function()
+      require("themery").setup({
+        themes = {
+          "gruvbox",
+          {
+            name = "Gruvbox",
+            colorscheme = "gruvbox-baby",
+            before = [[
+              vim.g.gruvbox_baby_use_original_palette = true
+            ]],
+          }, "nightcity"
+        },                  -- Your list of installed colorschemes.
+        livePreview = true, -- Apply theme while picking. Default to true.
+      })
+    end
   },
 
-  -- Configure LazyVim to load gruvbox
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "gruvbox",
-    },
-  },
+  --- END THEMES
 
   {
     "neovim/nvim-lspconfig",
@@ -303,10 +306,10 @@ return {
       "TmuxNavigatorProcessList",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
