@@ -75,52 +75,6 @@ return {
     },
   },
 
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = { "hrsh7th/cmp-emoji" },
-  --   ---@param opts cmp.ConfigSchema
-  --   --- override nvim-cmp and add cmp-emoji
-  --   opts = function(_, opts)
-  --     table.insert(opts.sources, { name = "emoji" })
-  --
-  --     -- Use <tab> for completion and snippets (supertab).
-  --     local has_words_before = function()
-  --       unpack = unpack or table.unpack
-  --       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  --       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-  --     end
-  --
-  --     local cmp = require("cmp")
-  --
-  --     opts.mapping = vim.tbl_extend("force", opts.mapping, {
-  --       ["<Tab>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           -- You could replace select_next_item() with confirm({ select = true }) to get VS Code autocompletion behavior
-  --           cmp.select_next_item()
-  --         elseif vim.snippet.active({ direction = 1 }) then
-  --           vim.schedule(function()
-  --             vim.snippet.jump(1)
-  --           end)
-  --         elseif has_words_before() then
-  --           cmp.complete()
-  --         else
-  --           fallback()
-  --         end
-  --       end, { "i", "s" }),
-  --       ["<S-Tab>"] = cmp.mapping(function(fallback)
-  --         if cmp.visible() then
-  --           cmp.select_prev_item()
-  --         elseif vim.snippet.active({ direction = -1 }) then
-  --           vim.schedule(function()
-  --             vim.snippet.jump(-1)
-  --           end)
-  --         else
-  --           fallback()
-  --         end
-  --       end, { "i", "s" }),
-  --     })
-  --   end,
-  -- },
 
   -- add more treesitter parsers
   {
@@ -420,4 +374,204 @@ return {
       },
     },
   },
+
+  { 'kosayoda/nvim-lightbulb' },
+
+  -- Running tests can take a while :p
+  { 'alec-gibson/nvim-tetris' },
+
+  {
+    "saghen/blink.cmp",
+    opts = {
+      completion = {
+        -- Don't select a completion originally. Means you can hit enter without
+        -- accidentally inserting now
+        -- Don't select by default, auto insert on selection
+        list = { selection = { preselect = false, auto_insert = true } },
+
+        -- Show documentation when selecting a completion item
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+
+        -- Display a preview of the selected item on the current line
+        ghost_text = { enabled = true },
+
+        trigger = {
+          -- When true, will show completion window after backspacing
+          show_on_backspace = true,
+
+          -- When true, will show completion window after backspacing into a keyword
+          show_on_backspace_in_keyword = true,
+        },
+
+        -- -- TODO: Get nvim-web-devicons working with copilot. Doesn't show
+        -- -- symbol. Icons look way better.
+        -- -- NOTE:
+        -- -- Tried:
+        -- -- - `symbol_map = { Copilot = '' }`
+        -- -- - Setting `kind_name` and `kind_icon` in `transform_items` for
+        -- -- the copilot provider.
+        -- -- - Pasting `optional` section for copilot blink integration in
+        -- -- LazyVim
+        --
+        -- menu = {
+        --   draw = {
+        --     components = {
+        --       kind_icon = {
+        --         text = function(ctx)
+        --           local icon = ctx.kind_icon
+        --           if vim.tbl_contains({ "Path" }, ctx.source_name) then
+        --             local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+        --             if dev_icon then
+        --               icon = dev_icon
+        --             end
+        --           else
+        --             icon = require("lspkind").symbolic(ctx.kind, {
+        --               mode = "symbol",
+        --             })
+        --           end
+        --
+        --           return icon .. ctx.icon_gap
+        --         end,
+        --
+        --         -- -- Optionally, use the highlight groups from nvim-web-devicons
+        --         -- -- You can also add the same function for `kind.highlight` if you want to
+        --         -- -- keep the highlight groups in sync with the icons.
+        --         -- highlight = function(ctx)
+        --         --   local hl = ctx.kind_hl
+        --         --   if vim.tbl_contains({ "Path" }, ctx.source_name) then
+        --         --     local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
+        --         --     if dev_icon then
+        --         --       hl = dev_hl
+        --         --     end
+        --         --   end
+        --         --   return hl
+        --         -- end,
+        --       }
+        --     }
+        -- }
+      },
+
+      keymap = {
+        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-e>'] = { 'hide', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
+
+        ['<Tab>'] = { 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+
+        ['<Up>'] = { 'select_prev', 'fallback' },
+        ['<Down>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
+        ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+
+        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+
+        ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
+      }
+    },
+    signature = { enabled = true }
+  },
+
+  {
+    "saghen/blink.cmp",
+    dependencies = { "archie-judd/blink-cmp-words" },
+    opts = {
+      -- ...
+      -- Optionally add 'dictionary', or 'thesaurus' to default sources
+      sources = {
+        default = { "lsp", "path", "lazydev" },
+        providers = {
+
+          -- Use the thesaurus source
+          thesaurus = {
+            name = "blink-cmp-words",
+            module = "blink-cmp-words.thesaurus",
+            -- All available options
+            opts = {
+              -- A score offset applied to returned items.
+              -- By default the highest score is 0 (item 1 has a score of -1, item 2 of -2 etc..).
+              score_offset = 0,
+
+              -- Default pointers define the lexical relations listed under each definition,
+              -- see Pointer Symbols below.
+              -- Default is as below ("antonyms", "similar to" and "also see").
+              pointer_symbols = { "!", "&", "^" },
+            },
+          },
+
+          -- Use the dictionary source
+          dictionary = {
+            name = "blink-cmp-words",
+            module = "blink-cmp-words.dictionary",
+            -- All available options
+            opts = {
+              -- The number of characters required to trigger completion.
+              -- Set this higher if completion is slow, 3 is default.
+              dictionary_search_threshold = 3,
+
+              -- See above
+              score_offset = 0,
+
+              -- See above
+              pointer_symbols = { "!", "&", "^" },
+            },
+          },
+        },
+
+        -- Setup completion by filetype
+        per_filetype = {
+          text = { "dictionary" },
+          markdown = { "thesaurus" },
+        },
+      },
+    },
+  },
+
+  {
+    "allaman/emoji.nvim",
+    version = "1.0.0", -- optionally pin to a tag
+    ft = "markdown",   -- adjust to your needs
+    dependencies = {
+      -- util for handling paths
+      "nvim-lua/plenary.nvim",
+      -- optional for nvim-cmp integration
+      "hrsh7th/nvim-cmp",
+      -- optional for fzf-lua integration via vim.ui.select
+      "ibhagwan/fzf-lua",
+    },
+    opts = {
+      -- default is false, also needed for blink.cmp integration!
+      enable_cmp_integration = true,
+    },
+    config = function(_, opts)
+      require("emoji").setup(opts)
+    end,
+  },
+
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "allaman/emoji.nvim", "saghen/blink.compat", "onsails/lspkind.nvim" },
+    opts = {
+      sources = {
+        default = { "emoji" },
+        providers = {
+          emoji = {
+            name = "emoji",
+            module = "blink.compat.source",
+            -- overwrite kind of suggestion
+            transform_items = function(ctx, items)
+              local kind = require("blink.cmp.types").CompletionItemKind.Text
+              for i = 1, #items do
+                items[i].kind = kind
+              end
+              return items
+            end,
+          },
+        },
+      },
+    },
+  },
+
 }
