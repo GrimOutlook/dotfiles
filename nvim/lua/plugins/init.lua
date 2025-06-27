@@ -36,6 +36,7 @@ return {
     opts = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
       vim.list_extend(keys, {
+        { "<leader>ca", false },
         {
           "<leader>cr",
           function()
@@ -48,7 +49,7 @@ return {
         },
         -- Disable the default gr binding which takes you to a references picker
         -- and move it to "grr". Want to use gr for other things.
-        { "gr", false },
+        { "gr",         false },
         {
           "grr",
           function()
@@ -574,4 +575,32 @@ return {
     },
   },
 
+  {
+    -- "rachartier/tiny-code-action.nvim",
+    "tiny-code-action.nvim",
+    dir = vim.fn.expand("$HOME") .. "/code/tiny-code-action.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      -- optional picker via fzf-lua
+      {
+        "folke/snacks.nvim",
+        opts = {
+          terminal = {},
+        }
+      }
+    },
+    event = "LspAttach",
+    opts = {
+      backend = "difftastic",
+      -- TODO: Try buffer at a later date. I like how it is organized but
+      -- currently covers up information and with the hotkeys enabled, preview
+      -- does not work.
+      picker = {
+        "buffer",
+        opts = {
+          hotkeys = true,
+        }
+      },
+    },
+  }
 }
