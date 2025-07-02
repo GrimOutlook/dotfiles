@@ -576,9 +576,7 @@ return {
   },
 
   {
-    -- "rachartier/tiny-code-action.nvim",
-    "tiny-code-action.nvim",
-    dir = vim.fn.expand("$HOME") .. "/code/tiny-code-action.nvim",
+    "rachartier/tiny-code-action.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       -- optional picker via fzf-lua

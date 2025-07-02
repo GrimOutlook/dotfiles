@@ -58,3 +58,6 @@ alias ig="find . -not -path './.git/*' | git check-ignore --stdin"
 alias push='git push'
 alias pull='git pull'
 alias glog='git log'
+
+# -- Programming ---------------------------------------------------------------
+alias lf="fd -t f -x dos2unix {} \;"

@@ -43,7 +43,6 @@
 
 [alias]
     ### Human Git
-    branches = branch -a
     tags = tag
     stashes = stash list
 
@@ -59,7 +58,6 @@
     undo = checkout --
 
     tags = tag -l
-    branches = branch -a
     remotes = remote -v
     stashes = stash list
 
@@ -92,12 +90,12 @@
     amend-all-and-send-please = "!git add-all && git amend && git send-please"
 
     new-branch = "!f() { git-new-branch; }; f"
-    
+
+    branches = branch -a --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     # /HumanGit
 
     wip = "commit -am 'wip!'"
     oops = "!f() {git amend && git pleasesend; }; f"
-    br = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
 
 [apply]
     # Detect whitespace errors when applying a patch
