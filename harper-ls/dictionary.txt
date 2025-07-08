@@ -1,9 +1,12 @@
+Ctrl
 Datalink
 DoD
 FIXME
 GUID
 LazyVim
+NFS
 OIDs
+OS
 PathBufs
 Redstone
 ResultSet

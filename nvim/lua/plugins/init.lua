@@ -7,6 +7,7 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "cryptomilk/nightcity.nvim" },
   { "luisiacc/gruvbox-baby" },
+  { "neanias/everforest-nvim" },
 
   -- Setup the theme changer
   {
@@ -22,11 +23,12 @@ return {
             before = [[
               vim.g.gruvbox_baby_use_original_palette = true
             ]],
-          }, "nightcity"
+          },
+          "nightcity",
         },                  -- Your list of installed colorschemes.
         livePreview = true, -- Apply theme while picking. Default to true.
       })
-    end
+    end,
   },
 
   --- END THEMES
@@ -75,7 +77,6 @@ return {
       },
     },
   },
-
 
   -- add more treesitter parsers
   {
@@ -299,6 +300,7 @@ return {
         preset = {
           keys = {
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+            { icon = " ", key = "p", desc = "Choose Project", action = ":lua Snacks.picker.projects()" },
             {
               icon = " ",
               key = "r",
@@ -376,10 +378,10 @@ return {
     },
   },
 
-  { 'kosayoda/nvim-lightbulb' },
+  { "kosayoda/nvim-lightbulb" },
 
   -- Running tests can take a while :p
-  { 'alec-gibson/nvim-tetris' },
+  { "alec-gibson/nvim-tetris" },
 
   {
     "saghen/blink.cmp",
@@ -453,25 +455,25 @@ return {
       },
 
       keymap = {
-        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        ['<C-e>'] = { 'hide', 'fallback' },
-        ['<CR>'] = { 'accept', 'fallback' },
+        ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+        ["<C-e>"] = { "hide", "fallback" },
+        ["<CR>"] = { "accept", "fallback" },
 
-        ['<Tab>'] = { 'snippet_forward', 'fallback' },
-        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ["<Tab>"] = { "snippet_forward", "fallback" },
+        ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
-        ['<Up>'] = { 'select_prev', 'fallback' },
-        ['<Down>'] = { 'select_next', 'fallback' },
-        ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
-        ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+        ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+        ["<C-n>"] = { "select_next", "fallback_to_mappings" },
 
-        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+        ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+        ["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
-        ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
-      }
+        ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+      },
     },
-    signature = { enabled = true }
+    signature = { enabled = true },
   },
 
   {
@@ -553,10 +555,10 @@ return {
   {
     "saghen/blink.cmp",
     optional = true,
-    dependencies = { "allaman/emoji.nvim", "saghen/blink.compat", "onsails/lspkind.nvim" },
+    dependencies = { "allaman/emoji.nvim", "MahanRahmati/blink-nerdfont.nvim", "saghen/blink.compat", "onsails/lspkind.nvim" },
     opts = {
       sources = {
-        default = { "emoji" },
+        default = { "emoji", "nerdfont" },
         providers = {
           emoji = {
             name = "emoji",
@@ -570,6 +572,12 @@ return {
               return items
             end,
           },
+          nerdfont = {
+            module = "blink-nerdfont",
+            name = "Nerd Fonts",
+            score_offset = 15,        -- Tune by preference
+            opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
+          }
         },
       },
     },
@@ -584,8 +592,8 @@ return {
         "folke/snacks.nvim",
         opts = {
           terminal = {},
-        }
-      }
+        },
+      },
     },
     event = "LspAttach",
     opts = {
@@ -597,8 +605,8 @@ return {
         "buffer",
         opts = {
           hotkeys = true,
-        }
+        },
       },
     },
-  }
+  },
 }
