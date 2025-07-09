@@ -558,7 +558,8 @@ return {
     dependencies = { "allaman/emoji.nvim", "MahanRahmati/blink-nerdfont.nvim", "saghen/blink.compat", "onsails/lspkind.nvim" },
     opts = {
       sources = {
-        default = { "emoji", "nerdfont" },
+        -- default = { "emoji", "nerdfont" },
+        default = { "emoji" },
         providers = {
           emoji = {
             name = "emoji",
@@ -572,12 +573,12 @@ return {
               return items
             end,
           },
-          nerdfont = {
-            module = "blink-nerdfont",
-            name = "Nerd Fonts",
-            score_offset = 15,        -- Tune by preference
-            opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
-          }
+          --   nerdfont = {
+          --     module = "blink-nerdfont",
+          --     name = "Nerd Fonts",
+          --     score_offset = 1,         -- Tune by preference
+          --     opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
+          --   }
         },
       },
     },
