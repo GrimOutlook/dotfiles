@@ -8,6 +8,12 @@ vim.call('plug#begin')
 Plug('zaldih/themery.nvim')
 Plug("ellisonleao/gruvbox.nvim")
 
+-- Icons
+Plug('nvim-tree/nvim-web-devicons')
+
+-- Dashboard
+Plug('nvimdev/dashboard-nvim')
+
 -- Keymaps
 Plug("Cassin01/wf.nvim", { ["tag"] = "*" })
 
@@ -15,5 +21,6 @@ vim.call('plug#end')
 
 require "plugins.wf"
 require "plugins.themery"
+require "plugins.dashboard-nvim"
 
 require "user.keymaps"
