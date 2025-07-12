@@ -30,6 +30,12 @@ map('n', '<C-.>', '<CMD>tabnext<CR>')
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')
 
+-- Paste from nvim's system keyboard
+-- NOTE: Fixes the problem with alacrity/nvim pasting incorrectly when there
+-- are newlines which is only seen on some of my systems
+-- NOTE: IT HAS TO DO WITH C-S-v NOT C-V.
+map('n', '<C-v>', '"+p')
+map('i', '<C-v>', '<ESC>"+pi')
 
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------

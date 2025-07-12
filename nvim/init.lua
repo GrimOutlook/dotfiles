@@ -28,6 +28,7 @@ Plug('kevinhwang91/rnvimr')
 vim.call('plug#end')
 
 require "user.keymaps"
+require "user.options"
 
 require "plugins.dashboard-nvim"
 require "plugins.themery"
