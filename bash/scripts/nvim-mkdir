@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+LOC="$HOME/.local/share/nvim/site/autoload/plug.vim"
+if [ ! -f "$LOC" ]; then
+    curl -fLo "$LOC" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 if [ $# -le 1 ]; then
     nvim "$@"
     exit $?

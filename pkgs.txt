@@ -12,7 +12,7 @@ hexyl
 # https://github.com/sharkdp/bat
 bat
 
-# A simple, fast and user-friendly alternative to 'find' 
+# A simple, fast and user-friendly alternative to 'find'
 # https://github.com/sharkdp/fd
 fd
 
@@ -49,3 +49,9 @@ trippy
 # A command-line DNS client.
 # https://github.com/ogham/dog
 dog
+
+## Nvim Dependencies
+# Dependency for Rnvimr
+ranger
+python-pynvim
+ueberzug
