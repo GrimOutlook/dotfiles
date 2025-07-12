@@ -19,8 +19,8 @@ Plug("Cassin01/wf.nvim", { ["tag"] = "*" })
 
 vim.call('plug#end')
 
-require "plugins.wf"
-require "plugins.themery"
-require "plugins.dashboard-nvim"
-
 require "user.keymaps"
+
+require "plugins.dashboard-nvim"
+require "plugins.themery"
+
