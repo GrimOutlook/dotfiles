@@ -20,7 +20,7 @@ map('n', '<leader>r', ':so %<CR>', {desc = "Reload NeoVim Config"})
 map('n', '<leader><SPACE>', ':w<CR>', {desc = "Save"})
 
 -- Close all windows and exit from Neovim with <leader> and q
-map('n', '<leader>q', ':qa<CR>', {desc = "Quit"})
+map('n', '<leader>Q', ':qa<CR>', {desc = "Quit"})
 
 -- Navigate tabs using `,` and `.`
 map('n', '<C-,>', '<CMD>tabprevious<CR>')
