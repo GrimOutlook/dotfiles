@@ -54,18 +54,17 @@ map('n', '<leader>?', function()
 -- Rnvimr ----------------------------------------------------------------------
 map( "n", "<leader>on", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" } )
 
--- ToggleTerm ------------------------------------------------------------------
-map("n", "<leader>ot", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
-
+-- Snacks Terminal -------------------------------------------------------------
+map("n", "<leader>ot", function()
+    require("snacks").terminal.toggle(nil, { win = {position = "float"}})
+end, { desc = "Open terminal" })
 function _G.set_terminal_keymaps()
-  local opts = {buffer = 0}
-  vim.keymap.set('t', '<esc>', [[<Cmd>ToggleTerm<CR>]], opts)
-  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+  local opts = {noremap = true}
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-Q>', [[<CMD>lua Snacks.terminal.toggle()<CR>]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<CMD>lua Snacks.terminal.toggle()<CR><C-W>h]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<CMD>lua Snacks.terminal.toggle()<CR><C-W>j]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<CMD>lua Snacks.terminal.toggle()<CR><C-W>k]], opts)
+  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<CMD>lua Snacks.terminal.toggle()<CR><C-W>l]], opts)
 end
 
--- Only apply these mappings to toggleterm
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')

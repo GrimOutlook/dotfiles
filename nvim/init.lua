@@ -9,7 +9,7 @@ Plug('zaldih/themery.nvim')
 Plug("ellisonleao/gruvbox.nvim")
 
 -- Icons
--- Icons for dashboard
+-- Icons for dashboard and fzf-lua
 Plug('nvim-tree/nvim-web-devicons')
 -- Icons for ranger
 Plug 'echasnovski/mini.files'
@@ -25,15 +25,15 @@ Plug("folke/which-key.nvim")
 -- File Manager
 Plug('kevinhwang91/rnvimr')
 
--- Terminal
-Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
+-- Etc...
+Plug("folke/snacks.nvim")
 
 vim.call('plug#end')
 
 require "user.keymaps"
+require "user.autocmds"
 require "user.options"
 
 require "plugins.dashboard-nvim"
 require "plugins.themery"
-require "plugins.toggleterm"
 require "plugins.which-key"
