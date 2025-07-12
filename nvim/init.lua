@@ -25,6 +25,9 @@ Plug("folke/which-key.nvim")
 -- File Manager
 Plug('kevinhwang91/rnvimr')
 
+-- Terminal
+Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
+
 vim.call('plug#end')
 
 require "user.keymaps"
@@ -32,4 +35,5 @@ require "user.options"
 
 require "plugins.dashboard-nvim"
 require "plugins.themery"
+require "plugins.toggleterm"
 require "plugins.which-key"
