@@ -30,8 +30,13 @@ Plug("mason-org/mason.nvim")
 Plug("mason-org/mason-lspconfig.nvim")
 Plug("neovim/nvim-lspconfig")
 
--- Etc...
-Plug("folke/snacks.nvim")
+-- Terminal
+Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
+
+-- Pickers/Finders
+Plug("nvim-telescope/telescope.nvim", { ['tag'] = '0.1.8' } )
+-- Dependency for above
+Plug("nvim-lua/plenary.nvim")
 
 vim.call('plug#end')
 
@@ -43,4 +48,6 @@ require "plugins.dashboard-nvim"
 require "plugins.mason" -- This must come before mason-lspconfig
 require "plugins.mason-lspconfig"
 require "plugins.themery"
+require "plugins.toggleterm"
 require "plugins.which-key"
+
