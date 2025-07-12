@@ -2,8 +2,8 @@
 
 ## TODO:
 
-- [ ] Whichkey
-- [ ] Gruvbox
+- [x] Whichkey
+- [x] Gruvbox
 - [ ] Bufferline/StatusLine/Tabline
 - [ ] LSP
 - [ ] Rustacean
@@ -13,6 +13,8 @@
 - [ ] Overlay terminal
 - [ ] Tmux navigation
 - [ ] oil.nvim
+- [ ] A way to search and replace word under cursor
+- [ ] A way to change current working directory easily
 
 ## Commands
 

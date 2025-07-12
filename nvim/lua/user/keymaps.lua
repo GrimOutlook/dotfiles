@@ -39,7 +39,11 @@ map('n', 'k', 'gk')
 map('n', '<leader>ct', '<CMD>Themery<CR>', { desc = '[themery] Change Themes' })
 
 -- wf (Which-key alternative) --------------------------------------------------
-
+local which_key = require("wf.builtin.which_key")
+--
+-- Rnvimr ----------------------------------------------------------------------
+map( "n", "<leader>on", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" } )
+--
 -- Register
 map( "n", "<leader>wr", function()
 	local register = require("wf.builtin.register")
@@ -47,13 +51,13 @@ map( "n", "<leader>wr", function()
 end, {  desc = "[wf.nvim] register" })
 
 -- Bookmark
-map( "n", "<Space>wbo", function()
+map( "n", "<leader>wbo", function()
 local bookmark = require("wf.builtin.bookmark")
 	bookmark({ nvim = "~/.config/nvim", })
 end, {  desc = "[wf.nvim] bookmark" })
 
 -- Buffer
-map( "n", "<Space>wbu", function()
+map( "n", "<leader>wbu", function()
 local buffer = require("wf.builtin.buffer")
 	buffer()
 end, {desc = "[wf.nvim] buffer"})
@@ -65,7 +69,7 @@ local mark = require("wf.builtin.mark")
 end, { nowait = true, desc = "[wf.nvim] mark"})
 
 -- Which Key
-map( "n", "<Leader>", function() 
-	local which_key = require("wf.builtin.which_key")
-	which_key({ text_insert_in_advance = "<Leader>" })
-end, { desc = "[wf.nvim] which-key /", })
+map( "n", "<space>",  
+	which_key({text_insert_in_advance = " "})
+, { desc = "[wf.nvim] which-key /", })
+
