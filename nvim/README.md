@@ -5,7 +5,7 @@
 - [x] Whichkey
 - [x] Gruvbox
 - [ ] Bufferline/StatusLine/Tabline
-- [ ] LSP
+- [x] LSP
 - [ ] Rustacean
 - [ ] Conform
 - [ ] Navigation keymaps
@@ -26,3 +26,4 @@
 
 | Keymap | Action |
 | --- | --- |
+| <leader>`| Grep word under cursor in CWD |
