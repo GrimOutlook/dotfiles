@@ -15,6 +15,7 @@
 - [ ] oil.nvim
 - [ ] A way to search and replace word under cursor
 - [ ] A way to change current working directory easily
+- [ ] Open dashboard when opening nvim with a directory path
 
 ## Commands
 

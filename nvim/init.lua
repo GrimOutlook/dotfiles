@@ -13,12 +13,14 @@ Plug("ellisonleao/gruvbox.nvim")
 Plug('nvim-tree/nvim-web-devicons')
 -- Icons for ranger
 Plug 'echasnovski/mini.files'
+-- Icons for which-key
+Plug 'echasnovski/mini.icons'
 
 -- Dashboard
 Plug('nvimdev/dashboard-nvim')
 
 -- Keymaps
-Plug("Cassin01/wf.nvim", { ["tag"] = "*" })
+Plug("folke/which-key.nvim")
 
 -- File Manager
 Plug('kevinhwang91/rnvimr')
@@ -29,4 +31,4 @@ require "user.keymaps"
 
 require "plugins.dashboard-nvim"
 require "plugins.themery"
-
+require "plugins.which-key"
