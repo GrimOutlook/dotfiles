@@ -25,6 +25,11 @@ Plug("folke/which-key.nvim")
 -- File Manager
 Plug('kevinhwang91/rnvimr')
 
+-- LSP
+Plug("mason-org/mason.nvim")
+Plug("mason-org/mason-lspconfig.nvim")
+Plug("neovim/nvim-lspconfig")
+
 -- Etc...
 Plug("folke/snacks.nvim")
 
@@ -35,5 +40,7 @@ require "user.autocmds"
 require "user.options"
 
 require "plugins.dashboard-nvim"
+require "plugins.mason" -- This must come before mason-lspconfig
+require "plugins.mason-lspconfig"
 require "plugins.themery"
 require "plugins.which-key"
