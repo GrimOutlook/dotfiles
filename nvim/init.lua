@@ -38,6 +38,7 @@ Plug("nvim-telescope/telescope.nvim", { ['tag'] = '0.1.8' } )
 Plug("nvim-lua/plenary.nvim")
 
 vim.call('plug#end')
+vim.cmd('colorscheme gruvbox')
 
 require "user.keymaps"
 require "user.autocmds"
