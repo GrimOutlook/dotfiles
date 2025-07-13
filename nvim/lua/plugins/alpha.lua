@@ -20,7 +20,7 @@ dashboard.section.buttons.val = {
     dashboard.button( "e", " New file", ":ene <BAR> startinsert <CR>"),
     dashboard.button( "f", "󰍉 Find file", ":Telescope find_files<CR>"),
     dashboard.button( "r", " Recent Files", ":Telescope oldfiles cwd_only=true<CR>"),
-    dashboard.button( "n", "󰙅 Navigate Filesystem", ":RnvimrToggle"),
+    dashboard.button( "n", "󰙅 Navigate Filesystem", ":RnvimrToggle<CR>"),
     dashboard.button( "p", " Projects", ":Telescope projects<CR>"),
     dashboard.button( "s", "󰕌 Reopen Last Session", ""),
     dashboard.button( "q", "󰩈 Quit Nvim", ":qa<CR>"),
