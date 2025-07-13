@@ -6,16 +6,23 @@
 - [x] Gruvbox
 - [ ] Bufferline/StatusLine/Tabline
 - [x] LSP
-- [ ] Rustacean
+- [ ] Noice
+- [ ] Doing.nvim
+- [ ] Rustaceanvim
 - [ ] Conform
-- [ ] Navigation keymaps
+- [x] Navigation keymaps
 - [ ] Gitsigns
-- [ ] Overlay terminal
+- [x] Overlay terminal
+- [ ] tiny-code-actions if telescope quickfix list is bad.
 - [ ] Tmux navigation
-- [ ] oil.nvim
 - [ ] A way to search and replace word under cursor
 - [ ] A way to change current working directory easily
 - [ ] Open dashboard when opening nvim with a directory path
+- [ ] Ensure JDTLS works
+- [ ] Add sessions support
+- [ ] Add nerdfont icon completion
+- [ ] Add emoji completion
+- [ ] Project selection in telescope/dashboard
 
 ## Commands
 

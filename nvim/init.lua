@@ -16,7 +16,7 @@ Plug 'echasnovski/mini.files'
 Plug 'echasnovski/mini.icons'
 
 -- Dashboard
-Plug('nvimdev/dashboard-nvim')
+Plug('goolord/alpha-nvim')
 
 -- Keymaps
 Plug("folke/which-key.nvim")
@@ -38,15 +38,15 @@ Plug("nvim-telescope/telescope.nvim", { ['tag'] = '0.1.8' } )
 Plug("nvim-lua/plenary.nvim")
 
 vim.call('plug#end')
-vim.cmd('colorscheme gruvbox')
 
 require "user.keymaps"
 require "user.autocmds"
 require "user.options"
 
-require "plugins.dashboard-nvim"
+require "plugins.alpha"
 require "plugins.mason" -- This must come before mason-lspconfig
 require "plugins.mason-lspconfig"
 require "plugins.toggleterm"
 require "plugins.which-key"
 
+vim.cmd('colorscheme gruvbox')
