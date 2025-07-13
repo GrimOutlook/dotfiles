@@ -1,86 +1,88 @@
 local function map(mode, lhs, rhs, opts)
-    local options = { noremap=true, silent=true }
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.keymap.set(mode, lhs, rhs, options)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
 end
 
 -- General Keymaps -------------------------------------------------------------
 -- Move around splits using Ctrl + {h,j,k,l}
-map('n', '<C-h>', '<C-w>h')
-map('n', '<C-j>', '<C-w>j')
-map('n', '<C-k>', '<C-w>k')
-map('n', '<C-l>', '<C-w>l')
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 -- Navigate tabs with Ctrl + , and Ctrl + .
-map('n', '<C-,>', 'tabprev')
-map('n', '<C-.>', 'tabnext')
+map("n", "<C-,>", "tabprev")
+map("n", "<C-.>", "tabnext")
 
 -- Reload configuration without restart nvim
-map('n', '<leader><space>r', ':so %<CR>', {desc = "Reload NeoVim Config"})
+map("n", "<leader><space>r", ":so %<CR>", { desc = "Reload NeoVim Config" })
 
 -- Fast saving with <leader> and w
-map('n', '<leader>w', ':w<CR>', {desc = "Save"})
+map("n", "<leader>w", ":w<CR>", { desc = "Save" })
 -- Fast saving all files with <leader> and W
-map('n', '<leader>W', ':wa<CR>', {desc = "Save All"})
+map("n", "<leader>W", ":wa<CR>", { desc = "Save All" })
 
 -- Close current buffer
-map('n', '<leader>q', ':bd<CR>', {desc = "Close Buffer"})
+map("n", "<leader>q", ":bd<CR>", { desc = "Close Buffer" })
 
 -- Close all windows and exit from Neovim with <leader> and q
-map('n', '<leader>Q', ':qa<CR>', {desc = "Quit Nvim"})
+map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvim" })
 
 -- Navigate tabs using `,` and `.`
-map('n', '<C-,>', '<CMD>tabprevious<CR>')
-map('n', '<C-.>', '<CMD>tabnext<CR>')
+map("n", "<C-,>", "<CMD>tabprevious<CR>")
+map("n", "<C-.>", "<CMD>tabnext<CR>")
 
 -- Make normal j and k presses work with wrapped words
-map('n', 'j', 'gj')
-map('n', 'k', 'gk')
+map("n", "j", "gj")
+map("n", "k", "gk")
 
 -- Paste from nvim's system keyboard
 -- NOTE: Fixes the problem with alacrity/nvim pasting incorrectly when there
 -- are newlines which is only seen on some of my systems
 -- NOTE: IT HAS TO DO WITH C-S-v NOT C-V.
-map('n', '<C-v>', '"+p')
-map('i', '<C-v>', '<ESC>"+pi')
+map("n", "<C-v>", '"+p')
+map("i", "<C-v>", '<ESC>"+pi')
+
+map("n", "<esc>", "<CMD>nohlsearch<CR>")
 
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------
 --------------------------------------------------------------------------------
 
 -- Which-Key -------------------------------------------------------------------
-map('n', '<leader>?', function()
-        require("which-key").show({ global = false })
-    end,
-    { desc = '[which-key] Buffer Local Keymaps' }
-)
+map("n", "<leader>?", function()
+  require("which-key").show({ global = false })
+end, { desc = "[which-key] Buffer Local Keymaps" })
 
 -- Rnvimr ----------------------------------------------------------------------
-map( "n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" } )
+map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
 
 -- ToggleTerm ------------------------------------------------------------------
 map("n", "<leader>c", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
 
 function _G.set_terminal_keymaps()
-  local opts = {buffer = 0}
-  map('t', '<esc>', [[<Cmd>ToggleTerm<CR>]], opts)
-  map('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-  map('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-  map('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-  map('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+  local opts = { buffer = 0 }
+  map("t", "<esc>", [[<Cmd>ToggleTerm<CR>]], opts)
+  map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+  map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+  map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
 end
 -- Only apply these mappings to toggleterm
-vim.cmd('autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()')
+vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 
 -- Telescope Pickers -----------------------------------------------------------
 local builtin = require("telescope.builtin")
 -- General
 map("n", "<leader>f", builtin.find_files, { desc = "[telescope] Files" })
 map("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[telescope] Grep In Buffer" })
-map({"n", "v"}, "<leader>`", builtin.grep_string, { desc = "[telescope] Grep String" })
-map("n", "<leader>r", function() builtin.oldfiles({cwd_only = true}) end, { desc = "[telescope] Recent Files (CWD)" })
+map({ "n", "v" }, "<leader>`", builtin.grep_string, { desc = "[telescope] Grep String" })
+map("n", "<leader>r", function()
+  builtin.oldfiles({ cwd_only = true })
+end, { desc = "[telescope] Recent Files (CWD)" })
 map("n", "<leader>m", builtin.marks, { desc = "[telescope] Marks" })
 map("n", '<leader>"', builtin.registers, { desc = "[telescope] Registers" })
 map("n", "<leader><space>ti", builtin.git_files, { desc = "[telescope] Git Files" })
@@ -117,4 +119,3 @@ map("n", "<leader>gd", builtin.lsp_definitions, { desc = "[telescope] Goto Defin
 map("n", "<leader>gt", builtin.lsp_type_definitions, { desc = "[telescope] Goto Type Definition" })
 map("n", "<leader>gw", builtin.lsp_document_symbols, { desc = "[telescope] LSP Document Symbols" })
 map("n", "<leader>gW", builtin.lsp_workspace_symbols, { desc = "[telescope] LSP Workspace Symbols" })
-
