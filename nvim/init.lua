@@ -56,6 +56,13 @@ Plug("Hashino/doing.nvim")
 -- Statusline
 Plug("nvim-lualine/lualine.nvim")
 
+-- Debugging
+Plug("mfussenegger/nvim-dap")
+Plug("rcarriga/nvim-dap-ui")
+Plug("theHamsta/nvim-dap-virtual-text")
+-- Lua adapter
+Plug("jbyuki/one-small-step-for-vimkind")
+
 vim.call("plug#end")
 
 require("user.keymaps")
@@ -65,6 +72,7 @@ require("user.options")
 require("plugins.alpha")
 require("plugins.blink")
 require("plugins.conform")
+require("plugins.dap")
 require("plugins.lualine")
 require("plugins.mason") -- This must come before mason-lspconfig
 require("plugins.mason-lspconfig")
