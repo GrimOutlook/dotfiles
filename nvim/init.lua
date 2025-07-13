@@ -39,6 +39,8 @@ Plug("nvim-lua/plenary.nvim")
 -- Project Picker
 Plug('ahmedkhalf/project.nvim')
 
+Plug('Hashino/doing.nvim')
+
 vim.call('plug#end')
 
 require "user.keymaps"

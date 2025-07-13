@@ -22,7 +22,7 @@
 - [ ] Add sessions support
 - [ ] Add nerdfont icon completion
 - [ ] Add emoji completion
-- [ ] Project selection in telescope/dashboard
+- [x] Project selection in telescope/dashboard
 
 ## Commands
 
