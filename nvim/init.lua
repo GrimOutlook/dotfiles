@@ -1,83 +1,43 @@
-local vim = vim
-local Plug = vim.fn["plug#"]
-vim.g.mapleader = " "
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+require("config.options")
 
-vim.call("plug#begin")
+require("config.lazy")
 
--- Themes
-Plug("ellisonleao/gruvbox.nvim")
+require("config.keymaps")
+require("config.autocmds")
 
--- Icons
--- Icons for dashboard and fzf-lua
-Plug("nvim-tree/nvim-web-devicons")
--- Icons for ranger
-Plug("echasnovski/mini.files")
--- Icons for which-key
-Plug("echasnovski/mini.icons")
-
--- Dashboard
-Plug("goolord/alpha-nvim")
-
--- Keymaps
-Plug("folke/which-key.nvim")
-
--- File Manager
-Plug("kevinhwang91/rnvimr")
-
--- LSP
-Plug("mason-org/mason.nvim")
-Plug("mason-org/mason-lspconfig.nvim")
-Plug("neovim/nvim-lspconfig")
-Plug("mrcjkb/rustaceanvim")
-
--- Snippets
-Plug("rafamadriz/friendly-snippets")
-Plug("L3MON4D3/LuaSnip", { ["tag"] = "v2.*", ["do"] = "make install_jsregexp" })
-
--- CMP
-Plug("saghen/blink.cmp", { ["version"] = "1.*" })
-
--- Formatting
-Plug("stevearc/conform.nvim")
-
--- Terminal
-Plug("akinsho/toggleterm.nvim", { ["tag"] = "*" })
-
--- Pickers/Finders
-Plug("nvim-telescope/telescope.nvim", { ["tag"] = "0.1.8" })
--- Dependency for above
-Plug("nvim-lua/plenary.nvim")
--- Project Picker
-Plug("ahmedkhalf/project.nvim")
-
--- Task tracking
-Plug("Hashino/doing.nvim")
-
--- Statusline
-Plug("nvim-lualine/lualine.nvim")
-
--- Debugging
-Plug("mfussenegger/nvim-dap")
-Plug("rcarriga/nvim-dap-ui")
-Plug("theHamsta/nvim-dap-virtual-text")
--- Lua adapter
-Plug("jbyuki/one-small-step-for-vimkind")
-
-vim.call("plug#end")
-
-require("user.keymaps")
-require("user.autocmds")
-require("user.options")
-
-require("plugins.alpha")
-require("plugins.blink")
-require("plugins.conform")
-require("plugins.dap")
-require("plugins.lualine")
-require("plugins.mason") -- This must come before mason-lspconfig
-require("plugins.mason-lspconfig")
-require("plugins.projects")
-require("plugins.toggleterm")
-require("plugins.which-key")
-
-vim.cmd("colorscheme gruvbox")
+-- -- LSP
+-- Plug("mason-org/mason.nvim")
+-- Plug("mason-org/mason-lspconfig.nvim")
+-- Plug("neovim/nvim-lspconfig")
+-- Plug("mrcjkb/rustaceanvim")
+--
+-- -- Snippets
+-- Plug("rafamadriz/friendly-snippets")
+-- Plug("L3MON4D3/LuaSnip", { ["tag"] = "v2.*", ["do"] = "make install_jsregexp" })
+--
+-- -- CMP
+-- Plug("saghen/blink.cmp", { ["version"] = "1.*" })
+--
+-- -- Terminal
+-- Plug("akinsho/toggleterm.nvim", { ["tag"] = "*" })
+--
+-- -- Dependency for above
+-- Plug("nvim-lua/plenary.nvim")
+-- -- Project Picker
+-- Plug("ahmedkhalf/project.nvim")
+--
+-- -- Task tracking
+-- Plug()
+--
+-- -- Statusline
+-- Plug("nvim-lualine/lualine.nvim")
+--
+-- -- Debugging
+-- Plug("mfussenegger/nvim-dap")
+-- Plug("rcarriga/nvim-dap-ui")
+-- Plug("theHamsta/nvim-dap-virtual-text")
+-- -- Lua adapter
+-- Plug("jbyuki/one-small-step-for-vimkind")

@@ -28,8 +28,3 @@ set mark-symlinked-directories on
 # also generated as possible completions.
 
 set match-hidden-files on
-
-
-set enable-bracketed-paste On
-
-set editing-mode vi

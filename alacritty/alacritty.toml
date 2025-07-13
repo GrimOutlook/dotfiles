@@ -1,2 +1,4 @@
 [font]
 normal = { family = "JetBrainsMonoNF" }
+[env]
+TERM = "xterm-256color"

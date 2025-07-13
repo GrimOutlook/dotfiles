@@ -1074,7 +1074,7 @@ function blerc/vim-load-hook {
   ## With this setting, M-RET can be used to insert a newline in the
   ## commandline.
 
-  ble-decode/keymap:vi_imap/define-meta-bindings
+ # ble-decode/keymap:vi_imap/define-meta-bindings
 
   ## In this case, C-RET can be optionally configured so that it forcibly
   ## executes the command.
@@ -1142,12 +1142,11 @@ function blerc/vim-load-hook {
 
   ## Cursor settings
 
-  ble-bind -m vi_nmap --cursor 2
-  ble-bind -m vi_imap --cursor 5
-  ble-bind -m vi_omap --cursor 4
-  ble-bind -m vi_xmap --cursor 2
-  ble-bind -m vi_smap --cursor 2
-  ble-bind -m vi_cmap --cursor 0
+  #ble-bind -m vi_nmap --cursor 2
+  #ble-bind -m vi_imap --cursor 5
+  #ble-bind -m vi_omap --cursor 4
+  #ble-bind -m vi_xmap --cursor 2
+  #ble-bind -m vi_cmap --cursor 0
 
   ## DECSCUSR setting
   ##
@@ -1201,9 +1200,9 @@ function blerc/vim-load-hook {
 
   # vim-surround
 
-  ble-import vim-surround
-  bleopt vim_surround_45:=$'$( \r )'
-  bleopt vim_surround_61:=$'$(( \r ))'
+  #ble-import vim-surround
+  #bleopt vim_surround_45:=$'$( \r )'
+  #bleopt vim_surround_61:=$'$(( \r ))'
 
   ## vim-arpeggio
 
