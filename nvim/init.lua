@@ -36,6 +36,8 @@ Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
 Plug("nvim-telescope/telescope.nvim", { ['tag'] = '0.1.8' } )
 -- Dependency for above
 Plug("nvim-lua/plenary.nvim")
+-- Project Picker
+Plug('ahmedkhalf/project.nvim')
 
 vim.call('plug#end')
 
@@ -46,6 +48,7 @@ require "user.options"
 require "plugins.alpha"
 require "plugins.mason" -- This must come before mason-lspconfig
 require "plugins.mason-lspconfig"
+require "plugins.projects"
 require "plugins.toggleterm"
 require "plugins.which-key"
 
