@@ -5,7 +5,6 @@ vim.g.mapleader = " "
 vim.call('plug#begin')
 
 -- Themes
-Plug('zaldih/themery.nvim')
 Plug("ellisonleao/gruvbox.nvim")
 
 -- Icons
@@ -47,7 +46,6 @@ require "user.options"
 require "plugins.dashboard-nvim"
 require "plugins.mason" -- This must come before mason-lspconfig
 require "plugins.mason-lspconfig"
-require "plugins.themery"
 require "plugins.toggleterm"
 require "plugins.which-key"
 

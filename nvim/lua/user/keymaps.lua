@@ -48,9 +48,6 @@ map('i', '<C-v>', '<ESC>"+pi')
 -- Plugin Keymaps --------------------------------------------------------------
 --------------------------------------------------------------------------------
 
--- Themery ---------------------------------------------------------------------
-map('n', '<leader>ct', '<CMD>Themery<CR>', { desc = '[themery] Change Themes' })
-
 -- Which-Key -------------------------------------------------------------------
 map('n', '<leader>?', function()
         require("which-key").show({ global = false })
@@ -59,10 +56,10 @@ map('n', '<leader>?', function()
 )
 
 -- Rnvimr ----------------------------------------------------------------------
-map( "n", "<leader>on", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" } )
+map( "n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" } )
 
 -- ToggleTerm ------------------------------------------------------------------
-map("n", "<leader>ot", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
+map("n", "<leader>c", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
 
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
