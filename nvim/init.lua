@@ -39,7 +39,11 @@ Plug("nvim-lua/plenary.nvim")
 -- Project Picker
 Plug('ahmedkhalf/project.nvim')
 
+-- Task tracking
 Plug('Hashino/doing.nvim')
+
+-- Statusline
+Plug('nvim-lualine/lualine.nvim')
 
 vim.call('plug#end')
 
@@ -48,6 +52,7 @@ require "user.autocmds"
 require "user.options"
 
 require "plugins.alpha"
+require "plugins.lualine"
 require "plugins.mason" -- This must come before mason-lspconfig
 require "plugins.mason-lspconfig"
 require "plugins.projects"

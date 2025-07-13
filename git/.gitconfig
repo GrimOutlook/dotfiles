@@ -77,14 +77,14 @@
 
     commitdiff = "!f() { git rev-list --left-right --pretty=oneline \"${1}...${2}\"; }; f"
     changedfiles = "diff-tree --no-commit-id -r --name-only"
-    searchfiles = "log --name-status --source --all -S" 
+    searchfiles = "log --name-status --source --all -S"
     searchtext = "!f() { git grep \"$*\" $(git rev-list --all); }; f"
 
     graph = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(yellow)%ad%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=human --decorate=full --all
 
     diff-commits = "!f() { git rev-list --left-right --pretty=oneline HEAD...origin; }; f"
     diff-no-comment = difftool --extcmd 'difft --ignore-comments'
-    diff-last-commit = diff --cached HEAD^ 
+    diff-last-commit = diff --cached HEAD^
     word-diff = diff -w --word-diff=color --ignore-space-at-eol
 
     amend-all-and-send-please = "!git add-all && git amend && git send-please"
