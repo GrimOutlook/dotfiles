@@ -35,6 +35,8 @@ Plug('rafamadriz/friendly-snippets')
 -- CMP
 Plug("saghen/blink.cmp", {["version"] = '1.*'})
 
+Plug('L3MON4D3/LuaSnip', {['tag']= 'v2.*', ['do']= 'make install_jsregexp'} )
+
 -- Terminal
 Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
 
