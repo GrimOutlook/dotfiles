@@ -28,6 +28,7 @@ Plug("kevinhwang91/rnvimr")
 Plug("mason-org/mason.nvim")
 Plug("mason-org/mason-lspconfig.nvim")
 Plug("neovim/nvim-lspconfig")
+Plug("mrcjkb/rustaceanvim")
 
 -- Snippets
 Plug("rafamadriz/friendly-snippets")
