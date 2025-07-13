@@ -6,6 +6,8 @@
 - [x] Gruvbox
 - [ ] Bufferline/StatusLine/Tabline
 - [x] LSP
+- [ ] Nvim CMP
+- [ ] Luasnip
 - [ ] Noice
 - [ ] Doing.nvim
 - [ ] Rustaceanvim

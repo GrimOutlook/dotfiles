@@ -20,8 +20,10 @@ map('n', '<C-.>', 'tabnext')
 -- Reload configuration without restart nvim
 map('n', '<leader><space>r', ':so %<CR>', {desc = "Reload NeoVim Config"})
 
--- Fast saving with <leader> and space
+-- Fast saving with <leader> and w
 map('n', '<leader>w', ':w<CR>', {desc = "Save"})
+-- Fast saving all files with <leader> and W
+map('n', '<leader>W', ':wa<CR>', {desc = "Save All"})
 
 -- Close current buffer
 map('n', '<leader>q', ':bd<CR>', {desc = "Close Buffer"})

@@ -29,6 +29,12 @@ Plug("mason-org/mason.nvim")
 Plug("mason-org/mason-lspconfig.nvim")
 Plug("neovim/nvim-lspconfig")
 
+-- Snippets
+Plug('rafamadriz/friendly-snippets')
+
+-- CMP
+Plug("saghen/blink.cmp", {["version"] = '1.*'})
+
 -- Terminal
 Plug('akinsho/toggleterm.nvim', {['tag'] = '*'})
 
@@ -52,6 +58,7 @@ require "user.autocmds"
 require "user.options"
 
 require "plugins.alpha"
+require "plugins.blink"
 require "plugins.lualine"
 require "plugins.mason" -- This must come before mason-lspconfig
 require "plugins.mason-lspconfig"
