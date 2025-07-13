@@ -6,12 +6,14 @@
 - [x] Gruvbox
 - [ ] Bufferline/StatusLine/Tabline
 - [x] LSP
-- [ ] Nvim CMP
+- [x] Nvim CMP
 - [ ] Luasnip
 - [ ] Noice
-- [ ] Doing.nvim
-- [ ] Rustaceanvim
-- [ ] Conform
+- [ ] Notifications
+- [ ] Inline diagnostics
+- [x] Doing.nvim
+- [x] Rustaceanvim
+- [x] Conform
 - [x] Navigation keymaps
 - [ ] Gitsigns
 - [x] Overlay terminal
