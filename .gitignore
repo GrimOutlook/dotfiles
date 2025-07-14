@@ -15,11 +15,13 @@
 !/eza/**
 !/fuzzel/**
 !/git/**
+!/gitui/**
 !/harper-ls/**
 !/hypr/**
 !/inputrc/**
 !/misc/**
 !/nvim/**
+!/ranger/**
 !/starship/**
 !/tmux/**
 !/tmux/**

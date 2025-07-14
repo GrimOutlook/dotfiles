@@ -37,4 +37,4 @@
 
 | Keymap | Action |
 | --- | --- |
-| <leader>`| Grep word under cursor in CWD |
+| go | Sort selection |

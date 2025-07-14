@@ -13,15 +13,6 @@ local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 -- General settings
 -----------------------------------------------------------
 
--- Highlight on yank
-augroup('YankHighlight', { clear = true })
-autocmd('TextYankPost', {
-  group = 'YankHighlight',
-  callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '1000' })
-  end
-})
-
 -- Remove trailing whitespace on save
 autocmd('BufWritePre', {
   pattern = '',

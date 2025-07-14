@@ -19,8 +19,14 @@ return {
             { find = "; before #%d+" },
           },
         },
-        view = "mini",
+        filter = {
+          event = "lsp",
+          kind = "progress",
+          find = "jdtls",
+        },
+        opts = { skip = true },
       },
+        view = "mini",
     },
     presets = {
       bottom_search = true,

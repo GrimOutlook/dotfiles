@@ -22,7 +22,7 @@ require("config.autocmds")
 -- Plug("saghen/blink.cmp", { ["version"] = "1.*" })
 --
 -- -- Terminal
--- Plug("akinsho/toggleterm.nvim", { ["tag"] = "*" })
+-- Plug()
 --
 -- -- Dependency for above
 -- Plug("nvim-lua/plenary.nvim")

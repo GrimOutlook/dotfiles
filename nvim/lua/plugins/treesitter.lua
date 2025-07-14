@@ -14,4 +14,32 @@ return {
     require("nvim-treesitter.query_predicates")
   end,
   cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+  opts = {
+    highlight = { enable = true },
+    indent = { enable = true },
+    -- Put any languages in here that we don't have LSP configurations for.
+    ensure_installed = {
+      "bash",
+      "c",
+      "diff",
+      "html",
+      "javascript",
+      "jsdoc",
+      "json",
+      "jsonc",
+      "markdown",
+      "markdown_inline",
+      "printf",
+      "python",
+      "query",
+      "regex",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "vimdoc",
+      "xml",
+      "yaml",
+    },
+  },
 }

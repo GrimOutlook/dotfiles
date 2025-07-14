@@ -6,6 +6,7 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
+-- stylua: ignore start
 -- General Keymaps -------------------------------------------------------------
 -- Move around splits using Ctrl + {h,j,k,l}
 map("n", "<C-h>", "<C-w>h")
@@ -14,8 +15,8 @@ map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
 -- Navigate tabs with Ctrl + , and Ctrl + .
-map("n", "<C-,>", "<CMD>tabprevious<CR>")
-map("n", "<C-.>", "<CMD>tabnext<CR>")
+map({"n"}, "<C-,>", "<CMD>BufferLineCycleNext<CR>")
+map({"n"}, "<C-.>", "<CMD>BufferLineCyclePrev<CR>")
 
 -- Reload configuration without restart nvim
 map("n", "<leader><space>r", ":so %<CR>", { desc = "Reload NeoVim Config" })
@@ -27,7 +28,6 @@ map("n", "<leader>W", ":wa<CR>", { desc = "Save All" })
 
 -- Close current buffer
 map("n", "<leader>q", ":bd<CR>", { desc = "Close Buffer" })
-
 -- Close all windows and exit from Neovim with <leader> and q
 map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvim" })
 
@@ -35,23 +35,23 @@ map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvim" })
 map("n", "j", "gj")
 map("n", "k", "gk")
 
--- Paste from nvim's system keyboard
--- NOTE: Fixes the problem with alacrity/nvim pasting incorrectly when there
--- are newlines which is only seen on some of my systems
--- NOTE: IT HAS TO DO WITH C-S-v NOT C-V.
-map("n", "<C-v>", '"+p')
-map("i", "<C-v>", '<ESC>"+pi')
-
+-- Clear search highlighting with escape
 map("n", "<esc>", "<CMD>nohlsearch<CR>")
+
+-- Move lines in visual selection mode
+map({ "n", "v" }, "<C-S-J>", ":m '>+1<CR>gv=gv")
+map({ "n", "v" }, "<C-S-K>", ":m '<-2<CR>gv=gv")
+map({ "n", "v" }, "<C-S-H>", "<gv")
+map({ "n", "v" }, "<C-S-L>", ">gv")
 
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------
 --------------------------------------------------------------------------------
 
+-- Buffer-line -----------------------------------------------------------------
+
 -- Which-Key -------------------------------------------------------------------
-map("n", "<leader>?", function()
-  require("which-key").show({ global = false })
-end, { desc = "[which-key] Buffer Local Keymaps" })
+map("n", "<leader>?", function() require("which-key").show({ global = false }) end, { desc = "[which-key] Buffer Local Keymaps" })
 
 -- Rnvimr ----------------------------------------------------------------------
 map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
@@ -61,7 +61,8 @@ map("n", "<leader>c", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
-  map("t", "<esc>", [[<Cmd>ToggleTerm<CR>]], opts)
+  map("t", "<C-,>", [[<Cmd>ToggleTerm<CR>]], opts)
+  map("t", "<C-.>", [[<Cmd>ToggleTerm<CR>]], opts)
   map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
   map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
   map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
@@ -70,68 +71,78 @@ end
 -- Only apply these mappings to toggleterm
 vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 
--- Telescope Pickers -----------------------------------------------------------
--- local builtin = require("telescope.builtin")
--- -- General
--- map("n", "<leader>f", builtin.find_files, { desc = "[telescope] Files" })
--- map("n", "<leader>/", builtin.current_buffer_fuzzy_find, { desc = "[telescope] Grep In Buffer" })
--- map({ "n", "v" }, "<leader>`", builtin.grep_string, { desc = "[telescope] Grep String" })
--- map("n", "<leader>r", function()
---   builtin.oldfiles({ cwd_only = true })
--- end, { desc = "[telescope] Recent Files (CWD)" })
--- map("n", "<leader>m", builtin.marks, { desc = "[telescope] Marks" })
--- map("n", '<leader>"', builtin.registers, { desc = "[telescope] Registers" })
--- map("n", "<leader><space>ti", builtin.git_files, { desc = "[telescope] Git Files" })
--- map("n", "<leader><space>tG", builtin.live_grep, { desc = "[telescope] Grep (CWD)" })
--- map("n", "<leader><space>tb", builtin.buffers, { desc = "[telescope] Buffers" })
--- map("n", "<leader><space>tR", builtin.oldfiles, { desc = "[telescope] Recent Files (Global)" })
--- map("n", "<leader><space>tj", builtin.jumplist, { desc = "[telescope] Jumplist" })
--- map("n", "<leader><space>tl", builtin.loclist, { desc = "[telescope] Location List" })
--- map("n", "<leader><space>tp", builtin.pickers, { desc = "[telescope] Pickers" })
--- -- General Extended
--- map("n", "<leader><space>tT", builtin.colorscheme, { desc = "[telescope] Themes" })
--- map("n", "<leader><space>tM", builtin.man_pages, { desc = "[telescope] Man Pages" })
--- map("n", "<leader><space>tK", builtin.keymaps, { desc = "[telescope] Keymaps" })
--- map("n", "<leader><space>tc", builtin.commands, { desc = "[telescope] Commands" })
--- map("n", "<leader><space>tA", builtin.autocommands, { desc = "[telescope] Autocommands" })
--- map("n", "<leader><space>tO", builtin.vim_options, { desc = "[telescope] Vim Options" })
--- map("n", "<leader><space>tH", builtin.help_tags, { desc = "[telescope] Help" })
--- map("n", "<leader><space>tC", builtin.command_history, { desc = "[telescope] Command History" })
--- map("n", "<leader><space>tS", builtin.search_history, { desc = "[telescope] Search History" })
--- -- Issues
--- map("n", "<leader>a", builtin.quickfix, { desc = "[telescope] Quickfix" })
--- map("n", "<leader><space>tQ", builtin.quickfixhistory, { desc = "[telescope] Quickfix History" })
--- map("n", "<leader>x", builtin.diagnostics, { desc = "[telescope] Diagnostics" })
--- -- Git Pickers
--- map("n", "<leader><space>gc", builtin.git_bcommits, { desc = "[telescope] Git Commits (Buffer)" })
--- map("n", "<leader><space>gC", builtin.git_commits, { desc = "[telescope] Git Commits (All)" })
--- map("n", "<leader><space>gb", builtin.git_branches, { desc = "[telescope] Git Branches" })
--- map("n", "<leader><space>gS", builtin.git_status, { desc = "[telescope] Git Status" })
--- -- LSP
--- map("n", "<leader>gt", builtin.treesitter, { desc = "[telescope] Symbols" })
--- map("n", "<leader>gr", builtin.lsp_references, { desc = "[telescope] Goto Reference" })
--- map("n", "<leader>gi", builtin.lsp_implementations, { desc = "[telescope] Goto Implementations" })
--- map("n", "<leader>gd", builtin.lsp_definitions, { desc = "[telescope] Goto Definition" })
--- map("n", "<leader>gt", builtin.lsp_type_definitions, { desc = "[telescope] Goto Type Definition" })
--- map("n", "<leader>gw", builtin.lsp_document_symbols, { desc = "[telescope] LSP Document Symbols" })
--- map("n", "<leader>gW", builtin.lsp_workspace_symbols, { desc = "[telescope] LSP Workspace Symbols" })
+-- Snacks Pickers --------------------------------------------------------------
+-- General
+map("n", "<leader>f", function() require("snacks").picker.files() end, { desc = "Files" })
+map("n", "<leader>r", function() require("snacks").picker.recent({ cwd = true }) end, { desc = "Recent Files (CWD)" })
+map("n", "<leader>n", function() require("snacks").picker.notifications() end, { desc = "Recent Files (CWD)" })
+
+-- Extras
+map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = "Icons" })
+map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
+map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Help Pages" })
+
+-- Text searching
+map("n", "<leader>/", function() require("snacks").picker.grep() end, { desc = "Search (buffer)" })
+map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep() end, { desc = "Search (CWD)" })
+map("n", "<leader>?", function() require("snacks").picker.grep() end, { desc = "Search word (Buffer)" })
+map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
+
+-- Issues
+map("n", "<leader>a", function() require("snacks").picker.qflist() end, { desc = "Quickfix" })
+map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer() end, { desc = "Buffer Diagnostics" })
+map("n", "<leader>X", function() require("snacks").picker.diagnostics() end, { desc = "Diagnostics" })
+
+-- LSP
+map("n", "gd", function() Snacks.picker.lsp_definitions()  end, { desc = "Goto Definition" })
+map("n", "gD", function() Snacks.picker.lsp_declarations()  end, { desc = "Goto Declaration" })
+map("n", "gr", function() Snacks.picker.lsp_references()  end, { nowait = true, desc = "References" })
+map("n", "gI", function() Snacks.picker.lsp_implementations()  end, { desc = "Goto Implementation" })
+map("n", "gy", function() Snacks.picker.lsp_type_definitions()  end, { desc = "Goto T[y]pe Definition" })
+map("n", "<leader>ss", function() Snacks.picker.lsp_symbols()  end, { desc = "LSP Symbols" })
+map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols()  end, { desc = "LSP Workspace Symbols" })
 
 -- Debuggers
-vim.keymap.set("n", "<leader>db", require("dap").toggle_breakpoint, { noremap = true })
-vim.keymap.set("n", "<leader>dc", require("dap").continue, { noremap = true })
-vim.keymap.set("n", "<leader>do", require("dap").step_over, { noremap = true })
-vim.keymap.set("n", "<leader>di", require("dap").step_into, { noremap = true })
+map("n", "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Breakpoint Condition" })
+map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+map("n", "<leader>dc", function() require("dap").continue() end, { desc = "Run/Continue" })
+map("n", "<leader>da", function() require("dap").continue({ before = get_args }) end, { desc = "Run with Args" })
+map("n", "<leader>dC", function() require("dap").run_to_cursor() end, { desc = "Run to Cursor" })
+map("n", "<leader>dg", function() require("dap").goto_() end, { desc = "Go to Line (No Execute)" })
+map("n", "<leader>di", function() require("dap").step_into() end, { desc = "Step Into" })
+map("n", "<leader>dj", function() require("dap").down() end, { desc = "Down" })
+map("n", "<leader>dk", function() require("dap").up() end, { desc = "Up" })
+map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "Run Last" })
+map("n", "<leader>do", function() require("dap").step_out() end, { desc = "Step Out" })
+map("n", "<leader>dO", function() require("dap").step_over() end, { desc = "Step Over" })
+map("n", "<leader>dP", function() require("dap").pause() end, { desc = "Pause" })
+map("n", "<leader>dr", function() require("dap").repl.toggle() end, { desc = "Toggle REPL" })
+map("n", "<leader>ds", function() require("dap").session() end, { desc = "Session" })
+map("n", "<leader>dt", function() require("dap").terminate() end, { desc = "Terminate" })
+map("n", "<leader>dw", function() require("dap.ui.widgets").hover() end, { desc = "Widgets" })
 
-vim.keymap.set("n", "<leader>dl", function()
-  require("osv").launch({ port = 8086 })
-end, { noremap = true })
+-- Inc-rename
+map({ "n", "v", "x" }, "cr", function()
+  local inc_rename = require("inc_rename")
+  return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+end, { desc = "Rename (inc-rename.nvim)" })
 
-vim.keymap.set("n", "<leader>dw", function()
-  local widgets = require("dap.ui.widgets")
-  widgets.hover()
-end)
+-- Git-Gui
+map("n", "<leader>g", function() Snacks.terminal({ "gitui" }) end, { desc = "GitUi (cwd)", })
 
-vim.keymap.set("n", "<leader>df", function()
-  local widgets = require("dap.ui.widgets")
-  widgets.centered_float(widgets.frames)
-end)
+-- Conform
+map({"n", "v", "x"}, "<leader>F", function()
+  require("conform").format({ async = true }, function(err)
+    if not err then
+      local mode = vim.api.nvim_get_mode().mode
+      if vim.startswith(string.lower(mode), "v") then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+      end
+    end
+  end)
+end, { desc = "Format code" })
+
+-- Sort
+map ({"v", "x"}, "<leader>S", "<CMD>Sort<CR>", {desc = "Sort"})
+
+-- stylua: ignore end
