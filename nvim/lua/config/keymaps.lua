@@ -48,7 +48,8 @@ map({ "n", "v" }, "<C-S-L>", ">gv")
 -- Plugin Keymaps --------------------------------------------------------------
 --------------------------------------------------------------------------------
 
--- Buffer-line -----------------------------------------------------------------
+-- Diagnostics
+map("n", "<leader>D", function() vim.diagnostic.open_float() end, {desc = "Show Diagnostics"})
 
 -- Which-Key -------------------------------------------------------------------
 map("n", "<leader>?", function() require("which-key").show({ global = false }) end, { desc = "[which-key] Buffer Local Keymaps" })
