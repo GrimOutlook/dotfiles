@@ -8,15 +8,15 @@ end
 
 -- stylua: ignore start
 -- General Keymaps -------------------------------------------------------------
--- Move around splits using Ctrl + {h,j,k,l}
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
+-- Move around splits using Alt + {h,j,k,l}
+map("n", "<A-h>", "<C-w>h")
+map("n", "<A-j>", "<C-w>j")
+map("n", "<A-k>", "<C-w>k")
+map("n", "<A-l>", "<C-w>l")
 
--- Navigate tabs with Ctrl + , and Ctrl + .
-map({"n"}, "<C-,>", "<CMD>BufferLineCycleNext<CR>")
-map({"n"}, "<C-.>", "<CMD>BufferLineCyclePrev<CR>")
+-- Navigate tabs with Alt + , and Alt + .
+map("n", "<A-.>", "<CMD>BufferLineCycleNext<CR>")
+map("n", "<A-,>", "<CMD>BufferLineCyclePrev<CR>")
 
 -- Reload configuration without restart nvim
 map("n", "<leader><space>r", ":so %<CR>", { desc = "Reload NeoVim Config" })
@@ -39,10 +39,10 @@ map("n", "k", "gk")
 map("n", "<esc>", "<CMD>nohlsearch<CR>")
 
 -- Move lines in visual selection mode
-map({ "n", "v" }, "<C-S-J>", ":m '>+1<CR>gv=gv")
-map({ "n", "v" }, "<C-S-K>", ":m '<-2<CR>gv=gv")
-map({ "n", "v" }, "<C-S-H>", "<gv")
-map({ "n", "v" }, "<C-S-L>", ">gv")
+map({ "n", "v" }, "<A-S-J>", ":m '>+1<CR>gv=gv")
+map({ "n", "v" }, "<A-S-K>", ":m '<-2<CR>gv=gv")
+map({ "n", "v" }, "<A-S-H>", "<gv")
+map({ "n", "v" }, "<A-S-L>", ">gv")
 
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------
@@ -62,12 +62,12 @@ map("n", "<leader>c", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
-  map("t", "<C-,>", [[<Cmd>ToggleTerm<CR>]], opts)
-  map("t", "<C-.>", [[<Cmd>ToggleTerm<CR>]], opts)
-  map("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-  map("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-  map("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-  map("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  map("t", "<A-,>", [[<Cmd>ToggleTerm<CR>]], opts)
+  map("t", "<A-.>", [[<Cmd>ToggleTerm<CR>]], opts)
+  map("t", "<A-h>", [[<Cmd>wincmd h<CR>]], opts)
+  map("t", "<A-j>", [[<Cmd>wincmd j<CR>]], opts)
+  map("t", "<A-k>", [[<Cmd>wincmd k<CR>]], opts)
+  map("t", "<A-l>", [[<Cmd>wincmd l<CR>]], opts)
 end
 -- Only apply these mappings to toggleterm
 vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
