@@ -88,7 +88,7 @@ map("n", "<leader>?", function() require("which-key").show({ global = false }) e
 map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
 
 -- ToggleTerm ------------------------------------------------------------------
-map("n", "<leader>c", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
+map("n", "<leader>t", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
@@ -125,13 +125,13 @@ map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer() e
 map("n", "<leader>X", function() require("snacks").picker.diagnostics() end, { desc = "Diagnostics" })
 
 -- LSP
-map("n", "gd", function() Snacks.picker.lsp_definitions()  end, { desc = "Goto Definition" })
-map("n", "gD", function() Snacks.picker.lsp_declarations()  end, { desc = "Goto Declaration" })
-map("n", "gr", function() Snacks.picker.lsp_references()  end, { nowait = true, desc = "References" })
-map("n", "gI", function() Snacks.picker.lsp_implementations()  end, { desc = "Goto Implementation" })
-map("n", "gy", function() Snacks.picker.lsp_type_definitions()  end, { desc = "Goto T[y]pe Definition" })
-map("n", "<leader>ss", function() Snacks.picker.lsp_symbols()  end, { desc = "LSP Symbols" })
-map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols()  end, { desc = "LSP Workspace Symbols" })
+map("n", "gd", function() require("snacks").picker.lsp_definitions()  end, { desc = "Goto Definition" })
+map("n", "gD", function() require("snacks").picker.lsp_declarations()  end, { desc = "Goto Declaration" })
+map("n", "gr", function() require("snacks").picker.lsp_references()  end, { nowait = true, desc = "References" })
+map("n", "gI", function() require("snacks").picker.lsp_implementations()  end, { desc = "Goto Implementation" })
+map("n", "gy", function() require("snacks").picker.lsp_type_definitions()  end, { desc = "Goto T[y]pe Definition" })
+map("n", "<leader>ss", function() require("snacks").picker.lsp_symbols()  end, { desc = "LSP Symbols" })
+map("n", "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols()  end, { desc = "LSP Workspace Symbols" })
 
 -- Debuggers
 map("n", "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Breakpoint Condition" })
