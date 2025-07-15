@@ -8,15 +8,11 @@ end
 
 -- stylua: ignore start
 -- General Keymaps -------------------------------------------------------------
--- Move around splits using Alt + {h,j,k,l}
-map("n", "<A-h>", "<C-w>h")
-map("n", "<A-j>", "<C-w>j")
-map("n", "<A-k>", "<C-w>k")
-map("n", "<A-l>", "<C-w>l")
-
--- Navigate tabs with Alt + , and Alt + .
-map("n", "<A-.>", "<CMD>BufferLineCycleNext<CR>")
-map("n", "<A-,>", "<CMD>BufferLineCyclePrev<CR>")
+-- Move around splits using Ctrl + {h,j,k,l}
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 -- Reload configuration without restart nvim
 map("n", "<leader><space>r", ":so %<CR>", { desc = "Reload NeoVim Config" })
@@ -26,23 +22,57 @@ map("n", "<leader>w", ":w<CR>", { desc = "Save" })
 -- Fast saving all files with <leader> and W
 map("n", "<leader>W", ":wa<CR>", { desc = "Save All" })
 
+map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "[<TAB>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "]<TAB>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- Close current buffer
-map("n", "<leader>q", ":bd<CR>", { desc = "Close Buffer" })
+map("n", "<leader>q", function() require("snacks").bufdelete() end, { desc = "Close Buffer" })
 -- Close all windows and exit from Neovim with <leader> and q
 map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvim" })
 
 -- Make normal j and k presses work with wrapped words
-map("n", "j", "gj")
-map("n", "k", "gk")
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true})
+map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true})
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true})
+map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true})
+
 
 -- Clear search highlighting with escape
 map("n", "<esc>", "<CMD>nohlsearch<CR>")
 
--- Move lines in visual selection mode
-map({ "n", "v" }, "<A-S-J>", ":m '>+1<CR>gv=gv")
-map({ "n", "v" }, "<A-S-K>", ":m '<-2<CR>gv=gv")
-map({ "n", "v" }, "<A-S-H>", "<gv")
-map({ "n", "v" }, "<A-S-L>", ">gv")
+-- Move Lines
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+
+-- Add undo break-points
+map("i", ",", ",<c-g>u")
+map("i", ".", ".<c-g>u")
+map("i", ";", ";<c-g>u")
+
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
+-- commenting
+map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
+map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------
