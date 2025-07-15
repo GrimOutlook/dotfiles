@@ -90,11 +90,6 @@ return {
     end,
   },
   {
-  "mason-org/mason-lspconfig.nvim",
-  opts =  {ensure_installed =  { "codelldb" }
-  }
-},
-  {
     "nvim-neotest/neotest",
     opts = {
       adapters = {

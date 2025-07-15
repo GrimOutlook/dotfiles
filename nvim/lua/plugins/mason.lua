@@ -7,11 +7,10 @@ return {
   -- names or dap names.
   "WhoIsSethDaniel/mason-tool-installer.nvim",
   dependencies = {
-    {
-      "mason-org/mason-lspconfig.nvim",
-      version = "^1.0.0",
-    },
-    { "neovim/nvim-lspconfig", version = "2.2.0" },
+    -- {
+    --   "mason-org/mason-lspconfig.nvim",
+    --   version = "^1.0.0",
+    -- },
     {
       "mason-org/mason.nvim",
       version = "^1.0.0",

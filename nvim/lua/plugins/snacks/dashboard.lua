@@ -33,7 +33,7 @@ return {
       sections = {
         {
           section = "terminal",
-          cmd = "/usr/bin/cat ~/.config/nvim/resources/wall.output",
+          cmd = "/usr/bin/cat ~/.config/nvim/resources/wall.output; sleep 0.1",
           padding = 1,
           height = 30,
         },

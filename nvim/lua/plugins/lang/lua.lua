@@ -43,10 +43,6 @@ return {
     },
   },
   {
-  "mason-org/mason-lspconfig.nvim",
-  opts = { ensure_installed = { "stylua", "lua-language-server" }
-}},
-  {
     "mfussenegger/nvim-dap",
     dependencies = {
       {
