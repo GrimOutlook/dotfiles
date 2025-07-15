@@ -80,16 +80,16 @@ map("n", "<leader>n", function() require("snacks").picker.notifications() end, {
 -- Extras
 map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = "Icons" })
 map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
-map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Help Pages" })
+map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
 
 -- Text searching
-map("n", "<leader>/", function() require("snacks").picker.grep() end, { desc = "Search (buffer)" })
-map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep() end, { desc = "Search (CWD)" })
-map("n", "<leader>?", function() require("snacks").picker.grep() end, { desc = "Search word (Buffer)" })
-map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
+map("n", "<leader>/", function() require("snacks").picker.grep({buf = 0}) end, { desc = "Search (buffer)" })
+map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep_word({buf = 0}) end, { desc = "Search Word (Buffer)" })
+map("n", "<leader>?", function() require("snacks").picker.grep({cwd = true}) end, { desc = "Search (CWD)" })
+map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word({cwd = true}) end, { desc = "Search word (CWD)" })
 
 -- Issues
-map("n", "<leader>a", function() require("snacks").picker.qflist() end, { desc = "Quickfix" })
+map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action() end, { desc = "Code Actions" })
 map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer() end, { desc = "Buffer Diagnostics" })
 map("n", "<leader>X", function() require("snacks").picker.diagnostics() end, { desc = "Diagnostics" })
 
