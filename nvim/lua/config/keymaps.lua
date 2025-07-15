@@ -153,13 +153,12 @@ map("n", "<leader>dt", function() require("dap").terminate() end, { desc = "Term
 map("n", "<leader>dw", function() require("dap.ui.widgets").hover() end, { desc = "Widgets" })
 
 -- Inc-rename
-map({ "n", "v", "x" }, "cr", function()
-  local inc_rename = require("inc_rename")
-  return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
-end, { desc = "Rename (inc-rename.nvim)" })
+vim.keymap.set("n", "cr", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { desc = "Rename symbol", expr = true })
 
 -- Git-Gui
-map("n", "<leader>g", function() Snacks.terminal({ "gitui" }) end, { desc = "GitUi (cwd)", })
+map("n", "<leader>g", function() require("snacks").terminal({ "gitui" }) end, { desc = "GitUi (cwd)", })
 
 -- Conform
 map({"n", "v", "x"}, "<leader>F", function()
