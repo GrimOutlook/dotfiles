@@ -33,10 +33,7 @@ return {
       sections = {
         {
           section = "terminal",
-          -- NOTE:
-          -- `--probe off` is needed or else the picture takes ~5-10 seconds to
-          -- display
-          cmd = "chafa ~/.config/nvim/resources/wall.jpg --probe off --format symbols --symbols vhalf --size 60x30 --stretch; sleep .5",
+          cmd = "/usr/bin/cat ~/.config/nvim/resources/wall.output",
           padding = 1,
           height = 30,
         },
