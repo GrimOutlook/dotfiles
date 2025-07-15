@@ -1,4 +1,8 @@
 return {
   "tenxsoydev/karen-yank.nvim",
-  config = true
+  config = {
+    mappings = {
+      disable = { "c" },
+    },
+  },
 }
