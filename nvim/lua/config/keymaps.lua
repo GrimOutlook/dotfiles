@@ -27,8 +27,25 @@ map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "[<TAB>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "]<TAB>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+
 -- Close current buffer
-map("n", "<leader>q", function() require("snacks").bufdelete() end, { desc = "Close Buffer" })
+-- If this is the last buffer, return to the dashboard.
+map("n", "<leader>q", function()
+    local num_listed_buffers = #vim.tbl_filter(function(bufnr)
+        return vim.api.nvim_buf_get_option(bufnr, "buflisted")
+    end, vim.api.nvim_list_bufs())
+    if vim.bo.filetype ~= "snacks_dashboard"  then
+        if num_listed_buffers > 0 then
+            require("snacks").bufdelete()
+        end
+        if num_listed_buffers <= 1 then
+            require("snacks").dashboard()
+        end
+    else
+        vim.cmd("qa")
+    end
+end, { desc = "Close Buffer" })
+
 -- Close all windows and exit from Neovim with <leader> and q
 map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvim" })
 
@@ -63,9 +80,6 @@ map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
--- save file
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
@@ -73,6 +87,18 @@ map("v", ">", ">gv")
 -- commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- Toggle wrap
+map({"n", "i", "v", "x"}, "<C-A-W>",
+function()
+  vim.opt.wrap = not vim.opt.wrap:get()
+  -- Optional: Provide feedback to the user
+  if vim.opt.wrap:get() then
+    print("Wrap enabled")
+  else
+    print("Wrap disabled")
+  end
+end, { desc = "Toggle word wrap" })
 
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------
@@ -171,6 +197,13 @@ map({"n", "v", "x"}, "<leader>F", function()
     end
   end)
 end, { desc = "Format code" })
+map({"n", "v", "x"}, "<leader><C-F>", function()
+  local bufnr = 0
+  local last_line_number = vim.api.nvim_buf_line_count(bufnr)
+  local last_line = vim.api.nvim_buf_get_lines(bufnr, last_line_number - 1, last_line_number, true)
+  local last_line_length = #last_line - 1
+  require("conform").format({ async = true, range = { start = {1, 0}, ['end'] = {last_line_number, last_line_length} } })
+end, { desc = "Format Whole File" })
 
 -- Sort
 map ({"v", "x"}, "<leader>S", "<CMD>Sort<CR>", {desc = "Sort"})
