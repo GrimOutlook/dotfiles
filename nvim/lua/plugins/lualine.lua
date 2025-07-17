@@ -30,38 +30,35 @@ return {
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch" },
-
         lualine_c = {
+          require("doing").status,
+        },
+
+        lualine_x = {
           {
             "diagnostics",
           },
           { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
         },
-        lualine_x = {
-          Snacks.profiler.status(),
+        lualine_y = {
+          require("snacks").profiler.status(),
           -- stylua: ignore
           {
             function() return require("noice").api.status.command.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = function() return { fg = Snacks.util.color("Statement") } end,
-          },
-          -- stylua: ignore
-          {
-            function() return require("noice").api.status.mode.get() end,
-            cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = function() return { fg = Snacks.util.color("Constant") } end,
+            color = function() return { fg = require("snacks").util.color("Statement") } end,
           },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
             cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = function() return { fg = Snacks.util.color("Debug") } end,
+            color = function() return { fg = require("snacks").util.color("Debug") } end,
           },
           -- stylua: ignore
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = function() return { fg = Snacks.util.color("Special") } end,
+            color = function() return { fg = require("snacks").util.color("Special") } end,
           },
           {
             "diff",
@@ -77,12 +74,21 @@ return {
             end,
           },
         },
-        lualine_y = {
+        lualine_z = {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
-        },
-        lualine_z = {
-          require("doing").status,
+          {
+            function()
+              local line = vim.api.nvim_get_current_line()
+              local col = vim.api.nvim_win_get_cursor(0)[2] -- 0 is current window, [2] is column (0-indexed)
+
+              local char = string.sub(line, col + 1, col + 1) -- Lua strings are 1-indexed
+              local char_code = vim.fn.char2nr(char)
+              local hex = string.format("0x%x", char_code)
+
+              return string.format("<%s> Hex %s", char, string.upper(hex))
+            end,
+          },
         },
       },
       extensions = { "neo-tree", "lazy", "fzf" },
