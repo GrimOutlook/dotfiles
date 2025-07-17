@@ -77,18 +77,6 @@ return {
         lualine_z = {
           { "progress", separator = " ", padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
-          {
-            function()
-              local line = vim.api.nvim_get_current_line()
-              local col = vim.api.nvim_win_get_cursor(0)[2] -- 0 is current window, [2] is column (0-indexed)
-
-              local char = string.sub(line, col + 1, col + 1) -- Lua strings are 1-indexed
-              local char_code = vim.fn.char2nr(char)
-              local hex = string.format("0x%x", char_code)
-
-              return string.format("<%s> Hex %s", char, string.upper(hex))
-            end,
-          },
         },
       },
       extensions = { "neo-tree", "lazy", "fzf" },
