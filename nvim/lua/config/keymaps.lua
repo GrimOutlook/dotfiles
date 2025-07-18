@@ -139,11 +139,11 @@ map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = 
 map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
 map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
 
--- Text searching
-map("n", "<leader>/", function() require("snacks").picker.grep({buf = 0}) end, { desc = "Search (buffer)" })
-map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep_word({buf = 0}) end, { desc = "Search Word (Buffer)" })
-map("n", "<leader>?", function() require("snacks").picker.grep({cwd = true}) end, { desc = "Search (CWD)" })
-map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word({cwd = true}) end, { desc = "Search word (CWD)" })
+-- -- Text searching
+-- map("n", "<leader>/", function() require("snacks").picker.grep({buf = 0}) end, { desc = "Search (buffer)" })
+-- map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep_word({buf = 0}) end, { desc = "Search Word (Buffer)" })
+-- map("n", "<leader>?", function() require("snacks").picker.grep({cwd = true}) end, { desc = "Search (CWD)" })
+-- map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word({cwd = true}) end, { desc = "Search word (CWD)" })
 
 -- Issues
 map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action() end, { desc = "Code Actions" })
@@ -210,9 +210,9 @@ map ({"v", "x"}, "<leader>S", "<CMD>Sort<CR>", {desc = "Sort"})
 
 -- Overseer
 -- Pick and run task
-map ({"n"}, "<leader>O", "<CMD>OverseerRun<CR>", {desc = "Run Quick Task"})
+map ("n", "<leader>O", "<CMD>OverseerRun<CR>", {desc = "Run Quick Task"})
 -- Run last task
-map({"n"}, "<leader>o", function()
+map("n", "<leader>o", function()
   local overseer = require("overseer")
   local tasks = overseer.list_tasks({ recent_first = true })
   if vim.tbl_isempty(tasks) then
@@ -221,5 +221,11 @@ map({"n"}, "<leader>o", function()
     overseer.run_action(tasks[1], "restart")
   end
 end, { desc = "Run Last Task" })
+
+-- Spectre
+map("n", "<leader>/", function() require("spectre").open_file_search({select_word=true}) end, { desc = "Search (buffer)" })
+map({ "v", "x" }, "<leader>/", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search Word (Buffer)" })
+map("n", "<leader>?", function() require("spectre").open_visual({select_word=true}) end, { desc = "Search (CWD)" })
+map({ "v", "x" }, "<leader>?", '<cmd>lua require("spectre").open_file_search()<CR>', { desc = "Search word (CWD)" })
 
 -- stylua: ignore end

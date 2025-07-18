@@ -35,6 +35,7 @@
 
 ## Keymaps
 
-| Keymap | Action |
-| --- | --- |
-| go | Sort selection |
+| Keymap | Action | Context|
+| --- | --- | --- |
+| go | Sort selection | |
+| Alt-h | Toggle hidden files | Snacks Picker |
