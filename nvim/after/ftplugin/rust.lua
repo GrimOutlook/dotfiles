@@ -7,3 +7,8 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
+
+-- Navigate to related error
+vim.keymap.set("n", "<leader>cl", function()
+  vim.cmd.RustLsp("relatedDiagnostics")
+end, { silent = true, buffer = bufnr })

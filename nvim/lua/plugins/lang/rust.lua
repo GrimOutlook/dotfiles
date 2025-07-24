@@ -22,7 +22,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^4",
+    version = "^6",
     ft = { "rust" },
     opts = {
       server = {
@@ -86,7 +86,6 @@ return {
       opts.dap = {
         adapter = require("rustaceanvim.config").get_codelldb_adapter(codelldb, library_path),
       }
-      vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
     end,
   },
   {
