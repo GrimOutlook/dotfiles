@@ -136,6 +136,7 @@ map("n", "<leader>n", function() require("snacks").picker.notifications() end, {
 
 -- Extras
 map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = "Icons" })
+map("n", "<leader><space>fa", function() require("snacks").picker.autocmds() end, { desc = "Autocmds" })
 map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
 map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
 

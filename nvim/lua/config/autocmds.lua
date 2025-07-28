@@ -7,7 +7,7 @@
 -- https://neovim.io/doc/user/autocmd.html
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("custom_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("grim_" .. name, { clear = true })
 end
 local autocmd = vim.api.nvim_create_autocmd -- Create autocommand
 
