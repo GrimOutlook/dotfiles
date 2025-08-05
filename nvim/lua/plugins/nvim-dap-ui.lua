@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-dap-ui",
-  dependencies = { "nvim-neotest/nvim-nio" },
+  dependencies = { "nvim-neotest/nvim-nio", "mfussenegger/nvim-dap", "folke/lazydev.nvim" },
   -- stylua: ignore
   keys = {
     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
@@ -20,5 +20,8 @@ return {
     dap.listeners.before.event_exited["dapui_config"] = function()
       dapui.close({})
     end
+    require("lazydev").setup({
+      library = { "nvim-dap-ui" },
+    })
   end,
 }

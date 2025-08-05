@@ -36,6 +36,9 @@ local ensure_installed = {
     -- Docker
     "dockerfile-language-server",
     "docker-compose-language-service",
+    -- Groovy
+    "groovy-language-server",
+    "gradle-language-server",
   },
 }
 local dependencies = {
@@ -51,19 +54,26 @@ return {
     "mason-org/mason-lspconfig.nvim",
     version = "^1.0.0",
     dependencies = dependencies,
+    opts = {
+        ensure_installed = {
+            "lua_ls",
+            "groovyls",
+            "gradle_ls",
+        }
+    }
   },
 
-  {
-    -- Used to define tools in configs so you don't have to manually install
-    -- them from the Mason menu.
-    -- NOTE: mason-lspconfig only works for LSP tools. This works for all tool
-    -- catgories.
-    -- NOTE: mason-tool-install.nvim can accept either Mason names, lspconfig
-    -- names or dap names.
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = dependencies,
-    opts = {
-      ensure_installed = ensure_installed,
-    },
-  },
+  -- {
+  --   -- Used to define tools in configs so you don't have to manually install
+  --   -- them from the Mason menu.
+  --   -- NOTE: mason-lspconfig only works for LSP tools. This works for all tool
+  --   -- catgories.
+  --   -- NOTE: mason-tool-install.nvim can accept either Mason names, lspconfig
+  --   -- names or dap names.
+  --   "WhoIsSethDaniel/mason-tool-installer.nvim",
+  --   dependencies = dependencies,
+  --   opts = {
+  --     ensure_installed = ensure_installed,
+  --   },
+  -- },
 }
