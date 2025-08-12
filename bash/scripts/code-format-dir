@@ -1,0 +1,42 @@
+#!/bin/bash
+
+TARGET_DIR=$1
+EXTENSION=$2
+
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "Directory not found: $TARGET_DIR"
+    exit 1
+fi
+
+if [ -x "$EXTENSION" ]; then
+    echo "No extension given"
+    exit 1
+fi
+
+# Lua script to wait for LSP and format
+LUA_SCRIPT="
+function FormatAndWait()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local client = vim.lsp.get_active_clients({ bufnr = bufnr })[1]
+  if client and client.name == 'jdtls' then
+    vim.lsp.buf.format()
+    -- Wait for the format to complete
+    vim.cmd('sleep 500m')
+    vim.cmd('wq')
+  else
+    print('JDTLS not ready for buffer ' .. bufnr)
+    vim.cmd('wq!')
+  end
+end
+vim.cmd('autocmd LspAttach * lua vim.cmd(\"lua FormatAndWait()\")')
+"
+
+# Iterate over all .java files
+fd "$TARGET_DIR" --extension "$EXTENSION" --print0 | while IFS= read -r -d '' file; do
+    echo "Formatting $file..."
+
+    # Use Neovim in headless mode with the Lua script
+    nvim --headless -c "lua ${LUA_SCRIPT}" "$file"
+done
+
+echo "Formatting complete."
