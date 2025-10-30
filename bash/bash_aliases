@@ -50,6 +50,7 @@ alias conf-bashrc='$EDITOR $HOME/.bashrc'
 alias conf-tmux='$EDITOR $HOME/.config/tmux/tmux.conf'
 
 # -- Git -----------------------------------------------------------------------
+alias g='git status'
 alias ca='commit-all'
 alias pa='push-all'
 alias aa='add-all'

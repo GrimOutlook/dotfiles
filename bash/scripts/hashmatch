@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+CHECK_FILE=$1
+SEARCH_DIR=$2
+
+HELP="Usage: hashmatch [FILE] [DIRECTORY]"
+
+if [ -z $CHECK_FILE ] || [ -z $SEARCH_DIR ]; then
+    err $HELP
+    exit 1
+fi
+
+if [ ! -f $CHECK_FILE ]; then
+    err $HELP
+    err "FILE must be a valid file"
+    exit 2
+fi
+
+if [ ! -d $SEARCH_DIR ]; then
+    err $HELP
+    err "DIRECTORY must be a valid directory"
+    exit 3
+fi
+
+CHECKSUM=$(md5sum "$CHECK_FILE" | cut -d' ' -f 1)
+MATCH=$(fd . "$SEARCH_DIR" -t f -x md5sum {} \; | \
+    grep $CHECKSUM | cut -d' ' -f2-)
+
+echo $MATCH
+[ -n $MATCH ]

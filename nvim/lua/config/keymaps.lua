@@ -133,6 +133,7 @@ vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 map("n", "<leader>f", function() require("snacks").picker.files() end, { desc = "Files" })
 map("n", "<leader>r", function() require("snacks").picker.recent({ cwd = true }) end, { desc = "Recent Files (CWD)" })
 map("n", "<leader>n", function() require("snacks").picker.notifications() end, { desc = "Recent Files (CWD)" })
+map("n", "<leader>b", function() require("snacks").picker.buffers({ focus = "list", current = false }) end, { desc = "Buffers" })
 
 -- Extras
 map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = "Icons" })
@@ -152,11 +153,11 @@ map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer() e
 map("n", "<leader>X", function() require("snacks").picker.diagnostics() end, { desc = "Diagnostics" })
 
 -- LSP
-map("n", "gd", function() require("snacks").picker.lsp_definitions()  end, { desc = "Goto Definition" })
-map("n", "gD", function() require("snacks").picker.lsp_declarations()  end, { desc = "Goto Declaration" })
-map("n", "gr", function() require("snacks").picker.lsp_references()  end, { nowait = true, desc = "References" })
-map("n", "gI", function() require("snacks").picker.lsp_implementations()  end, { desc = "Goto Implementation" })
-map("n", "gy", function() require("snacks").picker.lsp_type_definitions()  end, { desc = "Goto T[y]pe Definition" })
+map("n", "gd", function() require("snacks").picker.lsp_definitions({ focus = "list", current = false })  end, { desc = "Goto Definition" })
+map("n", "gD", function() require("snacks").picker.lsp_declarations({ focus = "list", current = false })  end, { desc = "Goto Declaration" })
+map("n", "gr", function() require("snacks").picker.lsp_references({ focus = "list", current = false })  end, { nowait = true, desc = "References" })
+map("n", "gI", function() require("snacks").picker.lsp_implementations({ focus = "list", current = false })  end, { desc = "Goto Implementation" })
+map("n", "gy", function() require("snacks").picker.lsp_type_definitions({ focus = "list", current = false })  end, { desc = "Goto T[y]pe Definition" })
 map("n", "<leader>ss", function() require("snacks").picker.lsp_symbols()  end, { desc = "LSP Symbols" })
 map("n", "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols()  end, { desc = "LSP Workspace Symbols" })
 
