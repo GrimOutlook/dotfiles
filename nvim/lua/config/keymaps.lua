@@ -131,12 +131,13 @@ vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 -- Snacks Pickers --------------------------------------------------------------
 -- General
 map("n", "<leader>f", function() require("snacks").picker.files() end, { desc = "Files" })
-map("n", "<leader>r", function() require("snacks").picker.recent({ cwd = true }) end, { desc = "Recent Files (CWD)" })
-map("n", "<leader>n", function() require("snacks").picker.notifications() end, { desc = "Recent Files (CWD)" })
+map("n", "<leader>r", function() require("snacks").picker.recent({ cwd = true, focus = "list", current = false }) end, { desc = "Recent Files (CWD)" })
+map("n", "<leader>n", function() require("snacks").picker.notifications({ focus = "list" }) end, { desc = "Recent Files (CWD)" })
 map("n", "<leader>b", function() require("snacks").picker.buffers({ focus = "list", current = false }) end, { desc = "Buffers" })
 
 -- Extras
 map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = "Icons" })
+map("n", "<leader>m", function() require("snacks").picker.marks({ focus = "list" }) end, { desc = "Marks" })
 map("n", "<leader><space>fa", function() require("snacks").picker.autocmds() end, { desc = "Autocmds" })
 map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
 map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
@@ -148,9 +149,9 @@ map("n", "<leader>?", function() require("snacks").picker.grep({cwd = true}) end
 map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word({cwd = true}) end, { desc = "Search word (CWD)" })
 
 -- Issues
-map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action() end, { desc = "Code Actions" })
-map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer() end, { desc = "Buffer Diagnostics" })
-map("n", "<leader>X", function() require("snacks").picker.diagnostics() end, { desc = "Diagnostics" })
+map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action({focus = "list"}) end, { desc = "Code Actions" })
+map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer({focus = "list"}) end, { desc = "Buffer Diagnostics" })
+map("n", "<leader>X", function() require("snacks").picker.diagnostics({focus = "list"}) end, { desc = "Diagnostics" })
 
 -- LSP
 map("n", "gd", function() require("snacks").picker.lsp_definitions({ focus = "list", current = false })  end, { desc = "Goto Definition" })
@@ -158,8 +159,8 @@ map("n", "gD", function() require("snacks").picker.lsp_declarations({ focus = "l
 map("n", "gr", function() require("snacks").picker.lsp_references({ focus = "list", current = false })  end, { nowait = true, desc = "References" })
 map("n", "gI", function() require("snacks").picker.lsp_implementations({ focus = "list", current = false })  end, { desc = "Goto Implementation" })
 map("n", "gy", function() require("snacks").picker.lsp_type_definitions({ focus = "list", current = false })  end, { desc = "Goto T[y]pe Definition" })
-map("n", "<leader>ss", function() require("snacks").picker.lsp_symbols()  end, { desc = "LSP Symbols" })
-map("n", "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols()  end, { desc = "LSP Workspace Symbols" })
+map("n", "<leader>ss", function() require("snacks").picker.lsp_symbols({focus = "list"})  end, { desc = "LSP Symbols" })
+map("n", "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols({focus = "list"})  end, { desc = "LSP Workspace Symbols" })
 
 -- Debuggers
 map("n", "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Breakpoint Condition" })
