@@ -5,6 +5,7 @@ export SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null &&
 export PATH+=":$SCRIPT_DIR/bash/scripts/"
 
 export DOTFILES="$SCRIPT_DIR"
+echo "Dotfiles folder: $DOTFILES"
 
 # TODO: Use the install_files variable from below to check what doesn't have an
 # install file.

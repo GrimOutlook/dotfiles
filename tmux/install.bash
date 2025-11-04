@@ -2,6 +2,8 @@
 
 TMUX_DIR=$DOTFILES/tmux
 
+mklink "$TMUX_DIR/" "$HOME/.config/tmux/" || exit 1
+
 # Install TPM if it doesn't exist
 if test ! -d ~/.tmux/plugins/tpm; then
     git clone --depth 1 --branch v3.1.0 \
@@ -10,4 +12,3 @@ fi
 
 $HOME/.tmux/plugins/tpm/bin/install_plugins || exit 1
 
-mklink "$TMUX_DIR/" "$HOME/.config/tmux/" || exit 1

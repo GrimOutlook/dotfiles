@@ -1,90 +1,79 @@
 local lsp_install = {
   "codebook",
+  "typos_lsp",
+  "bashls",
+  "lua_ls",
+  "jdtls",
+  "gh_actions_ls",
+  "ast_grep",
+
+  -- TODO: Determine if the below might be better
+  -- "docker_compose_language_service",
+  -- "dockerls",
+  "docker_language_server",
+
+  -- TODO: Determine if emmet_ls is better
+  "emmet_language_server",
+
+  "eslint",
+  "gitlab_ci_ls",
+  "gradle_ls",
+  "groovyls",
+  "hyprls",
+  "jqls",
+  "just",
+  "lemminx",
+  "markdown_oxide",
+  "oxlint",
+  "powershell_es",
+  "rpmspec",
+  "snyk_ls",
+  "stylelint_lsp",
+  "systemd_ls",
+  "tailwindcss",
+
+  -- TODO: Figure out if the below might be better
+  -- "taplo",
+  "tombi",
+
+  -- TODO: Figure out if the below might be better
+  -- "tsgo",
+  "ts_ls",
+
+  "yamlls",
 }
--- local ensure_installed = {
---   -- General
---   --"harper-ls",
---   "misspell",
---   "typos-lsp",
---   -- Bash
---   "shellcheck",
---   "shellharden",
---   "shfmt",
---   "bash-language-server",
---   -- Lua
---   "lua-language-server",
---   "stylua",
---   -- Rust
---   -- NOTE: Rustaceanvim handles everything else.
---   "codelldb",
---   "cpptools",
---   -- Java
---   "google-java-format",
---   "jdtls",
---   "vscode-java-decompiler",
---   "vscode-java-dependency",
---   -- JSON
---   "jq",
---   -- Python
---   "black",
---   "isort",
---   -- Javascript
---   "prettier",
---   "prettierd",
---   -- Git
---   "gitui",
---   "gitleaks",
---   "gitlint",
---   "commitlint",
---   -- Docker
---   "docker-language-server",
---   "dockerfile-language-server",
---   "docker-compose-language-service",
---   -- Groovy/Gradle
---   "groovy-language-server",
---   "gradle-language-server",
---   -- Typescript
---   "eslint-lsp",
---   "typescript-language-server",
---   "tsgo",
---   "oxlint",
---   -- Systemd
---   "systemd-language-server",
---   -- Powershell
---   "powershell-editor-services",
---   -- Markdown
---   "markdown-oxide",
---   "cbfmt",
---   "doctoc",
---   "glow",
---   "mdslw",
---   -- CSS
---   "stylelint-lsp",
---   -- Toml
---   "tombi",
---   -- Misc ---------------------------------------------------------------------
---   "editorconfig-checker",
---   "ast-grep",
---   "emmet-language-server",
---   "dotenv-linter",
---   "emmet-ls",
---   "fixjson",
---   "gitlab-ci-ls",
---   "hyprls",
---   "just-lsp",
---   "lemminx",
---   "pgformatter",
---   "rpm_lsp_server",
---   "rpmlint",
---   "rustywind",
---   "tailwindcss-language-server",
---   "semgrep",
---   "snyk",
---   "snyk-ls",
---   "yaml-language-server",
---   -- Github action linting
---   "actionlint",
--- }
+local tools_install = {
+  "actionlint",
+  "black",
+  "cbfmt",
+  "codelldb",
+  "commitlint",
+  "cpptools",
+  "doctoc",
+  "dotenv-linter",
+  "editorconfig-checker",
+  "eslint-lsp",
+  "fixjson",
+  "gitleaks",
+  "gitlint",
+  "gitui",
+  "glow",
+  "google-java-format",
+  "isort",
+  "mdslw",
+  "misspell",
+  "pgformatter",
+  "prettier",
+  "prettierd",
+  "rpmlint",
+  "rustywind",
+  "semgrep",
+  "shellcheck",
+  "shellharden",
+  "shfmt",
+  "vscode-java-decompiler",
+  "vscode-java-dependency",
+}
 local dependencies = {
   "mason-org/mason-registry",
   {
@@ -92,11 +81,11 @@ local dependencies = {
     dependencies = {
       {
         "mason-org/mason.nvim",
-        version = "^1.0.0",
+        version = "^2.0.0",
         opts = {},
       },
     },
-    version = "^1.0.0",
+    version = "^2.0.0",
     opts = {
       ensure_installed = lsp_install,
     },
@@ -113,6 +102,6 @@ return {
   "WhoIsSethDaniel/mason-tool-installer.nvim",
   dependencies = dependencies,
   opts = {
-    ensure_installed = ensure_installed,
+    ensure_installed = tools_install,
   },
 }
