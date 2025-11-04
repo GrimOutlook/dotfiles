@@ -9,10 +9,11 @@ end
 -- stylua: ignore start
 -- General Keymaps -------------------------------------------------------------
 -- Move around splits using Ctrl + {h,j,k,l}
-map("n", "<C-h>", "<C-w>h")
-map("n", "<C-j>", "<C-w>j")
-map("n", "<C-k>", "<C-w>k")
-map("n", "<C-l>", "<C-w>l")
+-- NOTE: Already handled by TmuxNavigator. Uncommenting breaks this.
+-- map("n", "<C-h>", "<C-w>h")
+-- map("n", "<C-j>", "<C-w>j")
+-- map("n", "<C-k>", "<C-w>k")
+-- map("n", "<C-l>", "<C-w>l")
 
 -- Reload configuration without restart nvim
 map("n", "<leader><space>r", ":so %<CR>", { desc = "Reload NeoVim Config" })
