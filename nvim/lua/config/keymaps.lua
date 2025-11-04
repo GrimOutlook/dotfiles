@@ -76,7 +76,7 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search R
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
--- Add undo break-points
+-- Add undo break-points when writing non-code
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
@@ -88,6 +88,11 @@ map("v", ">", ">gv")
 -- commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
+
+-- Open useful menus quickly
+map("n", "<leader>L", "<CMD>Lazy<CR>", { desc = "Open Lazy" })
+map("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason" })
+
 
 -- Toggle wrap
 map({"n", "i", "v", "x"}, "<C-A-W>",
