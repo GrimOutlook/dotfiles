@@ -77,7 +77,6 @@ local tools_install = {
   "gitleaks",
   "gitlint",
   "gitui",
-  "glow",
   "google-java-format",
   "isort",
   "mdslw",
