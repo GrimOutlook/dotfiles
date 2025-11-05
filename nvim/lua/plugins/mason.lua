@@ -33,11 +33,11 @@ local lsp_install = {
   -- Hypr Config Files
   "hyprls",
   -- JSON
-  "lemminx",
   "jqls",
   -- JUSTFILEs
   "just",
   -- XML
+  "lemminx",
   -- Markdown
   "markdown_oxide",
   -- Powershell
@@ -81,6 +81,8 @@ local tools_install = {
   "isort",
   "mdslw",
   "misspell",
+  -- Groovy/Gradle
+  "npm-groovy-lint",
   "pgformatter",
   "prettier",
   "prettierd",

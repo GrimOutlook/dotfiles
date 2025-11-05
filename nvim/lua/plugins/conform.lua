@@ -1,29 +1,84 @@
 return {
   "stevearc/conform.nvim",
   dependencies = { "mason-org/mason.nvim" },
-  lazy = true,
-  event = "BufEnter",
-  cmd = "ConformInfo",
-  opts = {
-    ---@type conform.setupOpts
-    format_on_save = {
-      -- These options will be passed to conform.format()
-      timeout_ms = 500,
-      lsp_format = "fallback",
+  lazy = false,
+  keys = {
+    {
+      "<leader>Tf",
+      function()
+        -- If autoformat is currently disabled for this buffer,
+        -- then enable it, otherwise disable it
+        if vim.b.disable_autoformat then
+          vim.cmd("FormatEnable")
+          vim.notify("Enabled autoformat for current buffer")
+        else
+          vim.cmd("FormatDisable!")
+          vim.notify("Disabled autoformat for current buffer")
+        end
+      end,
+      desc = "Toggle autoformat for current buffer",
     },
+    {
+      "<leader>TF",
+      function()
+        -- If autoformat is currently disabled globally,
+        -- then enable it globally, otherwise disable it globally
+        if vim.g.disable_autoformat then
+          vim.cmd("FormatEnable")
+          vim.notify("Enabled autoformat globally")
+        else
+          vim.cmd("FormatDisable")
+          vim.notify("Disabled autoformat globally")
+        end
+      end,
+      desc = "Toggle autoformat globally",
+    },
+  },
+
+  ---@type conform.setupOpts
+  opts = {
+    format_on_save = function(bufnr)
+      vim.api.nvim_create_user_command("FormatDisable", function(args)
+        if args.bang then
+          -- FormatDisable! will disable formatting just for this buffer
+          vim.b.disable_autoformat = true
+        else
+          vim.g.disable_autoformat = true
+        end
+      end, {
+        desc = "Disable autoformat-on-save",
+        bang = true,
+      })
+      vim.api.nvim_create_user_command("FormatEnable", function()
+        vim.b.disable_autoformat = false
+        vim.g.disable_autoformat = false
+      end, {
+        desc = "Re-enable autoformat-on-save",
+      })
+
+      -- Disable with a global or buffer-local variable
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        return
+      end
+      return { timeout_ms = 500, lsp_format = "fallback" }
+    end,
+
     default_format_opts = {
       timeout_ms = 3000,
       async = false, -- not recommended to change
       quiet = false, -- not recommended to change
       lsp_format = "fallback", -- not recommended to change
     },
+
     formatters_by_ft = {
       javascript = { "prettierd", "prettier", stop_after_first = true },
       java = { "google-java-format" },
+      groovy = { "npm-groovy-lint" },
+      gradle = { "npm-groovy-lint" },
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
-      sh = { "shfmt" },
+      sh = { "shfmt", lsp_format = "fallback" },
     },
     -- The options you set here will be merged with the builtin formatters.
     -- You can also define any custom formatters here.
