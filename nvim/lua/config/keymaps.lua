@@ -136,7 +136,7 @@ vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 
 -- Snacks Pickers --------------------------------------------------------------
 -- General
-map("n", "<leader>f", function() require("snacks").picker.files() end, { desc = "Files" })
+map("n", "<leader>f", function() require("snacks").picker.files({focus = "list"}) end, { desc = "Files" })
 map("n", "<leader>r", function() require("snacks").picker.recent({ cwd = true, focus = "list", current = false }) end, { desc = "Recent Files (CWD)" })
 map("n", "<leader>n", function() require("noice").cmd("last") end, { desc = "Last Notification" })
 map("n", "<leader>N", function() require("snacks").picker.notifications({ focus = "list" }) end, { desc = "Notification History" })

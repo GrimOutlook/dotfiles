@@ -22,8 +22,9 @@ local lsp_install = {
   -- NOTE: `tsgo` is way more popular (Github stars). Might checkout `ts_ls` later if issues are found.
   -- "ts_ls",
   -- "eslint",
-  -- "tsgo",
-  "oxlint",
+  "tsgo",
+  -- "oxlint",
+
   -- Gitlab CI Files
   "gitlab_ci_ls",
   -- Gradle Files
@@ -34,7 +35,7 @@ local lsp_install = {
   "hyprls",
   -- JSON
   "jqls",
-  -- JUSTFILEs
+  -- JUSTFILE
   "just",
   -- XML
   "lemminx",

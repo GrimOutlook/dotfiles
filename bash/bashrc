@@ -2,8 +2,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-*i*) ;;
-*) return ;;
+  *i*) ;;
+  *) return ;;
 esac
 
 # Verify that:
@@ -12,11 +12,11 @@ esac
 # 3. We aren't in a screen session
 # 4. We aren't in a TMUX session already
 # 5. Additional check to make sure we aren't in a tmux session
-if command -v tmux &>/dev/null &&
-  [ -n "$PS1" ] &&
-  [[ ! "$TERM" =~ screen ]] &&
-  [[ ! "$TERM" =~ tmux ]] &&
-  [ -z "$TMUX" ]; then
+if command -v tmux &>/dev/null \
+  && [ -n "$PS1" ] \
+  && [[ ! "$TERM" =~ screen ]] \
+  && [[ ! "$TERM" =~ tmux ]] \
+  && [ -z "$TMUX" ]; then
   tmux new-session
 fi
 
@@ -78,6 +78,18 @@ export PATH+=":$DOTFILES/bash/scripts/:$HOME/.local/bin/:$DOTFILES/git/scripts/"
 # Prevent go from creating a `go/` directory in the middle of your home
 # directory.
 export GOPATH=$HOME/.go
+
+# -- NPM --------------------------------------------------------------------- #
+# Make sure NPM uses the system certificate store
+export NODE_EXTRA_CA_CERTS=/etc/ssl/cert.pem
+
+# pnpm
+export PNPM_HOME="/home/dom/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # -- History ----------------------------------------------------------------- #
 # Ignore duplicates in bash history
@@ -150,11 +162,3 @@ eval-if-available "zoxide init bash --cmd cd"
 
 # Please put the following line in the end of .bashrc
 [[ ! ${BLE_VERSION-} ]] || ble-attach
-
-# pnpm
-export PNPM_HOME="/home/dom/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
