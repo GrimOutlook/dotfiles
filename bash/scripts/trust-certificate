@@ -1,10 +1,75 @@
 #!/usr/bin/env bash
 
-if [ $# -lt 2 ]; then
-  err "2 arguments required"
-  exit 1
+function usage() {
+  err "USAGE: trust-certificate URL DESTINATION [OPTIONS]"
+  err "Options:"
+  err "-h, --help         Display this help message"
+  err "-v, --verbose      Enable verbose output"
+  err "-f, --filename     FILENAME output the .pem file with name"
+}
+
+[ $# -lt 2 ] && usage && exit 1
+
+has_argument() {
+  [[ ("$1" == *=* && -n ${1#*=}) || (! -z "$2" && "$2" != -*) ]]
+}
+
+extract_argument() {
+  echo "${2:-${1#*=}}"
+}
+
+# Defaults
+VERBOSE=false
+FILENAME="cert-$(date -Is).pem"
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    -v | --verbose)
+      VERBOSE=true
+      ;;
+    -f | --file*)
+      if ! has_argument "$@"; then
+        echo "File not specified." >&2
+        usage
+        exit 1
+      fi
+
+      FILENAME=$(extract_argument "$@")
+
+      shift
+      ;;
+    *)
+      # Any flag not listed above is invalid
+      echo "$1" | grep "^-" \
+        && echo "Invalid option: $1" >&2 \
+        && usage \
+        && exit 1
+      test -z "$URL" && URL="$1" && shift && continue
+      test -z "$DESTINATION" && DESTINATION="$1" && shift && continue
+      # Any non-flag option at this point is invalid
+      echo "Invalid positional parameter: $1" >&2 \
+        && usage \
+        && exit 1
+      ;;
+  esac
+  shift
+done
+
+if [ ! -d "$DESTINATION" ]; then
+  err "$DESTINATION is not a valid directory"
+  exit 2
 fi
-url=$1
-destination=$2
-cert_str="$(openssl s_client -showcerts -connect "${url}":443 </dev/null)"
-echo "$cert_str" | awk "/BEGIN CERTIFICATE/,/END CERTIFICATE/{ if(/BEGIN CERTIFICATE/){num++}; out=\"$destination/cert\"num\".crt\"; print >out}"
+
+# Strip http(s):// from the link if it exists and removes anything from the
+# first slash after the base domain
+URL="$(echo "$URL" | grep -Po '(http(s)?://\K)?.*' | cut -d'/' -f 1)"
+echo "Getting certificates for base URL: $URL"
+
+cert_str="$(echo -n | openssl s_client -showcerts -connect "$URL":443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p')"
+test $VERBOSE = true && echo "$cert_str"
+
+echo "$cert_str" >"$DESTINATION/$FILENAME"

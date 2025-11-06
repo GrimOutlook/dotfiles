@@ -63,6 +63,7 @@ local lsp_install = {
 
   "yamlls",
 }
+
 local tools_install = {
   "actionlint",
   "black",
