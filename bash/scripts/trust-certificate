@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 function usage() {
   err "USAGE: trust-certificate URL DESTINATION [OPTIONS]"
@@ -21,6 +22,8 @@ extract_argument() {
 # Defaults
 VERBOSE=false
 FILENAME="cert-$(date -Is).pem"
+URL=
+DESTINATION=
 
 while [ $# -gt 0 ]; do
   case $1 in
@@ -59,10 +62,12 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-if [ ! -d "$DESTINATION" ]; then
-  err "$DESTINATION is not a valid directory"
-  exit 2
-fi
+test ! -d "$DESTINATION" \
+  && err "$DESTINATION is not a valid directory" \
+  && exit 2
+test ! -w "$DESTINATION" \
+  && err "$DESTINATION is not writable" \
+  && exit 3
 
 # Strip http(s):// from the link if it exists and removes anything from the
 # first slash after the base domain
