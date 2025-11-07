@@ -21,8 +21,8 @@ local lsp_install = {
   -- NOTE: `oxlint` aims to replace `eslint`. Swap for `eslint` if shortcomings are found.
   -- NOTE: `tsgo` is way more popular (Github stars). Might checkout `ts_ls` later if issues are found.
   -- "ts_ls",
-  -- "eslint",
-  "tsgo",
+  "eslint",
+  -- "tsgo",
   -- "oxlint",
 
   -- Gitlab CI Files
