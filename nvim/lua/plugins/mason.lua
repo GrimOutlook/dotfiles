@@ -2,6 +2,8 @@ local lsp_install = {
   -- Spelling
   "codebook",
   "typos_lsp",
+  -- Python
+  "basedpyright",
   -- Bash
   "bashls",
   -- Lua
@@ -15,8 +17,6 @@ local lsp_install = {
   -- Docker
   -- NOTE: Could also try the `docker_compose_language_service` but it doesn't support `Dockerfile`s. It's made by Microsoft while `docker_language_server` is made by docker.
   "docker_language_server",
-  -- TSX/HTML/Markup
-  "emmet_language_server",
   -- Typescript/Javascript
   -- NOTE: `oxlint` aims to replace `eslint`. Swap for `eslint` if shortcomings are found.
   -- NOTE: `tsgo` is way more popular (Github stars). Might checkout `ts_ls` later if issues are found.
@@ -66,8 +66,6 @@ local lsp_install = {
 }
 
 local tools_install = {
-  "actionlint",
-  "black",
   "cbfmt",
   "codelldb",
   "commitlint",
@@ -83,8 +81,6 @@ local tools_install = {
   "isort",
   "mdslw",
   "misspell",
-  -- Groovy/Gradle
-  "npm-groovy-lint",
   "pgformatter",
   "prettier",
   "prettierd",
@@ -96,6 +92,12 @@ local tools_install = {
   "shfmt",
   "vscode-java-decompiler",
   "vscode-java-dependency",
+  -- Groovy/Gradle
+  "npm-groovy-lint",
+  -- Github Actions
+  "actionlint",
+  -- Python
+  "yapf",
 }
 local dependencies = {
   "mason-org/mason-registry",
