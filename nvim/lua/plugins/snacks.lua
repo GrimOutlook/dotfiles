@@ -11,6 +11,7 @@ return {
       -- refer to the configuration section below
       bigfile = { enabled = true },
       dashboard = { enabled = true },
+      git = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
       picker = { enabled = true },
@@ -20,6 +21,11 @@ return {
       scroll = { enabled = true },
       statuscolumn = { enabled = true },
       words = { enabled = true },
+      styles = {
+        notification = {
+          wo = { wrap = true }, -- Wrap notifications
+        },
+      },
     },
   },
 }

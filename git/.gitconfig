@@ -60,6 +60,7 @@
     unadd = restore --staged
     untrack = rm --cached
     discard = reset --hard HEAD
+    sweep = discard
     uncommit = reset --soft HEAD^
     deepclean = clean -x -ff -dd
     undo = checkout --
@@ -162,5 +163,6 @@
 
 [user]
     name = Dominic Grimaldi
+    email = self@grimoutlook.dev
 [commit]
 	template = /home/dom/.dotfiles/git/templates/default-commit-template.txt

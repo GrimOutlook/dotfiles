@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Get the name of the new emulator
+read -r -p "AVD Name: " name
+
+# Get all of the platforms that are available
+platforms=$(sdkmanager --list | cut -d'|' -f 1 | grep system-images | grep -Po '(?<=system-images;).*' | column -t -s';' | sort -u)
+
+# Allow the user to select one.
+platform=$(echo "$platforms" | fzf --tac | sd "[[:space:]]+" ";" | sd "^" "system-images;" | sd ";$" "") || exit 1
+
+# Install the platform
+echo "Installing android platform $platform"
+sdkmanager --install "$platform" || exit 1
+
+# Create the new emulator
+avdmanager create avd --name "$name" --package "$platform" || exit 1

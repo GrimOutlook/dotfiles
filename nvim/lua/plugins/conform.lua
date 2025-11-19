@@ -37,6 +37,7 @@ return {
 
   ---@type conform.setupOpts
   opts = {
+    log_level = vim.log.levels.DEBUG,
     format_on_save = function(bufnr)
       vim.api.nvim_create_user_command("FormatDisable", function(args)
         if args.bang then
@@ -72,9 +73,10 @@ return {
 
     formatters_by_ft = {
       javascript = { "prettierd", "prettier", stop_after_first = true },
+      typescript = { "prettierd", "prettier", stop_after_first = true },
       java = { "google-java-format" },
-      groovy = { "npm-groovy-lint" },
-      gradle = { "npm-groovy-lint" },
+      groovy = { lsp_format = "prefer" },
+      gradle = { lsp_format = "prefer" },
       lua = { "stylua" },
       python = { "isort", "black" },
       rust = { "rustfmt", lsp_format = "fallback" },
@@ -95,6 +97,19 @@ return {
       -- # Example of using shfmt with extra args
       -- shfmt = {
       --   prepend_args = { "-i", "2", "-ci" },
+      -- },
+      -- -- TODO: Maybe fiddle with this later. Being a POS currently.
+      -- ["npm-groovy-lint"] = {
+      --   prepend_args = {
+      --     "--config",
+      --     vim.fn.expand("$HOME") .. "/.dotfiles/misc/groovylintrc.json",
+      --     "--failon",
+      --     "none",
+      --     "--nolintafter",
+      --     "--javaexecutable",
+      --     "/usr/lib/jvm/java-17-openjdk/bin/java",
+      --   },
+      --   args = { "--format", "$FILENAME" },
       -- },
     },
   },

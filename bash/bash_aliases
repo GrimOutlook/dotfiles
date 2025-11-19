@@ -25,9 +25,15 @@ alias cp='xcp'
 alias mkdir='mkdir -p'
 alias docker='podman'
 alias cat='bat'
+# TODO: blesh uses the `time` command and when this alias is enabled it runs
+# hyperfine which results in extremely slow commands due to running multiple
+# benchmarks. Figure out how to make blesh use the time binary.
+# alias time='hyperfine'
+alias benchmark='hyperfine'
+
 function ntemp() {
   tmp="$(mktemp -d)"
-  cd "$tmp"
+  cd "$tmp" || exit 1
 }
 
 # -- Bash Scripting ------------------------------------------------------------
@@ -37,7 +43,7 @@ alias debug-bash='set -uxo pipefail'
 alias debug-bash-undo='set +uxo pipefail'
 
 # -- Pacman --------------------------------------------------------------------
-alias explicitly-installed='pacman -Qe'
+alias installed='pacman -Qe'
 
 # -- Navigation ----------------------------------------------------------------
 alias dotfiles='cd $DOTFILES'

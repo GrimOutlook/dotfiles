@@ -136,38 +136,101 @@ vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 
 -- Snacks Pickers --------------------------------------------------------------
 -- General
-map("n", "<leader>f", function() require("snacks").picker.files({focus = "list"}) end, { desc = "Files" })
-map("n", "<leader>r", function() require("snacks").picker.recent({ cwd = true, focus = "list", current = false }) end, { desc = "Recent Files (CWD)" })
+map("n", "<leader>R", function() require("snacks").picker.resume() end, { desc = "Reopen Last Picker" })
+map("n", "<leader>f", function() require("snacks").picker.files({ focus = "input" }) end, { desc = "Files" })
+map("n", "<leader>r", function() require("snacks").picker.recent({ filter= { cwd = true }, current = false }) end, { desc = "Recent Files (CWD)" })
 map("n", "<leader>n", function() require("noice").cmd("last") end, { desc = "Last Notification" })
-map("n", "<leader>N", function() require("snacks").picker.notifications({ focus = "list" }) end, { desc = "Notification History" })
-map("n", "<leader>b", function() require("snacks").picker.buffers({ focus = "list", current = false }) end, { desc = "Buffers" })
+map("n", "<leader>N", function() require("snacks").picker.notifications() end, { desc = "Notification History" })
+map("n", "<leader>b", function() require("snacks").picker.buffers({ current = false }) end, { desc = "Buffers" })
 
 -- Extras
-map("n", "<leader>i", function() require("snacks").picker.icons() end, { desc = "Icons" })
-map("n", "<leader>m", function() require("snacks").picker.marks({ focus = "list" }) end, { desc = "Marks" })
+map("n", "<leader>i", function() require("snacks").picker.icons({focus = "input"}) end, { desc = "Icons" })
+map("n", "<leader>m", function() require("snacks").picker.marks() end, { desc = "Marks" })
 map("n", "<leader><space>fa", function() require("snacks").picker.autocmds() end, { desc = "Autocmds" })
 map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
 map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
 
+local function get_visual_selection()
+  -- Get the start and end positions of the visual selection
+  local vstart = vim.fn.getpos("'<")
+  local vend = vim.fn.getpos("'>")
+
+  -- Extract line numbers and column numbers
+  local start_line = vstart[2]
+  local start_col = vstart[3]
+  local end_line = vend[2]
+  local end_col = vend[3]
+
+  -- Get the lines within the selection
+  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+
+  -- Handle single-line selection for character-wise accuracy
+  if start_line == end_line then
+    return string.sub(lines[1], start_col, end_col)
+  else
+    -- Adjust first and last lines for partial selections
+    lines[1] = string.sub(lines[1], start_col)
+    lines[#lines] = string.sub(lines[#lines], 1, end_col)
+    return table.concat(lines, "\n")
+  end
+end
+
 -- Text searching
-map("n", "<leader>/", function() require("snacks").picker.grep({buf = 0}) end, { desc = "Search (buffer)" })
-map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep_word({buf = 0}) end, { desc = "Search Word (Buffer)" })
-map("n", "<leader>?", function() require("snacks").picker.grep({cwd = true}) end, { desc = "Search (CWD)" })
-map({ "v", "x" }, "<leader>?", function() require("snacks").picker.grep_word({cwd = true}) end, { desc = "Search word (CWD)" })
+map("n", "/", function()
+    require("snacks").picker.lines({
+        focus = "input",
+        sort = { fields = { "idx" } },
+        matcher = { fuzzy = false, sort_empty = true }
+}) end, { desc = "Search (buffer)" })
+map({ "v", "x" }, "/", function()
+    require("snacks").picker.lines( {
+        pattern = get_visual_selection,
+        sort = { fields = { "idx" } },
+        matcher = { fuzzy = false, sort_empty = true },
+}) end, { desc = "Search Word (Buffer)" })
+map("n", "<leader>/", function() require("snacks").picker.grep({focus="input"}) end, { desc = "Search (CWD)" })
+map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
 
 -- Issues
-map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action({focus = "list"}) end, { desc = "Code Actions" })
-map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer({focus = "list"}) end, { desc = "Buffer Diagnostics" })
-map("n", "<leader>X", function() require("snacks").picker.diagnostics({focus = "list"}) end, { desc = "Diagnostics" })
+map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action({}) end, { desc = "Code Actions" })
+map("n", "<leader>x", function() require("snacks").picker.diagnostics_buffer() end, { desc = "Buffer Diagnostics" })
+map("n", "<leader>X", function() require("snacks").picker.diagnostics() end, { desc = "Diagnostics" })
 
 -- LSP
-map("n", "gd", function() require("snacks").picker.lsp_definitions({ focus = "list", current = false })  end, { desc = "Goto Definition" })
-map("n", "gD", function() require("snacks").picker.lsp_declarations({ focus = "list", current = false })  end, { desc = "Goto Declaration" })
-map("n", "gr", function() require("snacks").picker.lsp_references({ focus = "list", current = false })  end, { nowait = true, desc = "References" })
-map("n", "gI", function() require("snacks").picker.lsp_implementations({ focus = "list", current = false })  end, { desc = "Goto Implementation" })
-map("n", "gy", function() require("snacks").picker.lsp_type_definitions({ focus = "list", current = false })  end, { desc = "Goto T[y]pe Definition" })
-map("n", "<leader>ss", function() require("snacks").picker.lsp_symbols({focus = "list"})  end, { desc = "LSP Symbols" })
-map("n", "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols({focus = "list"})  end, { desc = "LSP Workspace Symbols" })
+map("n", "gd", function() require("snacks").picker.lsp_definitions({ current = false })  end, { desc = "Goto Definition" })
+map("n", "gD", function() require("snacks").picker.lsp_declarations({ current = false })  end, { desc = "Goto Declaration" })
+map("n", "gr", function() require("snacks").picker.lsp_references({ current = false })  end, { nowait = true, desc = "References" })
+map("n", "gI", function() require("snacks").picker.lsp_implementations({ current = false })  end, { desc = "Goto Implementation" })
+map("n", "gy", function() require("snacks").picker.lsp_type_definitions({ current = false })  end, { desc = "Goto T[y]pe Definition" })
+map("n", "gai", function() require("snacks").picker.lsp_incoming_calls({ current = false })  end, { desc = "C[a]lls Incoming" })
+map("n", "gao", function() require("snacks").picker.lsp_outgoing_calls({ current = false })  end, { desc = "C[a]lls Outgoing" })
+
+-- Search
+map("n", "<leader>ss", function() require("snacks").picker.lsp_symbols({})  end, { desc = "LSP Symbols" })
+map("n", "<leader>sS", function() require("snacks").picker.lsp_workspace_symbols()  end, { desc = "LSP Workspace Symbols" })
+map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "Quickfix List" } )
+map("n", '<leader>s"', function() Snacks.picker.registers() end, {desc = "Registers" })
+map("n", '<leader>s/', function() Snacks.picker.search_history() end, {desc = "Search History" })
+map("n", '<leader>sj', function() Snacks.picker.jumps() end, {desc = "Jumps" })
+map("n", '<leader>sl', function() Snacks.picker.loclist() end, {desc = "Location List" })
+
+-- Git
+map("n", "<leader>gf", function() require("snacks").picker.git_files() end, { desc = "Git Files" })
+map("n", "<leader>gl", function() require("snacks").picker.git_log() end, { desc = "Git Log" })
+
+map("n", "<leader>gb", function() Snacks.picker.git_branches() end, {desc = "Git Branches"} )
+map("n", "<leader>gl", function() Snacks.picker.git_log() end, {desc = "Git Log"} )
+map("n", "<leader>gL", function() Snacks.picker.git_log_line() end, {desc = "Git Log Line"} )
+map("n", "<leader>gs", function() Snacks.picker.git_status() end, {desc = "Git Status"} )
+map("n", "<leader>gS", function() Snacks.picker.git_stash() end, {desc = "Git Stash"} )
+map("n", "<leader>gd", function() Snacks.picker.git_diff() end, {desc = "Git Diff (Hunks)"} )
+map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, {desc = "Git Log File"} )
+
+-- gh
+map("n", "<leader>gi", function() Snacks.picker.gh_issue() end, {desc = "GitHub Issues (open)"} )
+map("n", "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, {desc = "GitHub Issues (all)"} )
+map("n", "<leader>gp", function() Snacks.picker.gh_pr() end, {desc = "GitHub Pull Requests (open)"} )
+map("n", "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, {desc = "GitHub Pull Requests (all)"} )
 
 -- Debuggers
 map("n", "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, { desc = "Breakpoint Condition" })
@@ -192,9 +255,6 @@ map("n", "<leader>dw", function() require("dap.ui.widgets").hover() end, { desc 
 vim.keymap.set("n", "cr", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { desc = "Rename symbol", expr = true })
-
--- Git-Gui
-map("n", "<leader>g", function() require("snacks").terminal({ "gitui" }) end, { desc = "GitUi (cwd)", })
 
 -- Conform
 map({"n", "v", "x"}, "<leader>F", function()

@@ -75,6 +75,12 @@ export CONFIG=$HOME/.config
 # Update the PATH variable to enable using the custom scripts in this repo.
 export PATH+=":$DOTFILES/bash/scripts/:$HOME/.local/bin/:$DOTFILES/git/scripts/"
 
+# Add android development paths
+export ANDROID_HOME="/opt/android-sdk/"
+export PATH+=":$ANDROID_HOME/cmdline-tools/latest/bin/"
+export PATH+=":$ANDROID_HOME/emulator/"
+export PATH+=":$ANDROID_HOME/platform-tools/"
+
 # Prevent go from creating a `go/` directory in the middle of your home
 # directory.
 export GOPATH=$HOME/.go
