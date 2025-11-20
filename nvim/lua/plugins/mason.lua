@@ -19,10 +19,10 @@ local lsp_install = {
   -- Typescript/Javascript
   -- NOTE: `oxlint` aims to replace `eslint`. Swap for `eslint` if shortcomings are found.
   -- NOTE: `tsgo` is way more popular (Github stars). Might checkout `ts_ls` later if issues are found.
-  -- "ts_ls",
+  "ts_ls",
   -- "tsgo",
   -- "oxlint",
-  "eslint",
+  -- "eslint",
 
   -- Gitlab CI Files
   "gitlab_ci_ls",

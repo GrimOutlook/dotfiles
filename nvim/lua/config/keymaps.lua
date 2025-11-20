@@ -114,7 +114,7 @@ end, { desc = "Toggle word wrap" })
 map("n", "D", function() vim.diagnostic.open_float() end, {desc = "Show Diagnostics"})
 
 -- Which-Key -------------------------------------------------------------------
-map("n", "<leader>?", function() require("which-key").show({ global = false }) end, { desc = "[which-key] Buffer Local Keymaps" })
+map("n", "<leader><leader>?", function() require("which-key").show({ global = false }) end, { desc = "[which-key] Buffer Local Keymaps" })
 
 -- Rnvimr ----------------------------------------------------------------------
 map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
