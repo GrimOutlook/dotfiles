@@ -73,7 +73,12 @@ export DOTFILES=$HOME/.dotfiles
 export CONFIG=$HOME/.config
 
 # Update the PATH variable to enable using the custom scripts in this repo.
-export PATH+=":$DOTFILES/bash/scripts/:$HOME/.local/bin/:$DOTFILES/git/scripts/"
+PATH+=":$DOTFILES/bash/scripts/:$HOME/.local/bin/:$DOTFILES/git/scripts/"
+
+# Add android development tools
+PATH+=":/opt/android-sdk/emulator/"
+PATH+=":/opt/android-sdk/cmdline-tools/"
+PATH+=":/opt/android-sdk/platform-tools/"
 
 # Add android development paths
 export ANDROID_HOME="/opt/android-sdk/"
@@ -168,3 +173,6 @@ eval-if-available "zoxide init bash --cmd cd"
 
 # Please put the following line in the end of .bashrc
 [[ ! ${BLE_VERSION-} ]] || ble-attach
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
