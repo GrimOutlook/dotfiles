@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 TMUX_DIR=$DOTFILES/tmux
 
-mklink "$TMUX_DIR/" "$HOME/.config/tmux/" || exit 1
+mklink "$TMUX_DIR/" "$CONFIG/tmux/" || exit 1
 
 # Install TPM if it doesn't exist
 if test ! -d ~/.tmux/plugins/tpm; then
@@ -11,4 +12,3 @@ if test ! -d ~/.tmux/plugins/tpm; then
 fi
 
 $HOME/.tmux/plugins/tpm/bin/install_plugins || exit 1
-
