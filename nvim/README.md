@@ -4,7 +4,6 @@
 
 - [x] Whichkey
 - [x] Gruvbox
-- [ ] Bufferline/StatusLine/Tabline
 - [x] LSP
 - [x] Nvim CMP
 - [ ] Luasnip
@@ -32,6 +31,7 @@
 
 | Command | Action |
 | --- | --- |
+| | |
 
 ## Keymaps
 

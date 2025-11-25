@@ -116,8 +116,11 @@ map("n", "D", function() vim.diagnostic.open_float() end, {desc = "Show Diagnost
 -- Which-Key -------------------------------------------------------------------
 map("n", "<leader><leader>?", function() require("which-key").show({ global = false }) end, { desc = "[which-key] Buffer Local Keymaps" })
 
--- Rnvimr ----------------------------------------------------------------------
-map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
+-- -- Oil ----------------------------------------------------------------------
+map("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open oil file explorer" })
+
+-- -- Rnvimr ----------------------------------------------------------------------
+-- map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
 
 -- ToggleTerm ------------------------------------------------------------------
 map("n", "<leader>t", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
