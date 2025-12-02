@@ -104,6 +104,7 @@
 
     wip = "commit -am 'wip!'"
     oops = "!f() {git amend && git pleasesend; }; f"
+    l = graph
 
 [apply]
     # Detect whitespace errors when applying a patch
