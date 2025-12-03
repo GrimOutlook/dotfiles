@@ -62,6 +62,8 @@ local lsp_install = {
   "tombi",
 
   "yamlls",
+
+  "svelte",
 }
 
 local tools_install = {

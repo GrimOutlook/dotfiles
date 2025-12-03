@@ -216,6 +216,7 @@ map("n", '<leader>s"', function() Snacks.picker.registers() end, {desc = "Regist
 map("n", '<leader>s/', function() Snacks.picker.search_history() end, {desc = "Search History" })
 map("n", '<leader>sj', function() Snacks.picker.jumps() end, {desc = "Jumps" })
 map("n", '<leader>sl', function() Snacks.picker.loclist() end, {desc = "Location List" })
+map("n", "<leader>st", function() Snacks.picker.todo_comments() end, {desc = "Search TODO, HACK, FIXME...", })
 
 -- Git
 map("n", "<leader>gf", function() require("snacks").picker.git_files() end, { desc = "Git Files" })

@@ -78,8 +78,8 @@ return {
     config = function(_, opts)
       local registry = require("mason-registry")
       if registry.is_installed("codelldb") then
-        local install_path = vim.fn.expand("$MASON/packages/codelldb")
-        local codelldb = install_path .. "/extension/adapter/codelldb"
+        local package_path = vim.fn.expand("$MASON/packages/codelldb")
+        local codelldb = package_path .. "/extension/adapter/codelldb"
         local library_path = package_path .. "/extension/lldb/lib/liblldb.dylib"
         local uname = io.popen("uname"):read("*l")
         if uname == "Linux" then
