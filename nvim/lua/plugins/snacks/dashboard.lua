@@ -12,7 +12,7 @@ return {
                     { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.dashboard.pick('projects')" },
                     { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.picker.recent()" },
                     { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ focus = 'input' })" },
-                    { icon = " ", key = "/", desc = "Find Text", action = ":lua Snacks..picker.grep({focus='input'})" },
+                    { icon = " ", key = "/", desc = "Find Text", action = ":lua Snacks.picker.grep({focus='input'})" },
                     { icon = "󱞋 ", key = "e", desc = "File Explorer (Oil)", action = "<CMD>Oil<CR>" },
                     { icon = " ", key = "g", desc = "Git (Diff)", action = ":lua Snacks.dashboard.pick({ 'git_diff' })" },
                     { icon = "󰀦 ", key = "n", desc = "Notifications", action = ":lua Snacks.dashboard.pick('notification')" },
