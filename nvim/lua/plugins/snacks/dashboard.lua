@@ -1,11 +1,11 @@
 return {
-    "folke/snacks.nvim",
-    opts = {
-        dashboard = {
-            preset = {
-                pick = function(cmd, opts)
-                    return LazyVim.pick(cmd, opts)()
-                end,
+  "folke/snacks.nvim",
+  opts = {
+    dashboard = {
+      preset = {
+        pick = function(cmd, opts)
+          return LazyVim.pick(cmd, opts)()
+        end,
                 -- stylua: ignore
                 ---@type snacks.dashboard.Item[]
                 keys = {
@@ -13,6 +13,7 @@ return {
                     { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.picker.recent()" },
                     { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({ focus = 'input' })" },
                     { icon = " ", key = "/", desc = "Find Text", action = ":lua Snacks..picker.grep({focus='input'})" },
+                    { icon = "󱞋 ", key = "e", desc = "File Explorer (Oil)", action = "<CMD>Oil<CR>" },
                     { icon = " ", key = "g", desc = "Git (Diff)", action = ":lua Snacks.dashboard.pick({ 'git_diff' })" },
                     { icon = "󰀦 ", key = "n", desc = "Notifications", action = ":lua Snacks.dashboard.pick('notification')" },
                     { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
@@ -21,7 +22,7 @@ return {
                     { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
                     { icon = " ", key = "q", desc = "Quit", action = ":qa" },
                 },
-                header = [[
+        header = [[
             )  (    (      (    (      (     (        )
   *   )  ( /(  )\ ) )\ )   )\ ) )\ )   )\ )  )\ )  ( /(
 ` )  /(  )\())(()/((()/(  (()/((()/(  (()/( (()/(  )\()) (
@@ -31,21 +32,21 @@ return {
   | |   | __ | | | \__ \   | | \__ \  | __|  | |  | .` || _|
   |_|   |_||_||___||___/  |___||___/  |_|   |___| |_|\_||___|
 ]],
-            },
-            sections = {
-                {
-                    section = "terminal",
-                    cmd = "/usr/bin/cat ~/.config/nvim/resources/wall.output; sleep 0.1",
-                    padding = 1,
-                    height = 30,
-                },
-                {
-                    pane = 2,
-                    { section = "header" },
-                    { section = "keys",   gap = 1, padding = 1 },
-                    { section = "startup" },
-                },
-            },
+      },
+      sections = {
+        {
+          section = "terminal",
+          cmd = "/usr/bin/cat ~/.config/nvim/resources/wall.output; sleep 0.1",
+          padding = 1,
+          height = 30,
         },
+        {
+          pane = 2,
+          { section = "header" },
+          { section = "keys", gap = 1, padding = 1 },
+          { section = "startup" },
+        },
+      },
     },
+  },
 }

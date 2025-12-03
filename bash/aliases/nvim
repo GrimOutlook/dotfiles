@@ -1,4 +1,4 @@
-alias v='nvim-mkdir'
-alias vi='nvim-mkdir'
-alias vim='nvim-mkdir'
-alias nvim='nvim-mkdir'
+NVIM_CMD='nvim'
+alias v="$NVIM_CMD"
+alias vi="$NVIM_CMD"
+alias vim="$NVIM_CMD"
