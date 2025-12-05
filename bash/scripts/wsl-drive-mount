@@ -2,27 +2,27 @@
 
 SUDO=""
 if ! is-root; then
-    if ! is-interactive; then
-        echo "Session is not interactive and running user isn't root" >&2
-        exit 1
-    fi
-    echo "User is not root. Attempting with sudo" >&2
-    SUDO="sudo "
+  # if ! is-interactive; then
+  #     echo "Session is not interactive and running user isn't root" >&2
+  #     exit 1
+  # fi
+  echo "User is not root. Attempting with sudo" >&2
+  SUDO="sudo "
 fi
 
-DRIVE_LETTERS="$(\
-    powershell.exe '(Get-PSDrive).Root' | \
-    grep '[A-Z]+:\\' | \
-    cut -d ':' -f 1 \
+DRIVE_LETTERS="$(
+  powershell.exe '(Get-PSDrive).Root' \
+    | grep '[A-Z]+:\\' \
+    | cut -d ':' -f 1
 )"
 for LETTER in $DRIVE_LETTERS; do
-    letter="$(echo $LETTER | tr '[:upper:]' '[:lower:]')"
-    mount_path="/mnt/$letter"
-    if test -d $mount_path; then
-        continue
-    fi
-    echo "Mounting drive $LETTER:\\ to $mount_path"
-    ${SUDO}mkdir -p $mount_path
-    ${SUDO}mount -t drvfs $LETTER: $mount_path
+  letter="$(echo $LETTER | tr '[:upper:]' '[:lower:]')"
+  mount_path="/mnt/$letter"
+  if test -d $mount_path; then
+    continue
+  fi
+  echo "Mounting drive $LETTER:\\ to $mount_path"
+  ${SUDO}mkdir -p $mount_path
+  ${SUDO}mount -t drvfs $LETTER: $mount_path
 
 done

@@ -153,46 +153,33 @@ map("n", "<leader><space>fa", function() require("snacks").picker.autocmds() end
 map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
 map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
 
-local function get_visual_selection()
-  -- Get the start and end positions of the visual selection
-  local vstart = vim.fn.getpos("'<")
-  local vend = vim.fn.getpos("'>")
-
-  -- Extract line numbers and column numbers
-  local start_line = vstart[2]
-  local start_col = vstart[3]
-  local end_line = vend[2]
-  local end_col = vend[3]
-
-  -- Get the lines within the selection
-  local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
-
-  -- Handle single-line selection for character-wise accuracy
-  if start_line == end_line then
-    return string.sub(lines[1], start_col, end_col)
-  else
-    -- Adjust first and last lines for partial selections
-    lines[1] = string.sub(lines[1], start_col)
-    lines[#lines] = string.sub(lines[#lines], 1, end_col)
-    return table.concat(lines, "\n")
-  end
-end
-
 -- Text searching
 map("n", "/", function()
-    require("snacks").picker.lines({
+    require("snacks").picker.grep({
         focus = "input",
-        sort = { fields = { "idx" } },
-        matcher = { fuzzy = false, sort_empty = true }
-}) end, { desc = "Search (buffer)" })
+        dirs = {
+            vim.fn.expand("%")
+        }
+
+}) end, { desc = "Search (Current File)" })
 map({ "v", "x" }, "/", function()
-    require("snacks").picker.lines( {
-        pattern = get_visual_selection,
-        sort = { fields = { "idx" } },
-        matcher = { fuzzy = false, sort_empty = true },
-}) end, { desc = "Search Word (Buffer)" })
-map("n", "<leader>/", function() require("snacks").picker.grep({focus="input"}) end, { desc = "Search (CWD)" })
-map({ "v", "x" }, "<leader>/", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
+    require("snacks").picker.grep( {
+        search = vim.fn.expand("<cword>"),
+        dirs = {
+            vim.fn.expand("%")
+        }
+}) end, { desc = "Search Selection (Current File)" })
+map("n", "#", function()
+    require("snacks").picker.grep( {
+        search = vim.fn.expand("<cword>"),
+        dirs = {
+            vim.fn.expand("%")
+        }
+}) end, { desc = "Search Selection (Current File)" })
+map("n", "<leader>//", function() require("snacks").picker.grep({focus="input"}) end, { desc = "Search (CWD)" })
+map({ "v", "x" }, "<leader>//", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
+map("n", "<leader>/r", function() require("grug-far").open() end, { desc = "Search and Replace (CWD)" })
+map({ "v", "x" }, "<leader>/r", function() require('grug-far').open({ prefills = { search = vim.fn.expand("<cword>") } }) end, { desc = "Search and Replace (CWD)" })
 
 -- Issues
 map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action({}) end, { desc = "Code Actions" })
@@ -217,6 +204,8 @@ map("n", '<leader>s/', function() Snacks.picker.search_history() end, {desc = "S
 map("n", '<leader>sj', function() Snacks.picker.jumps() end, {desc = "Jumps" })
 map("n", '<leader>sl', function() Snacks.picker.loclist() end, {desc = "Location List" })
 map("n", "<leader>st", function() Snacks.picker.todo_comments() end, {desc = "Search TODO, HACK, FIXME...", })
+-- TODO:
+-- map("n", "<leader>sr", function() require("utilities").openSearchAndReplace() end, {desc = "Search and Replace (WIP)", })
 
 -- Git
 map("n", "<leader>gf", function() require("snacks").picker.git_files() end, { desc = "Git Files" })

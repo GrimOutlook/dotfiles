@@ -51,4 +51,93 @@ function M.commandsAreAvailable(commands, plugin)
     M.commandIsAvailable(command, plugin)
   end
 end
+
+function M.openSearchAndReplace()
+  local snacks = require("snacks")
+
+  snacks.layout.new({
+    fullscreen = false,
+    minimal = false,
+    wins = {
+      search = snacks.win({
+        show = false,
+        enter = false,
+        height = 1,
+        ft = "regex",
+        on_buf = function(win)
+          -- HACK: this is needed to prevent Neovim from stopping insert mode,
+          -- for any other picker input we are leaving.
+          local buf = vim.api.nvim_get_current_buf()
+          if buf ~= win.buf and vim.bo[buf].filetype == "snacks_picker_input" then
+            vim.bo[buf].buftype = "nofile"
+          end
+          vim.fn.prompt_setprompt(win.buf, "")
+          vim.bo[win.buf].modified = false
+          local text = "test"
+          vim.api.nvim_buf_set_lines(win.buf, 0, -1, false, { text })
+          vim.bo[win.buf].modified = false
+        end,
+        on_win = function()
+          -- require("snacks.core.insert").highlights()
+        end,
+        bo = {
+          filetype = "snacks_picker_input",
+          buftype = "prompt",
+        },
+        wo = {
+          -- statuscolumn = require("snacks.core.insert").statuscolumn(),
+          cursorline = false,
+          winhighlight = Snacks.picker.highlight.winhl("SnacksPickerInput"),
+        },
+      }),
+      replace = snacks.win({
+        show = false,
+        enter = false,
+        height = 1,
+        ft = "regex",
+        on_buf = function(win)
+          -- HACK: this is needed to prevent Neovim from stopping insert mode,
+          -- for any other picker input we are leaving.
+          local buf = vim.api.nvim_get_current_buf()
+          if buf ~= win.buf and vim.bo[buf].filetype == "snacks_picker_input" then
+            vim.bo[buf].buftype = "nofile"
+          end
+          vim.fn.prompt_setprompt(win.buf, "")
+          vim.bo[win.buf].modified = false
+          local text = "test"
+          vim.api.nvim_buf_set_lines(win.buf, 0, -1, false, { text })
+          vim.bo[win.buf].modified = false
+        end,
+        on_win = function()
+          -- require("snacks.core.insert").highlights()
+        end,
+        bo = {
+          filetype = "snacks_picker_input",
+          buftype = "prompt",
+        },
+        wo = {
+          -- statuscolumn = require("snacks.core.insert").statuscolumn(),
+          cursorline = false,
+          winhighlight = Snacks.picker.highlight.winhl("SnacksPickerInput"),
+        },
+      }),
+    },
+    layout = {
+      box = "horizontal",
+      width = 0.8,
+      min_width = 120,
+      height = 0.8,
+      {
+        box = "vertical",
+        border = true,
+        title = "{title} {live} {flags}",
+        { win = "search", height = 1, border = "bottom" },
+        { win = "replace", height = 1, border = "bottom" },
+        -- { win = "list", border = "none" },
+      },
+      -- { win = "preview", title = "{preview}", border = true, width = 0.5 },
+    },
+  })
+end
+
 return M
