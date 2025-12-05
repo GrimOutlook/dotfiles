@@ -81,19 +81,6 @@ map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "<leader>L", "<CMD>Lazy<CR>", { desc = "Open Lazy" })
 map("n", "<leader>M", "<CMD>Mason<CR>", { desc = "Open Mason" })
 
-
--- Toggle wrap
-map({"n", "i", "v", "x"}, "<C-A-W>",
-function()
-  vim.opt.wrap = not vim.opt.wrap:get()
-  -- Optional: Provide feedback to the user
-  if vim.opt.wrap:get() then
-    print("Wrap enabled")
-  else
-    print("Wrap disabled")
-  end
-end, { desc = "Toggle word wrap" })
-
 --------------------------------------------------------------------------------
 -- Plugin Keymaps --------------------------------------------------------------
 --------------------------------------------------------------------------------
@@ -272,10 +259,18 @@ map("n", "<leader>o", function()
   end
 end, { desc = "Run Last Task" })
 
--- Spectre
--- map("n", "<leader>/", function() require("spectre").open_file_search({select_word=true}) end, { desc = "Search (buffer)" })
--- map({ "v", "x" }, "<leader>/", '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search Word (Buffer)" })
--- map("n", "<leader>?", function() require("spectre").open_visual({select_word=true}) end, { desc = "Search (CWD)" })
--- map({ "v", "x" }, "<leader>?", '<cmd>lua require("spectre").open_file_search()<CR>', { desc = "Search word (CWD)" })
+
+-- Toggles --------------------------------------------------------------------
+-- Toggle wrap
+map({"n", "i", "v", "x"}, "<leader><leader>uw",
+function()
+  vim.opt.wrap = not vim.opt.wrap:get()
+  -- Optional: Provide feedback to the user
+  if vim.opt.wrap:get() then
+    print("Wrap enabled")
+  else
+    print("Wrap disabled")
+  end
+end, { desc = "Toggle word wrap" })
 
 -- stylua: ignore end

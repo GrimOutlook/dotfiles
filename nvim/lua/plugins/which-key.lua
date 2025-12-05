@@ -13,7 +13,8 @@ return {
         { "<leader>g", group = "git" },
         { "<leader><space>f", group = "file/find" },
         { "gs", group = "surround" },
-        --   { "z", group = "fold" },
+        { "z", group = "fold" },
+        { "u", group = "toggles" },
         --   {
         --     "<leader>b",
         --     group = "buffer",
