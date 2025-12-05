@@ -29,7 +29,6 @@ return {
     },
   },
   config = function(_, opts)
-    vim.diagnostic.config({ virtual_lines = true })
     local lspconfig = vim.lsp.config
     for server, config in pairs(opts.servers) do
       -- passing config.capabilities to blink.cmp merges with the capabilities in your
