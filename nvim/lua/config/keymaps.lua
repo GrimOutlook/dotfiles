@@ -60,14 +60,6 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = tru
 -- Clear search highlighting with escape
 map("n", "<esc>", "<CMD>nohlsearch<CR>")
 
--- Move Lines
-map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
-map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-j>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-k>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
-
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
@@ -80,10 +72,6 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
-
--- better indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
 
 -- commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
@@ -118,9 +106,6 @@ map("n", "<leader><leader>?", function() require("which-key").show({ global = fa
 
 -- -- Oil ----------------------------------------------------------------------
 map("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open oil file explorer" })
-
--- -- Rnvimr ----------------------------------------------------------------------
--- map("n", "<leader>e", "<CMD>RnvimrToggle<CR>", { desc = "Open Rnvimr file explorer" })
 
 -- ToggleTerm ------------------------------------------------------------------
 map("n", "<leader>t", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
@@ -176,6 +161,8 @@ map("n", "#", function()
             vim.fn.expand("%")
         }
 }) end, { desc = "Search Selection (Current File)" })
+map("n", "R", function() require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } }) end, { desc = "Search and Replace (Current File)" })
+map({ "v", "x" }, "R", function() require('grug-far').with_visual_selection({ prefills = { paths = vim.fn.expand("%") } }) end, { desc = "Search and Replace (Current File)" })
 map("n", "<leader>//", function() require("snacks").picker.grep({focus="input"}) end, { desc = "Search (CWD)" })
 map({ "v", "x" }, "<leader>//", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
 map("n", "<leader>/r", function() require("grug-far").open() end, { desc = "Search and Replace (CWD)" })
