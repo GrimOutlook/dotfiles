@@ -95,7 +95,7 @@ map("n", "<leader><leader>?", function() require("which-key").show({ global = fa
 map("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open oil file explorer" })
 
 -- ToggleTerm ------------------------------------------------------------------
-map("n", "<leader>t", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
+map("n", "<leader>tt", "<CMD>ToggleTerm<CR>", { desc = "Open terminal" })
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
@@ -112,21 +112,23 @@ vim.cmd("autocmd! TermOpen term://*toggleterm*# lua set_terminal_keymaps()")
 -- Snacks Pickers --------------------------------------------------------------
 -- General
 map("n", "<leader>R", function() require("snacks").picker.resume() end, { desc = "Reopen Last Picker" })
-map("n", "<leader>f", function() require("snacks").picker.files({ focus = "input" }) end, { desc = "Files" })
-map("n", "<leader>r", function() require("snacks").picker.recent({ filter= { cwd = true }, current = false }) end, { desc = "Recent Files (CWD)" })
+map("n", "<leader>ff", function() require("snacks").picker.files({ focus = "input" }) end, { desc = "Files" })
+map("n", "<leader>fr", function() require("snacks").picker.recent({ filter= { cwd = true }, current = false }) end, { desc = "Recent Files (CWD)" })
 map("n", "<leader>n", function() require("noice").cmd("last") end, { desc = "Last Notification" })
 map("n", "<leader>N", function() require("snacks").picker.notifications() end, { desc = "Notification History" })
 map("n", "<leader>b", function() require("snacks").picker.buffers({ current = false }) end, { desc = "Buffers" })
 
 -- Extras
-map("n", "<leader>i", function() require("snacks").picker.icons({focus = "input"}) end, { desc = "Icons" })
+map("n", "<leader>si", function() require("snacks").picker.icons({focus = "input"}) end, { desc = "Icons" })
 map("n", "<leader>m", function() require("snacks").picker.marks() end, { desc = "Marks" })
-map("n", "<leader><space>fa", function() require("snacks").picker.autocmds() end, { desc = "Autocmds" })
-map("n", "<leader><space>fh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
-map("n", "<leader><space>fk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
+map("n", "<leader>sa", function() require("snacks").picker.autocmds() end, { desc = "Autocmds" })
+map("n", "<leader>sh", function() require("snacks").picker.help() end, { desc = "Help Pages" })
+map("n", "<leader>sk", function() require("snacks").picker.keymaps() end, { desc = "Keymaps" })
+map("n", "<leader>sc", function() require("snacks").picker.commands() end, { desc = "Commands" })
+map("n", "<leader>sC", function() require("snacks").picker.command_history() end, { desc = "Command History" })
 
 -- Text searching
-map("n", "/", function()
+map("n", "<leader>//", function()
     require("snacks").picker.grep({
         focus = "input",
         dirs = {
@@ -134,26 +136,26 @@ map("n", "/", function()
         }
 
 }) end, { desc = "Search (Current File)" })
-map({ "v", "x" }, "/", function()
+map({ "v", "x" }, "<leader>/", function()
     require("snacks").picker.grep( {
         search = vim.fn.expand("<cword>"),
         dirs = {
             vim.fn.expand("%")
         }
 }) end, { desc = "Search Selection (Current File)" })
-map("n", "#", function()
+map("n", "<leader>/#", function()
     require("snacks").picker.grep( {
         search = vim.fn.expand("<cword>"),
         dirs = {
             vim.fn.expand("%")
         }
 }) end, { desc = "Search Selection (Current File)" })
-map("n", "R", function() require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } }) end, { desc = "Search and Replace (Current File)" })
-map({ "v", "x" }, "R", function() require('grug-far').with_visual_selection({ prefills = { paths = vim.fn.expand("%") } }) end, { desc = "Search and Replace (Current File)" })
-map("n", "<leader>//", function() require("snacks").picker.grep({focus="input"}) end, { desc = "Search (CWD)" })
-map({ "v", "x" }, "<leader>//", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
-map("n", "<leader>/r", function() require("grug-far").open() end, { desc = "Search and Replace (CWD)" })
-map({ "v", "x" }, "<leader>/r", function() require('grug-far').open({ prefills = { search = vim.fn.expand("<cword>") } }) end, { desc = "Search and Replace (CWD)" })
+map("n", "<leader>/r", function() require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } }) end, { desc = "Search and Replace (Current File)" })
+map({ "v", "x" }, "<leader>/r", function() require('grug-far').with_visual_selection({ prefills = { paths = vim.fn.expand("%") } }) end, { desc = "Search and Replace (Current File)" })
+map("n", "<leader>/?", function() require("snacks").picker.grep({focus="input"}) end, { desc = "Search (CWD)" })
+map({ "v", "x" }, "<leader>/?", function() require("snacks").picker.grep_word() end, { desc = "Search word (CWD)" })
+map("n", "<leader>/R", function() require("grug-far").open() end, { desc = "Search and Replace (CWD)" })
+map({ "v", "x" }, "<leader>/R", function() require('grug-far').open({ prefills = { search = vim.fn.expand("<cword>") } }) end, { desc = "Search and Replace (CWD)" })
 
 -- Issues
 map({ "n", "x" }, "<leader>a", function() require("tiny-code-action").code_action({}) end, { desc = "Code Actions" })
@@ -247,9 +249,9 @@ map ({"v", "x"}, "<leader>S", "<CMD>Sort<CR>", {desc = "Sort"})
 
 -- Overseer
 -- Pick and run task
-map ("n", "<leader>O", "<CMD>OverseerRun<CR>", {desc = "Run Quick Task"})
+map ("n", "<leader>tq", "<CMD>OverseerRun<CR>", {desc = "Run Quick Task"})
 -- Run last task
-map("n", "<leader>o", function()
+map("n", "<leader>tl", function()
   local overseer = require("overseer")
   local tasks = overseer.list_tasks({ recent_first = true })
   if vim.tbl_isempty(tasks) then
@@ -262,7 +264,7 @@ end, { desc = "Run Last Task" })
 
 -- Toggles --------------------------------------------------------------------
 -- Toggle wrap
-map({"n", "i", "v", "x"}, "<leader><leader>uw",
+map({"n", "i", "v", "x"}, "<leader>uw",
 function()
   vim.opt.wrap = not vim.opt.wrap:get()
   -- Optional: Provide feedback to the user

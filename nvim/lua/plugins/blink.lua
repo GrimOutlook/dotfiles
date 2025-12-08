@@ -6,6 +6,7 @@ return {
     "MahanRahmati/blink-nerdfont.nvim",
     "moyiz/blink-emoji.nvim",
     "disrupted/blink-cmp-conventional-commits",
+    "onsails/lspkind.nvim",
   },
 
   -- use a release tag to download pre-built binaries
