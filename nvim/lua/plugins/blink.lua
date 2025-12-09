@@ -113,16 +113,22 @@ return {
         "conventional_commits",
       },
       providers = {
+
+        lsp = {
+          name = "LSP",
+          module = "blink.cmp.sources.lsp",
+          score_offset = 100,
+        },
         nerdfont = {
           module = "blink-nerdfont",
           name = "Nerd Fonts",
-          score_offset = 10, -- Tune by preference
+          score_offset = -10, -- Tune by preference
           opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
         },
         emoji = {
           module = "blink-emoji",
           name = "Emoji",
-          score_offset = 15, -- Tune by preference
+          score_offset = -15, -- Tune by preference
           opts = {
             insert = true, -- Insert emoji (default) or complete its name
             ---@type string|table|fun():table
