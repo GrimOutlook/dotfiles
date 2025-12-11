@@ -23,12 +23,6 @@ map("n", "<leader>w", ":w<CR>", { desc = "Save" })
 -- Fast saving all files with <leader> and W
 map("n", "<leader>W", ":wa<CR>", { desc = "Save All" })
 
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "[<TAB>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "]<TAB>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-
 -- Close current buffer
 -- If this is the last buffer, return to the dashboard.
 map("n", "<leader>q", function()
@@ -260,7 +254,7 @@ map("n", "<leader>tl", function()
     overseer.run_action(tasks[1], "restart")
   end
 end, { desc = "Run Last Task" })
-
+map ("n", "<leader>tu", "<CMD>OverseerToggle<CR>", {desc = "Toggle Overseer Tasks Window"})
 
 -- Toggles --------------------------------------------------------------------
 -- Toggle wrap
