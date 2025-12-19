@@ -7,6 +7,7 @@ return {
     "moyiz/blink-emoji.nvim",
     "disrupted/blink-cmp-conventional-commits",
     "onsails/lspkind.nvim",
+    { "L3MON4D3/LuaSnip", version = "v2.*" },
   },
 
   -- use a release tag to download pre-built binaries

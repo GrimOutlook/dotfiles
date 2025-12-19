@@ -2,7 +2,8 @@ local lsp_install = {
   -- Spelling
   "typos_lsp",
   -- Python
-  "basedpyright",
+  "ruff",
+  "pyrefly",
   -- Bash
   "bashls",
   -- Lua
@@ -99,6 +100,8 @@ local tools_install = {
   "actionlint",
   -- Python
   "yapf",
+  "black", -- Secondary formatter that gets run first. YAPF doesn't wrap strings or comments
+  "docformatter", -- Secondary formatter that gets run first. YAPF doesn't wrap strings or comments
 }
 local dependencies = {
   "mason-org/mason-registry",
