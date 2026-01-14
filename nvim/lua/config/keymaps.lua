@@ -255,6 +255,7 @@ map("n", "<leader>tl", function()
   end
 end, { desc = "Run Last Task" })
 map ("n", "<leader>tu", "<CMD>OverseerToggle<CR>", {desc = "Toggle Overseer Tasks Window"})
+map ("n", "<leader>ts", "<CMD>OverseerShell<CR>", {desc = "Run Shell Command"})
 
 -- Toggles --------------------------------------------------------------------
 -- Toggle wrap

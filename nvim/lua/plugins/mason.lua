@@ -51,7 +51,7 @@ local lsp_install = {
   -- CSS/Vue/HTML
   "stylelint_lsp",
   -- Systemd Unit Files
-  "systemd_ls",
+  "systemd_lsp",
   -- CSS
   "tailwindcss",
 

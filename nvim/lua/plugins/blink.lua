@@ -107,24 +107,34 @@ return {
         "lsp",
         "path",
         "snippets",
-        "buffer",
         "nerdfont",
         "emoji",
         "lazydev",
         "conventional_commits",
       },
       providers = {
-
         lsp = {
           name = "LSP",
           module = "blink.cmp.sources.lsp",
-          score_offset = 100,
+          score_offset = 1000,
+          min_keyword_length = 0,
+        },
+        snippets = {
+          name = "snippets",
+          module = "blink.cmp.sources.snippets",
+          min_keyword_length = 3,
         },
         nerdfont = {
           module = "blink-nerdfont",
           name = "Nerd Fonts",
-          score_offset = -10, -- Tune by preference
-          opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
+          score_offset = -12, -- Tune by preference
+          opts = {
+            insert = true, -- Insert nerdfont icon (default) or complete its name
+            ---@type string|table|fun():table
+            trigger = function()
+              return { ":" }
+            end,
+          },
         },
         emoji = {
           module = "blink-emoji",
